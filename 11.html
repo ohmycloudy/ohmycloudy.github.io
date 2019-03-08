@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <title>Rakudo Perl 6 By Example</title>
+    <meta name="keywords" content="perl6,rakudo,p6,example,examples,learning,start,tutorial">
+    <meta name="description" content="Learn Perl 6 By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Rakudo Perl 6 By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://github.com/ohmycloudy/ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello_world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list_comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern_match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## 生成 `1x1, 2x2, 3x3, ..., 10x10` 的列表</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">**</span><span class="Constant">2</span> <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span>)<span class="Statement">;</span>
+
+
+<span class="Comment"># `for` 语句前面还可以添加 if 修饰符，这样我们就可以仅筛选出偶数的平方</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">**</span><span class="Constant">2</span> <span class="Statement">if</span> <span class="Statement">!</span>(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">%</span> <span class="Constant">2</span>) <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span>)<span class="Statement">;</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">**</span><span class="Constant">2</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">%</span> <span class="Constant">2</span> <span class="Statement">==</span> <span class="Constant">1</span> <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span>)<span class="Statement">;</span> <span class="Comment"># 同上</span>
+
+
+<span class="Comment"># 组合多个 if 条件</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">list</span> <span class="Statement">=</span> (<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">%</span><span class="Constant">2</span> <span class="Statement">==</span> <span class="Constant">1</span> <span class="Statement">&amp;&amp;</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">&gt;</span> <span class="Constant">2</span> <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">6</span> )<span class="Statement">;</span>     <span class="Comment"># [3 5]</span>
+
+
+<span class="Comment"># 还可以生成全排列</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">for</span> <span class="Special">&quot;</span><span class="Constant">ABC</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">comb</span> <span class="Statement">X~</span> <span class="Special">&quot;</span><span class="Constant">XYZ</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">comb</span>)<span class="Statement">;</span> <span class="Comment"># (&quot;AX&quot;, &quot;AY&quot;, &quot;AZ&quot;, &quot;BX&quot;, &quot;BY&quot;, &quot;BZ&quot;, &quot;CX&quot;, &quot;CY&quot;, &quot;CZ&quot;)</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> (<span class="Constant">1</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,</span><span class="Constant">4</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">b</span> <span class="Statement">=</span> (<span class="Constant">2</span><span class="Statement">,</span><span class="Constant">4</span><span class="Statement">,</span><span class="Constant">6</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">list</span> <span class="Statement">=</span> (<span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">X</span> <span class="Identifier">@</span><span class="Identifier">b</span>)<span class="Statement">;</span>    <span class="Comment"># 这儿也可以用圆括号, 也可以不用</span>
+<span class="Comment"># [(1 2) (1 4) (1 6) (3 2) (3 4) (3 6) (4 2) (4 4) (4 6)]</span>
+
+<span class="Comment"># when for</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Special">when</span> <span class="Statement">/</span><span class="Constant">7</span><span class="Identifier">$/</span> <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">99</span>)<span class="Statement">;</span>
+<span class="Comment"># (7 17 27 37 47 57 67 77 87 97)</span>
+
+
+<span class="Comment"># 大小写转换</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> <span class="Special">&lt;</span><span class="Constant">Hello World IBM Apple</span><span class="Special">&gt;</span><span class="Statement">;</span>
+(<span class="Statement">.</span><span class="Identifier">lc</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span>)<span class="Statement">;</span>                <span class="Comment"># hello world ibm apple</span>
+
+
+<span class="Comment"># 删除字符串末尾的空白</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">freshfruit</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant"> banana</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant"> loganberry </span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">passion fruit </span><span class="Special">'</span><span class="Statement">;</span>
+(<span class="Statement">.</span><span class="Identifier">trim</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">freshfruit</span>)<span class="Statement">;</span>     <span class="Comment"># &quot;banana&quot; &quot;loganberry&quot; &quot;passion fruit&quot;</span>
+
+
+<span class="Comment"># 向量运算</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">vec</span> <span class="Statement">=</span> <span class="Constant">2</span><span class="Statement">,</span><span class="Constant">4</span><span class="Statement">,</span><span class="Constant">6</span><span class="Statement">;</span>
+(<span class="Constant">3</span><span class="Statement">*</span><span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec</span>)<span class="Statement">;</span>             <span class="Comment"># 6 12 18</span>
+(<span class="Constant">3</span><span class="Statement">*</span><span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">&gt;</span> <span class="Constant">3</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec</span>)<span class="Statement">;</span>   <span class="Comment"># 12 18</span>
+(<span class="Constant">3</span><span class="Statement">*</span><span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">&lt;</span> <span class="Constant">2</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec</span>)<span class="Statement">;</span>   <span class="Comment"># ()</span>
+
+
+<span class="Comment"># 嵌套数组</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">vec</span> <span class="Statement">=</span> <span class="Constant">2</span><span class="Statement">,</span><span class="Constant">4</span><span class="Statement">,</span><span class="Constant">6</span><span class="Statement">;</span>
+([<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">**</span><span class="Constant">2</span>]<span class="Statement">.</span><span class="Identifier">perl</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec</span>)<span class="Statement">;</span>  <span class="Comment"># [2, 4] [4, 16] [6, 36]</span>
+([<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">**</span><span class="Constant">2</span>]<span class="Statement">.</span><span class="Identifier">WHAT</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec</span>)<span class="Statement">;</span>  <span class="Comment"># (Array) (Array) (Array)</span>
+
+
+<span class="Comment"># Parcel</span>
+((<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">**</span><span class="Constant">2</span>)<span class="Statement">.</span><span class="Identifier">perl</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec</span>)<span class="Statement">;</span> <span class="Comment"># (2, 4) (4, 16) (6, 36)</span>
+((<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">**</span><span class="Constant">2</span>)<span class="Statement">.</span><span class="Identifier">WHAT</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec</span>)<span class="Statement">;</span> <span class="Comment"># (Parcel) (Parcel) (Parcel)</span>
+
+
+<span class="Comment"># 多个列表之间的列表解析</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">vec1</span> <span class="Statement">=</span> <span class="Constant">2</span><span class="Statement">,</span><span class="Constant">4</span><span class="Statement">,</span><span class="Constant">6</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">vec2</span> <span class="Statement">=</span> <span class="Constant">4</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,-</span><span class="Constant">9</span><span class="Statement">;</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec1</span> <span class="Statement">X*</span> <span class="Identifier">@</span><span class="Identifier">vec2</span>)<span class="Statement">;</span>           <span class="Comment"># 8 6 -18 16 12 -36 24 18 -54</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec1</span> <span class="Statement">X+</span> <span class="Identifier">@</span><span class="Identifier">vec2</span>)<span class="Statement">;</span>           <span class="Comment"># 5 -7 8 7 -5 10 9 -3</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec1</span> <span class="Statement">Z*</span> <span class="Identifier">@</span><span class="Identifier">vec2</span>)<span class="Statement">;</span>           <span class="Comment"># 8 12 -54</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">vec1</span> <span class="Statement">&gt;&gt;*&lt;&lt;</span> <span class="Identifier">@</span><span class="Identifier">vec2</span>)<span class="Statement">;</span>        <span class="Comment"># 8 12 -54</span>
+
+
+<span class="Comment"># 使用列表解析处理矩阵</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> ([<span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span>]<span class="Statement">,</span> [<span class="Constant">4</span><span class="Statement">,</span><span class="Constant">5</span><span class="Statement">,</span><span class="Constant">6</span>]<span class="Statement">,</span> [<span class="Constant">7</span><span class="Statement">,</span><span class="Constant">8</span><span class="Statement">,</span><span class="Constant">9</span>])<span class="Statement">;</span>
+<span class="Identifier">@</span><span class="Identifier">a</span>[<span class="Constant">0</span>]<span class="Statement">;</span>                     <span class="Comment"># 1 2 3</span>
+<span class="Identifier">@</span><span class="Identifier">a</span>[<span class="Constant">0</span>][<span class="Constant">1</span>]<span class="Statement">;</span>                  <span class="Comment"># 2</span>
+<span class="Identifier">@</span><span class="Identifier">a</span>[<span class="Constant">0</span>][<span class="Constant">2</span>]<span class="Statement">;</span>                  <span class="Comment"># 3</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span>[<span class="Constant">1</span>] <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span>)<span class="Statement">;</span>            <span class="Comment"># 2 5 8</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span>[<span class="Constant">2</span>] <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span>)<span class="Statement">;</span>            <span class="Comment"># 3 6 9</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span>[<span class="Constant">2</span>]<span class="Statement">-</span><span class="Constant">1</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span>)<span class="Statement">;</span>          <span class="Comment"># 2 5 8</span>
+(<span class="Identifier">@</span><span class="Identifier">a</span>[<span class="Identifier">$</span><span class="Identifier">_</span>][<span class="Identifier">$</span><span class="Identifier">_</span>] <span class="Statement">for</span> <span class="Constant">0</span><span class="Statement">..</span><span class="Constant">2</span>)<span class="Statement">;</span>     <span class="Comment"># 1 5 9</span>
+
+
+<span class="Comment"># 矩阵转置</span>
+<span class="Statement">sub</span> transpose (<span class="Identifier">@</span><span class="Identifier">m</span>) {
+    <span class="Identifier">@</span><span class="Identifier">m</span>[<span class="Constant">0</span>]<span class="Statement">.</span><span class="Identifier">keys</span><span class="Statement">.</span><span class="Identifier">map</span><span class="Statement">:</span> {[ <span class="Identifier">@</span><span class="Identifier">m</span>»[<span class="Identifier">$</span><span class="Identifier">_</span>] ]}<span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> [<span class="Special">&lt;</span><span class="Constant"> a b c d e </span><span class="Special">&gt;</span>]<span class="Statement">,</span>
+        [<span class="Special">&lt;</span><span class="Constant"> f g h i j </span><span class="Special">&gt;</span>]<span class="Statement">,</span>
+        [<span class="Special">&lt;</span><span class="Constant"> k l m n o </span><span class="Special">&gt;</span>]<span class="Statement">,</span>
+        [<span class="Special">&lt;</span><span class="Constant"> p q r s t </span><span class="Special">&gt;</span>]<span class="Statement">;</span>
+
+(<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">.</span><span class="Identifier">&amp;</span><span class="Identifier">transpose</span>)<span class="Statement">;</span>
+
+
+<span class="Comment">#a f k p</span>
+<span class="Comment">#b g l q</span>
+<span class="Comment">#c h m r</span>
+<span class="Comment">#d i n s</span>
+<span class="Comment">#e j o t</span>
+
+<span class="Comment"># 1到20之间哪些数字组成直角？</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">=</span> <span class="Constant">20</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> <span class="Statement">gather</span> <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+         <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">..</span><span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">y</span> {
+           <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">..</span><span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">z</span> {
+             <span class="Special">take</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">z</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">*</span><span class="Identifier">$</span><span class="Identifier">x</span> <span class="Statement">+</span> <span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">*</span><span class="Identifier">$</span><span class="Identifier">y</span> <span class="Statement">==</span> <span class="Identifier">$</span><span class="Identifier">z</span><span class="Statement">*</span><span class="Identifier">$</span><span class="Identifier">z</span><span class="Statement">;</span>
+           }
+         }
+       }<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">@</span><span class="Identifier">a</span>[]<span class="Special">&quot;</span><span class="Statement">;</span>
+
+<span class="Comment"># 3 4 5 5 12 13 6 8 10 8 15 17 9 12 15 12 16 20       </span>
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>

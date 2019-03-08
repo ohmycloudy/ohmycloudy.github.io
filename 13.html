@@ -1,0 +1,439 @@
+<html>
+  <head>
+    <title>Rakudo Perl 6 By Example</title>
+    <meta name="keywords" content="perl6,rakudo,p6,example,examples,learning,start,tutorial">
+    <meta name="description" content="Learn Perl 6 By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Rakudo Perl 6 By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://github.com/ohmycloudy/ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello_world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list_comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern_match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">### 模式匹配</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">name</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">;</span>
+
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">name</span> {
+  <span class="Special">when</span> <span class="Special">&quot;</span><span class="Constant">bilbo</span><span class="Special">&quot;</span>      { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Bilbo Baggins!</span><span class="Special">&quot;</span>}
+  <span class="Special">when</span> <span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span>  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Paul Hudson!</span><span class="Special">&quot;</span>  }
+  <span class="Special">default</span>           { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">身份验证失败</span><span class="Special">&quot;</span>           }
+}
+
+
+
+<span class="Comment">### 同时检查名字和密码</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">name</span>     <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">password</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span><span class="Statement">;</span>
+
+<span class="Statement">given</span> (<span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">password</span>) {
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">bilbo</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">bagg1n5</span><span class="Special">&quot;</span>)      { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Bilbo Baggins!</span><span class="Special">&quot;</span> }
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Paul Hudson!</span><span class="Special">&quot;</span>   }
+  <span class="Special">default</span>                        { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你是谁?</span><span class="Special">&quot;</span>                }
+}
+
+
+
+<span class="Comment">### 使用单个元组</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">authentication</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">authentication</span> {
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">bilbo</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">bagg1n5</span><span class="Special">&quot;</span>)      { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Bilbo Baggins!</span><span class="Special">&quot;</span> }
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Paul Hudson!</span><span class="Special">&quot;</span>   }
+  <span class="Special">default</span>                        { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你是谁?</span><span class="Special">&quot;</span>                }
+}
+
+
+
+<span class="Comment">### 部分匹配</span>
+
+<span class="Comment"># 你只关心某些感兴趣的值，不关心其它值，使用 `*` 号或 `$` 来代表 &quot;any value is fine&quot;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">authentication</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">127.0.0.1</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">authentication</span> {
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">bilbo</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">bagg1n5</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">*</span>)      { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Bilbo Baggins!</span><span class="Special">&quot;</span>}
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Identifier">$</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Paul Hudson!</span><span class="Special">&quot;</span>  }
+  <span class="Special">default</span>                           { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Who are you?</span><span class="Special">&quot;</span>         }
+}
+
+
+
+<span class="Comment">### 只匹配元组的一部分</span>
+
+<span class="Comment"># 但仍然想知道其它部分是什么</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">authentication</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">authentication</span> {
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">bilbo</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">*</span>)     { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Bilbo Baggins!</span><span class="Special">&quot;</span> }
+  <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">*</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hello, Paul Hudson: your password was </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant">!</span><span class="Special">&quot;</span> }
+  <span class="Special">default</span>               { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Who are you?</span><span class="Special">&quot;</span>         }
+}
+
+
+
+<span class="Comment">### 匹配计算型元组</span>
+
+<span class="Statement">sub</span> fizzbuzz(<span class="Type">Int</span> <span class="Identifier">$</span><span class="Identifier">number</span>) <span class="PreProc">returns</span> <span class="Type">Str</span> {
+    <span class="Statement">given</span> (<span class="Identifier">$</span><span class="Identifier">number</span> <span class="Statement">%</span> <span class="Constant">3</span> <span class="Statement">==</span> <span class="Constant">0</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">number</span> <span class="Statement">%</span> <span class="Constant">5</span> <span class="Statement">==</span> <span class="Constant">0</span>) {
+      <span class="Special">when</span> (<span class="Type">True</span><span class="Statement">,</span> <span class="Type">False</span>)  { <span class="Special">return</span> <span class="Special">&quot;</span><span class="Constant">Fizz</span><span class="Special">&quot;</span>     }
+      <span class="Special">when</span> (<span class="Type">False</span><span class="Statement">,</span> <span class="Type">True</span>)  { <span class="Special">return</span> <span class="Special">&quot;</span><span class="Constant">Buzz</span><span class="Special">&quot;</span>     }
+      <span class="Special">when</span> (<span class="Type">True</span><span class="Statement">,</span> <span class="Type">True</span>)   { <span class="Special">return</span> <span class="Special">&quot;</span><span class="Constant">FizzBuzz</span><span class="Special">&quot;</span> }
+      <span class="Special">when</span> (<span class="Type">False</span><span class="Statement">,</span> <span class="Type">False</span>) { <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">number</span><span class="Statement">.</span><span class="Type">Str</span>}
+    }
+}
+
+<span class="Identifier">say</span> fizzbuzz(<span class="Constant">15</span>)<span class="Statement">;</span>
+
+
+
+<span class="Comment">### 遍历元组</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">twostraws</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">bilbo</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">bilbo</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">bagg1n5</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">taylor</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">taylor</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">users</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">twostraws</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">bilbo</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">taylor</span><span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">users</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">user</span> {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">user</span>[<span class="Constant">0</span>]<span class="Statement">;</span>
+}
+
+
+<span class="Comment">### 使用 when 匹配元组中的指定值</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">twostraws</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">bilbo</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">bilbo</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">bagg1n5</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">taylor</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">taylor</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">users</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">twostraws</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">bilbo</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">taylor</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">User twostraws has the password fr0st1es</span><span class="Special">&quot;</span> <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>) <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">users</span><span class="Statement">;</span>
+
+<span class="Comment"># 打印密码为指定值的用户</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">User </span><span class="Identifier">$</span><span class="Identifier">_</span>[<span class="Constant">0</span>]<span class="Constant"> has password </span><span class="Special">\&quot;</span><span class="Constant">fr0st1es</span><span class="Special">\&quot;</span><span class="Special">&quot;</span> <span class="Special">when</span> (<span class="Statement">*,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span>) <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">users</span><span class="Statement">;</span>
+
+
+
+<span class="Comment">### 匹配范围</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">age</span> <span class="Statement">=</span> <span class="Constant">36</span><span class="Statement">;</span>
+
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">age</span> {
+  <span class="Special">when</span> <span class="Constant">0</span> <span class="Statement">..^</span> <span class="Constant">18</span>   { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有活力有时间，但是没钱</span><span class="Special">&quot;</span>  }
+  <span class="Special">when</span> <span class="Constant">18</span> <span class="Statement">..^</span> <span class="Constant">70</span>  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有活力有钱，但是没时间</span><span class="Special">&quot;</span>  }
+  <span class="Special">default</span>         { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有时间和金钱，但是没活力</span><span class="Special">&quot;</span>}
+}
+
+
+
+<span class="Comment">### when 可以配合智能匹配操作符 ~~ 单独使用</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">age</span> <span class="Statement">=</span> <span class="Constant">36</span><span class="Statement">;</span>
+<span class="Special">when</span> <span class="Identifier">$</span><span class="Identifier">age</span> <span class="Statement">~~</span> <span class="Constant">0</span> <span class="Statement">..^</span> <span class="Constant">18</span>  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有活力有时间，但是没钱</span><span class="Special">&quot;</span>  }
+<span class="Special">when</span> <span class="Identifier">$</span><span class="Identifier">age</span> <span class="Statement">~~</span> <span class="Constant">18</span> <span class="Statement">..^</span> <span class="Constant">70</span> { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有活力有钱，但是没时间</span><span class="Special">&quot;</span>  }
+<span class="Special">default</span>                { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有时间和金钱，但是没活力</span><span class="Special">&quot;</span>}
+
+
+<span class="Comment">### 使用 contains 方法</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">age</span> <span class="Statement">=</span> <span class="Constant">36</span><span class="Statement">;</span>
+<span class="Special">when</span> (<span class="Constant">0</span> <span class="Statement">..^</span> <span class="Constant">18</span>)<span class="Statement">.</span><span class="Identifier">contains</span>(<span class="Identifier">$</span><span class="Identifier">age</span>)  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有活力有时间，但是没钱</span><span class="Special">&quot;</span>  }
+<span class="Special">when</span> (<span class="Constant">18</span> <span class="Statement">..^</span> <span class="Constant">70</span>)<span class="Statement">.</span><span class="Identifier">contains</span>(<span class="Identifier">$</span><span class="Identifier">age</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有活力有钱，但是没时间</span><span class="Special">&quot;</span>  }
+<span class="Special">default</span>                         { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">你有时间和金钱，但是没活力</span><span class="Special">&quot;</span>}
+
+
+<span class="Comment">### 匹配元组中的范围</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">user</span> <span class="Statement">=</span> (<span class="Special">&quot;</span><span class="Constant">twostraws</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">fr0st1es</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Constant">36</span>)<span class="Statement">;</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">user</span> {
+  <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">name</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">user</span>[<span class="Constant">0</span>]<span class="Statement">;</span>
+  <span class="Special">when</span> (<span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">,</span> <span class="Statement">*,</span> <span class="Constant">0</span> <span class="Statement">..^</span> <span class="Constant">18</span>)  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Constant"> 有活力有时间，但是没钱</span><span class="Special">&quot;</span>  }
+  <span class="Special">when</span> (<span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">,</span> <span class="Statement">*,</span> <span class="Constant">18</span> <span class="Statement">..^</span> <span class="Constant">70</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Constant"> 有活力有钱，但是没时间</span><span class="Special">&quot;</span>  }
+  <span class="Special">when</span> (<span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">,</span> <span class="Statement">*,</span> <span class="Statement">*</span>)         { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Constant"> 有时间和金钱,但是没活力</span><span class="Special">&quot;</span> }
+}
+
+
+
+<span class="Comment">### 枚举</span>
+
+<span class="Statement">enum</span> WeatherType <span class="Special">&lt;</span><span class="Constant">Cloudy Sunny Windy</span><span class="Special">&gt;</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">today</span> <span class="Statement">=</span> WeatherType::Cloudy<span class="Statement">;</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">today</span> {
+  <span class="Special">when</span> WeatherType::Cloudy { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">多云</span><span class="Special">&quot;</span> }
+  <span class="Special">when</span> WeatherType::Sunny  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">晴天</span><span class="Special">&quot;</span> }
+  <span class="Special">when</span> WeatherType::Windy  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">有风</span><span class="Special">&quot;</span> }
+}
+
+<span class="Comment"># 使用 if 语句</span>
+<span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">today</span> <span class="Statement">~~</span> WeatherType::Cloudy { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">多云</span><span class="Special">&quot;</span> }
+
+
+
+<span class="Comment">### 关联值</span>
+
+<span class="Statement">enum</span> WeatherType  (
+    <span class="Constant">Cloudy</span> <span class="Statement">=&gt;</span> <span class="Constant">100</span><span class="Statement">,</span>
+    <span class="Constant">Sunny</span>  <span class="Statement">=&gt;</span> <span class="Constant">50</span><span class="Statement">,</span>
+    <span class="Constant">Windy</span>  <span class="Statement">=&gt;</span> <span class="Constant">30</span>
+)<span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">today</span> <span class="Statement">=</span> WeatherType::Windy<span class="Statement">;</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">today</span> {
+  <span class="Special">when</span> WeatherType::Cloudy { <span class="Identifier">say</span> <span class="Constant">20</span><span class="Statement">*</span>Cloudy }
+  <span class="Special">when</span> WeatherType::Sunny  { <span class="Identifier">say</span> <span class="Constant">10</span><span class="Statement">*</span>Sunny  }
+  <span class="Special">when</span> WeatherType::Windy  { <span class="Identifier">say</span> <span class="Constant">12</span><span class="Statement">*</span>Windy  }
+}
+
+
+
+<span class="Comment">### when 从句</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">numbers</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span><span class="Statement">;</span>
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Special">when</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">%</span> <span class="Constant">2</span> <span class="Statement">==</span> <span class="Constant">1</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">numbers</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">celebrities</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">Michael Jackson</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">Taylor Swift</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">MichaelCaine</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">Adele Adkins</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">Michael Jordan</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Special">when</span> <span class="Special">/</span><span class="Special">^</span><span class="Constant">Michael</span><span class="Special">/</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">celebrities</span><span class="Statement">;</span>     <span class="Comment"># 使用正则表达式</span>
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Special">when</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Identifier">chars</span> <span class="Statement">&gt;</span> <span class="Constant">12</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">celebrities</span><span class="Statement">;</span>  <span class="Comment"># 调用方法</span>
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Special">when</span> <span class="Special">/</span><span class="Special">^</span><span class="Constant">Michael</span><span class="Special">/</span> <span class="Statement">and</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Identifier">chars</span> <span class="Statement">&gt;</span><span class="Constant">12</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">celebrities</span><span class="Statement">;</span> <span class="Comment"># 复合条件</span>
+
+
+<span class="Comment"># 带有常量模式的模式匹配</span>
+<span class="Statement">sub</span> describe(<span class="Identifier">$</span><span class="Identifier">x</span>) {
+    <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+        <span class="Special">when</span> <span class="Constant">5</span>       { <span class="Special">&quot;</span><span class="Constant">five</span><span class="Special">&quot;</span> }
+        <span class="Special">when</span> <span class="Special">&quot;</span><span class="Constant">hello</span><span class="Special">&quot;</span> { <span class="Special">&quot;</span><span class="Constant">hi!</span><span class="Special">&quot;</span> }
+        <span class="Special">when</span> Nil     { <span class="Special">&quot;</span><span class="Constant">Empty </span><span class="Special">&quot;</span> }
+        <span class="Special">default</span>      { <span class="Special">&quot;</span><span class="Constant">something else</span><span class="Special">&quot;</span> }
+    }
+}
+
+<span class="Identifier">say</span> describe(<span class="Constant">5</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> describe(Nil)<span class="Statement">;</span>
+<span class="Identifier">say</span> describe([<span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span>])<span class="Statement">;</span>
+
+<span class="Statement">sub</span> variable_pattern(<span class="Identifier">$</span><span class="Identifier">x</span>) {
+  <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+    <span class="Special">when</span> <span class="Special">/</span><span class="Constant">Perl6</span><span class="Special">/</span> { <span class="Special">&quot;</span><span class="Constant">Camelia</span><span class="Special">&quot;</span> }
+    <span class="Special">when</span> <span class="Statement">*</span>       { <span class="Special">&quot;</span><span class="Constant">Star </span><span class="Special">&quot;</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span> }
+    <span class="Special">default</span>      {<span class="Special">&quot;</span><span class="Constant">something else</span><span class="Special">&quot;</span>}
+  }
+}
+
+<span class="Identifier">say</span> variable_pattern(<span class="Special">&quot;</span><span class="Constant">YoungForPerl6</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> variable_pattern(<span class="Special">&quot;</span><span class="Constant">Star More</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> variable_pattern(<span class="Special">&quot;</span><span class="Constant">Horse</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+
+
+<span class="Statement">sub</span> generalSize(<span class="Identifier">$</span><span class="Identifier">x</span>) {
+  <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+    <span class="Special">when</span> <span class="Type">Str</span> { <span class="Statement">.</span><span class="Identifier">chars</span> }
+    <span class="Special">when</span> Map { <span class="Statement">.</span><span class="Identifier">elems</span> }
+    <span class="Special">default</span>  { <span class="Statement">-</span><span class="Constant">1</span> }
+  }
+}
+
+<span class="Identifier">say</span> generalSize(<span class="Special">&quot;</span><span class="Constant">abc</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> generalSize(Map<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">'</span><span class="Constant">a</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">1</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">b</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">2</span>))<span class="Statement">;</span>
+<span class="Identifier">say</span> generalSize(<span class="Identifier">pi</span>)<span class="Statement">;</span>
+
+<span class="Statement">sub</span> patternGuard(<span class="Identifier">$</span><span class="Identifier">x</span>) {
+  <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+    <span class="Special">when</span> <span class="Type">Int</span> <span class="Statement">&amp;&amp;</span> (<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">&gt;</span> <span class="Constant">0</span>) { <span class="Special">&quot;</span><span class="Constant">positive</span><span class="Special">&quot;</span> }
+    <span class="Special">when</span> <span class="Type">Int</span> <span class="Statement">&amp;&amp;</span> (<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">&lt;</span> <span class="Constant">0</span>) { <span class="Special">&quot;</span><span class="Constant">negative</span><span class="Special">&quot;</span> }
+    <span class="Special">default</span> {<span class="Special">&quot;</span><span class="Constant">something else</span><span class="Special">&quot;</span>}
+  }
+}
+
+<span class="Identifier">say</span> patternGuard(<span class="Constant">2</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> patternGuard(<span class="Statement">-</span><span class="Constant">2</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> patternGuard(<span class="Special">&quot;</span><span class="Constant">ha</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+
+<span class="Statement">sub</span> multiple_alternatives(<span class="Identifier">$</span><span class="Identifier">x</span>) {
+  <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+    <span class="Special">when</span> <span class="Special">'</span><span class="Constant">0</span><span class="Special">'</span> <span class="Statement">|</span> <span class="Special">'</span><span class="Constant">0x</span><span class="Special">'</span> <span class="Statement">|</span> <span class="Special">'</span><span class="Constant">0X</span><span class="Special">'</span> { <span class="Special">'</span><span class="Constant">multiple_alternatives</span><span class="Special">'</span> }
+    <span class="Special">default</span> {<span class="Special">'</span><span class="Constant">something else</span><span class="Special">'</span>}
+  }
+}
+
+<span class="Identifier">say</span> multiple_alternatives(<span class="Special">'</span><span class="Constant">0x</span><span class="Special">'</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> multiple_alternatives(<span class="Special">'</span><span class="Constant">ascii</span><span class="Special">'</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> multiple_alternatives(<span class="Special">'</span><span class="Constant">0X</span><span class="Special">'</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> multiple_alternatives(<span class="Special">'</span><span class="Constant">0</span><span class="Special">'</span>)<span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">ch</span> <span class="Statement">=</span> <span class="Constant">23</span><span class="Statement">;</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">ch</span>  {
+    <span class="Special">when</span> <span class="Type">Int</span> <span class="Statement">and</span> <span class="Statement">*</span> <span class="Statement">&gt;</span> <span class="Constant">10</span> { <span class="Identifier">say</span> <span class="Constant">65</span>}
+    <span class="Special">when</span> <span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span> { <span class="Constant">1</span>  }
+    <span class="Special">when</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span> { <span class="Statement">-</span><span class="Constant">1</span> }
+    <span class="Special">default</span>  { <span class="Constant">0</span>  }
+}
+
+
+<span class="Statement">sub</span> variables_patterns(<span class="Identifier">$</span><span class="Identifier">x</span>) {
+  <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+    <span class="Special">when</span> <span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span> { <span class="Constant">1</span>  }
+    <span class="Special">when</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span> { <span class="Statement">-</span><span class="Constant">1</span> }
+    <span class="Special">when</span> <span class="Statement">*</span>   { <span class="Identifier">$</span><span class="Identifier">_</span> }
+    <span class="Special">default</span>  {<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">something else</span><span class="Special">'</span>}
+  }
+}
+
+<span class="Identifier">say</span> variables_patterns(<span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> variables_patterns([<span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span>])<span class="Statement">;</span>
+<span class="Identifier">say</span> variables_patterns(<span class="Special">'</span><span class="Constant">variables_patterns</span><span class="Special">'</span>)<span class="Statement">;</span>
+
+<span class="Statement">multi</span> washing_machine(<span class="Type">Int</span> <span class="Statement">\x</span> <span class="PreProc">where</span> <span class="Statement">*</span> <span class="Statement">&gt;</span> <span class="Constant">10</span> ) { <span class="Constant">65</span> }
+<span class="Statement">multi</span> washing_machine(<span class="Type">Str</span> <span class="Statement">\x</span> <span class="PreProc">where</span> <span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span>    ) { <span class="Constant">1</span>  }
+<span class="Statement">multi</span> washing_machine(<span class="Type">Str</span> <span class="Statement">\x</span> <span class="PreProc">where</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span>    ) { <span class="Statement">-</span><span class="Constant">1</span> }
+<span class="Statement">multi</span> washing_machine(<span class="Statement">\x</span>)                   { <span class="Constant">0</span>  }
+
+<span class="Identifier">say</span> washing_machine(<span class="Constant">12</span>)<span class="Statement">;</span>      <span class="Comment"># 65</span>
+<span class="Identifier">say</span> washing_machine(<span class="Statement">-</span><span class="Constant">12</span>)<span class="Statement">;</span>     <span class="Comment"># 0</span>
+<span class="Identifier">say</span> washing_machine(<span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span>)<span class="Statement">;</span>     <span class="Comment"># 1</span>
+<span class="Identifier">say</span> washing_machine(<span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span>)<span class="Statement">;</span>     <span class="Comment"># -1</span>
+<span class="Identifier">say</span> washing_machine(<span class="Special">'</span><span class="Constant">2333</span><span class="Special">'</span>)<span class="Statement">;</span>  <span class="Comment"># 0</span>
+<span class="Identifier">say</span> washing_machine(<span class="Special">'</span><span class="Constant">洗衣机</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 0</span>
+
+
+<span class="Comment">## Object and pattern match</span>
+<span class="Statement">class</span> Address {
+    <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">street</span><span class="Statement">;</span>
+    <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">city</span><span class="Statement">;</span>
+    <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">country</span><span class="Statement">;</span>
+}
+
+<span class="Statement">class</span> Person {
+  <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">name</span><span class="Statement">;</span>
+  <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">age</span><span class="Statement">;</span>
+  <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">address</span><span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">alice</span>   <span class="Statement">=</span> Person<span class="Statement">.</span><span class="Identifier">new</span>(
+                 <span class="Statement">:</span><span class="Constant">name</span>(<span class="Special">&quot;</span><span class="Constant">Alice</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                 <span class="Statement">:</span><span class="Constant">age</span>(<span class="Constant">25</span>)<span class="Statement">,</span>
+                 <span class="Statement">:</span><span class="Constant">address</span>(
+                     Address<span class="Statement">.</span><span class="Identifier">new</span>(
+                         <span class="Statement">:</span><span class="Constant">street</span>(<span class="Special">&quot;</span><span class="Constant">1 Scala Lane</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                         <span class="Statement">:</span><span class="Constant">city</span>(<span class="Special">&quot;</span><span class="Constant">Chicago</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                         <span class="Statement">:</span><span class="Constant">country</span>(<span class="Special">&quot;</span><span class="Constant">USA</span><span class="Special">&quot;</span>))
+                    )
+            )<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">bob</span>     <span class="Statement">=</span> Person<span class="Statement">.</span><span class="Identifier">new</span>(
+                  <span class="Statement">:</span><span class="Constant">name</span>(<span class="Special">&quot;</span><span class="Constant">Bob</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                  <span class="Statement">:</span><span class="Constant">age</span>(<span class="Constant">29</span>)<span class="Statement">,</span>
+                  <span class="Statement">:</span><span class="Constant">address</span>(
+                      Address<span class="Statement">.</span><span class="Identifier">new</span>(
+                          <span class="Statement">:</span><span class="Constant">street</span>(<span class="Special">&quot;</span><span class="Constant">2 Java Ave.</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                          <span class="Statement">:</span><span class="Constant">city</span>(<span class="Special">&quot;</span><span class="Constant">Miami</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                          <span class="Statement">:</span><span class="Constant">country</span>(<span class="Special">&quot;</span><span class="Constant">USA</span><span class="Special">&quot;</span>))
+                  )
+            )<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">charlie</span> <span class="Statement">=</span> Person<span class="Statement">.</span><span class="Identifier">new</span>(
+                  <span class="Statement">:</span><span class="Constant">name</span>(<span class="Special">&quot;</span><span class="Constant">Charlie</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                  <span class="Statement">:</span><span class="Constant">age</span>(<span class="Constant">32</span>)<span class="Statement">,</span>
+                  <span class="Statement">:</span><span class="Constant">address</span>(
+                      Address<span class="Statement">.</span><span class="Identifier">new</span>(
+                          <span class="Statement">:</span><span class="Constant">street</span>(<span class="Special">&quot;</span><span class="Constant">3 Python Ct.</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                          <span class="Statement">:</span><span class="Constant">city</span>(<span class="Special">&quot;</span><span class="Constant">Boston</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                          <span class="Statement">:</span><span class="Constant">country</span>(<span class="Special">&quot;</span><span class="Constant">USA</span><span class="Special">&quot;</span>))
+                  )
+            )<span class="Statement">;</span>
+
+<span class="Statement">for</span> (<span class="Identifier">$</span><span class="Identifier">alice</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">bob</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">charlie</span>) {
+    <span class="Special">when</span> Person<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Statement">:</span><span class="Constant">name</span>(<span class="Special">&quot;</span><span class="Constant">Alice</span><span class="Special">&quot;</span>)<span class="Statement">,:</span><span class="Constant">age</span>(<span class="Constant">25</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">address</span>(Address<span class="Statement">.</span><span class="Identifier">new</span>())) {
+      <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hi Alice!</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    }
+    <span class="Special">when</span> <span class="Statement">*</span> <span class="Statement">eqv</span> Person<span class="Statement">.</span><span class="Identifier">new</span>(
+                   <span class="Statement">:</span><span class="Constant">name</span>(<span class="Special">&quot;</span><span class="Constant">Bob</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                   <span class="Statement">:</span><span class="Constant">age</span>(<span class="Constant">29</span>)<span class="Statement">,</span>
+                   <span class="Statement">:</span><span class="Constant">address</span>(
+                       Address<span class="Statement">.</span><span class="Identifier">new</span>(
+                           <span class="Statement">:</span><span class="Constant">street</span>(<span class="Special">&quot;</span><span class="Constant">2 Java Ave.</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                           <span class="Statement">:</span><span class="Constant">city</span>(<span class="Special">&quot;</span><span class="Constant">Miami</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+                           <span class="Statement">:</span><span class="Constant">country</span>(<span class="Special">&quot;</span><span class="Constant">USA</span><span class="Special">&quot;</span>))
+                       )
+                    )
+    {
+       <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Hi Bob!</span><span class="Special">&quot;</span>
+    }
+    <span class="Special">when</span> Person {
+      <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Who are you, </span>{<span class="Statement">.</span>age}<span class="Constant"> year-old person named </span>{<span class="Statement">.</span><span class="Identifier">name</span>}<span class="Constant">?</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    }
+}
+
+
+<span class="Statement">for</span> (<span class="Constant">1</span><span class="Statement">,</span> <span class="Constant">2</span><span class="Statement">,</span> <span class="Constant">2.7</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">one</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">two</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">four</span><span class="Special">&quot;</span>) {
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">int 1</span><span class="Special">&quot;</span> <span class="Special">when</span> <span class="Constant">1</span><span class="Statement">;</span>
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">other int </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span> <span class="Special">when</span> <span class="Type">Int</span> <span class="Statement">|</span> Numeric<span class="Statement">;</span>
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">string one</span><span class="Special">&quot;</span> <span class="Special">when</span> <span class="Special">&quot;</span><span class="Constant">one</span><span class="Special">&quot;</span><span class="Statement">;</span>
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">other string </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span> <span class="Special">when</span> <span class="Type">Str</span><span class="Statement">;</span>
+  <span class="Special">default</span> { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">unexpected</span><span class="Special">&quot;</span> }
+}
+
+
+<span class="Comment"># 使用签名进行模式匹配</span>
+
+<span class="Statement">class</span> Body   { <span class="Special">has</span> ( <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">head</span><span class="Statement">,</span> <span class="Identifier">@</span><span class="Special">.</span><span class="Identifier">arms</span><span class="Statement">,</span> <span class="Identifier">@</span><span class="Special">.</span><span class="Identifier">legs</span> ) }
+<span class="Statement">class</span> Person { <span class="Special">has</span> ( <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">mom</span><span class="Statement">,</span>  <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">body</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">age</span>  ) }
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">age</span> <span class="Statement">=</span> <span class="Constant">42</span><span class="Statement">;</span>
+<span class="Statement">multi</span> person's-age-and-legs ( Person ( <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">age</span> <span class="PreProc">where</span> <span class="Statement">*</span> <span class="Statement">&gt;</span> <span class="Constant">40</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">body</span> ( <span class="Statement">:</span><span class="Identifier">@</span><span class="Identifier">legs</span><span class="Statement">,</span> <span class="Statement">*%</span> )<span class="Statement">,</span> <span class="Statement">*%</span> ) ) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">age</span><span class="Constant"> </span>{<span class="Statement">+</span><span class="Identifier">@</span><span class="Identifier">legs</span>}<span class="Special">&quot;</span> }
+person's-age-and-legs Person<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">age</span><span class="Statement">,</span><span class="Constant">body</span> <span class="Statement">=&gt;</span> Body<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Statement">:</span><span class="Constant">head</span><span class="Statement">,:</span><span class="Constant">2arms</span><span class="Statement">,</span><span class="Constant">legs</span> <span class="Statement">=&gt;</span> <span class="Special">&lt;</span><span class="Constant">left middle right</span><span class="Special">&gt;</span>))<span class="Statement">;</span> <span class="Comment"># 42 3</span>
+
+
+
+<span class="Comment">## Scala-like pattern match</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">langs</span> <span class="Statement">=</span> (
+       (<span class="Special">&quot;</span><span class="Constant">Scala</span><span class="Special">&quot;</span><span class="Statement">,</span>   <span class="Special">&quot;</span><span class="Constant">Martin</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">Odersky</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+       (<span class="Special">&quot;</span><span class="Constant">Clojure</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">Rich</span><span class="Special">&quot;</span><span class="Statement">,</span>   <span class="Special">&quot;</span><span class="Constant">Hickey</span><span class="Special">&quot;</span>)<span class="Statement">,</span>
+       (<span class="Special">&quot;</span><span class="Constant">Lisp</span><span class="Special">&quot;</span><span class="Statement">,</span>    <span class="Special">&quot;</span><span class="Constant">John</span><span class="Special">&quot;</span><span class="Statement">,</span>   <span class="Special">&quot;</span><span class="Constant">McCarthy</span><span class="Special">&quot;</span>)
+       )<span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">langs</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">l</span> {
+    <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">l</span> {
+        <span class="Special">when</span> (<span class="Special">&quot;</span><span class="Constant">Scala</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Statement">,</span> <span class="Identifier">$</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Found Scala</span><span class="Special">&quot;</span> }<span class="Statement">;</span>
+        <span class="Special">when</span> (<span class="Identifier">$</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">John</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Identifier">$</span>)  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Found John</span><span class="Special">&quot;</span>  }<span class="Statement">;</span>
+    }
+}
+
+
+<span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">...</span><span class="Constant">4</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">i</span> {
+    <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">i</span> {
+        <span class="Special">when</span> $  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">even: </span><span class="Identifier">$</span><span class="Identifier">i</span><span class="Special">&quot;</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">i</span> <span class="Statement">%</span> <span class="Constant">2</span> <span class="Statement">==</span><span class="Constant">0</span>}
+    }
+}
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>
