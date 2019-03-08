@@ -1,0 +1,614 @@
+<html>
+  <head>
+    <title>Rakudo Perl 6 By Example</title>
+    <meta name="keywords" content="perl6,rakudo,p6,example,examples,learning,start,tutorial">
+    <meta name="description" content="Learn Perl 6 By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Rakudo Perl 6 By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://github.com/ohmycloudy/ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello_world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list_comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern_match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## arguments capture</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">=</span><span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">=</span><span class="Special">'</span><span class="Constant">Escape Plan</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">h</span><span class="Statement">=</span><span class="Special">'</span><span class="Constant">Rakudo</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Special">'</span><span class="Constant">Star</span><span class="Special">'</span><span class="Statement">,</span><span class="Special">'</span><span class="Constant">STD</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Special">'</span><span class="Constant">Larry</span><span class="Special">'</span><span class="Statement">;</span>
+
+<span class="Comment"># 捕获就是一系列实参的签名</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">capture</span> <span class="Statement">=</span> <span class="Statement">\</span>(<span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">,</span><span class="Identifier">%</span><span class="Identifier">h</span>)<span class="Statement">;</span>      <span class="Comment"># creating a capture, &quot;\&quot; was free since there are no references anymore</span>
+<span class="Identifier">say</span>(<span class="Statement">|</span><span class="Identifier">$</span><span class="Identifier">capture</span>)<span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>            <span class="Comment"># flatten into argument list (hash like context)</span>
+<span class="Comment"># ||$cap;                       # flatten into semicolon list (array like context)</span>
+
+<span class="Comment">## captures</span>
+
+<span class="Comment"># A set of parameters form a signature. 一组形参组成签名</span>
+<span class="Comment"># A set of arguments form a capture.    一组实参组成捕获</span>
+
+<span class="Statement">sub</span> greet(<span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">greeting</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">Hi</span><span class="Special">'</span>) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">greeting</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Constant">!</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+greet(<span class="Special">'</span><span class="Constant">Лена</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">greeting</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">Привет</span><span class="Special">'</span>)<span class="Statement">;</span>
+
+<span class="Comment">## colon in  signature</span>
+
+<span class="PreProc">use</span> MONKEY-SEE-NO-EVAL<span class="Statement">;</span>
+
+<span class="Comment"># -r=xxx -s=yyy -e=zzz -i=123</span>
+<span class="Comment"># usage: perl6 colon_in_signature.p6  -r=&quot;\d ** 3&quot; -s=&quot;在木星&quot; -i=2 1.txt 2.txt 3.txt</span>
+<span class="Statement">multi</span> <span class="Statement">sub</span> MAIN(<span class="Type">Str</span> <span class="Statement">:</span><span class="Constant">r</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">regex</span>)<span class="Statement">,</span> <span class="Type">Str</span> <span class="Statement">:</span><span class="Constant">s</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">substr</span>)<span class="Statement">,</span> <span class="Type">Str</span> <span class="Statement">:</span><span class="Constant">e</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">ext</span>) <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">.out</span><span class="Special">'</span><span class="Statement">,</span> <span class="Type">Int</span> <span class="Statement">:</span><span class="Constant">i</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">ignore-line</span>) <span class="Statement">=</span> <span class="Constant">0</span><span class="Statement">,</span> <span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">files</span>) {
+    <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">files</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">file</span> {
+        <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">out</span> <span class="Statement">=</span> <span class="Identifier">open</span> <span class="Identifier">$</span><span class="Identifier">file</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Constant">.out</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">w</span><span class="Statement">;</span> <span class="Comment"># 写入文件</span>
+
+        <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">file</span><span class="Statement">.</span><span class="Type">IO</span><span class="Statement">.</span><span class="Identifier">lines</span><span class="Statement">.</span><span class="Identifier">kv</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">index</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">line</span> <span class="PreProc">is</span> <span class="Special">copy</span> {
+            <span class="Special">next</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">index</span> <span class="Statement">&lt;=</span> <span class="Identifier">$</span><span class="Identifier">ignore-line</span><span class="Statement">;</span> <span class="Comment"># 忽略前 $ignore-line几行</span>
+            <span class="Identifier">$</span><span class="Identifier">line</span> <span class="Statement">~~</span> EVAL <span class="Special">&quot;</span><span class="Constant">s/</span><span class="Special">&quot;</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">regex</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Constant">/</span><span class="Special">&quot;</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">substr</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Constant">/</span><span class="Special">&quot;</span><span class="Statement">;</span> <span class="Comment"># 根据正则表达式进行替换</span>
+            <span class="Identifier">say</span> <span class="Identifier">$/</span><span class="Statement">;</span>
+            <span class="Identifier">$</span><span class="Identifier">out</span><span class="Statement">.</span><span class="Identifier">say</span>(<span class="Identifier">$</span><span class="Identifier">line</span>)<span class="Statement">;</span>
+        }
+        <span class="Identifier">$</span><span class="Identifier">out</span><span class="Statement">.</span><span class="Identifier">close</span><span class="Statement">;</span>
+    }
+}
+
+<span class="Comment"># 查看本脚本的用法</span>
+<span class="Comment"># perl6 colon_in_signature.p6 --help</span>
+
+<span class="Comment"># Usage:</span>
+<span class="Comment">#  colon_in_signature.p6 [-r|--regex=&lt;Str&gt;] [-s|--substr=&lt;Str&gt;] [-e|--ext=&lt;Str&gt;] [-i|--ignore-line=&lt;Int&gt;] [&lt;files&gt; ...]</span>
+
+<span class="Comment"># 可以看出命令行选项有短名称(如 -r)和长名称(如 --regex)。</span>
+
+<span class="Comment">## colon </span>
+
+<span class="Statement">sub</span> rectangle(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">width</span><span class="Statement">!,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">height</span><span class="Statement">!,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">char</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">X</span><span class="Special">'</span>) {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">char</span> <span class="Statement">x</span> <span class="Identifier">$</span><span class="Identifier">width</span> <span class="Statement">for</span> <span class="Statement">^</span><span class="Identifier">$</span><span class="Identifier">height</span><span class="Statement">;</span>
+}
+
+rectangle <span class="Constant">char</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">o</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">width</span> <span class="Statement">=&gt;</span> <span class="Constant">8</span><span class="Statement">,</span> <span class="Constant">height</span> <span class="Statement">=&gt;</span> <span class="Constant">4</span><span class="Statement">;</span>
+rectangle <span class="Statement">:</span><span class="Constant">width</span>(<span class="Constant">20</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">height</span><span class="Special">&lt;</span><span class="Constant">5</span><span class="Special">&gt;</span><span class="Statement">;</span>
+
+<span class="Comment">## constraining defined and undefined values</span>
+
+<span class="Statement">multi</span>  limit-lines (<span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">,</span> <span class="Type">Int</span><span class="Statement">:</span><span class="Constant">D</span> <span class="Identifier">$</span><span class="Identifier">limit</span>) {
+    <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">lines</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">.</span><span class="Identifier">lines</span><span class="Statement">;</span>
+    <span class="Identifier">@</span><span class="Identifier">lines</span>[<span class="Constant">0</span> <span class="Statement">..^</span> <span class="Identifier">min</span> <span class="Identifier">@</span><span class="Identifier">lines</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">limit</span>]<span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Special">\n</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+}
+
+<span class="Statement">multi</span> limit-lines (<span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">,</span> <span class="Type">Int</span><span class="Statement">:</span><span class="Constant">U</span> $) {<span class="Identifier">$</span><span class="Identifier">s</span>}
+<span class="Identifier">say</span> (limit-lines <span class="Special">&quot;</span><span class="Constant">a </span><span class="Special">\n</span><span class="Constant"> b </span><span class="Special">\n</span><span class="Constant"> c </span><span class="Special">\n</span><span class="Constant"> d </span><span class="Special">\n</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Constant">3</span>)<span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>
+<span class="Comment"># say limit-lines Str, 3;</span>
+<span class="Comment"># say limit-lines &quot;a \n b&quot;, Int;</span>
+<span class="Identifier">say</span> limit-lines <span class="Special">&quot;</span><span class="Constant">a </span><span class="Special">\n</span><span class="Constant"> b </span><span class="Special">\n</span><span class="Constant"> c</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Type">Int</span><span class="Statement">;</span>
+
+
+<span class="Statement">sub</span> f(::T <span class="Identifier">$</span><span class="Identifier">p1</span><span class="Statement">,</span> T <span class="Identifier">$</span><span class="Identifier">p2</span><span class="Statement">,</span> ::C) {
+    <span class="Comment"># $p1 和 $p2 的类型都为 T, 但是我们还不知道具体类型是什么</span>
+    <span class="Comment"># C 将会保存一个源于类型对象或值的类型</span>
+    <span class="Special">my</span> C <span class="Identifier">$</span><span class="Identifier">closure</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">p1</span> <span class="Statement">/</span> <span class="Identifier">$</span><span class="Identifier">p2</span><span class="Statement">;</span>
+    <span class="Special">return</span> <span class="Statement">sub</span> (T <span class="Identifier">$</span><span class="Identifier">p1</span>) {
+        <span class="Identifier">$</span><span class="Identifier">closure</span> <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">p1</span><span class="Statement">;</span>
+    }
+}
+
+<span class="Comment"># 第一个参数是 Int 类型, 所以第二个参数也是</span>
+<span class="Comment"># 我们从调用用于 &amp;f 中的操作符导出第三个类型</span>
+<span class="Special">my</span> <span class="Identifier">&amp;</span><span class="Identifier">s</span> <span class="Statement">=</span> f(<span class="Constant">10</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span> <span class="Type">Int</span><span class="Statement">.</span><span class="Identifier">new</span> <span class="Statement">/</span> <span class="Type">Int</span><span class="Statement">.</span><span class="Identifier">new</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> s(<span class="Constant">2</span>)<span class="Statement">;</span>  <span class="Comment"># 10 / 2 * 2  == 10</span>
+
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">x</span><span class="Special">'</span> <span class="Statement">x</span> <span class="Constant">55</span><span class="Statement">;</span>
+
+<span class="Statement">multi</span> ff(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">named</span>) { note <span class="Identifier">&amp;</span><span class="Special">?</span><span class="Identifier">ROUTINE</span><span class="Statement">.</span><span class="Identifier">signature</span> }
+<span class="Statement">multi</span> ff(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">also-named</span>) { note <span class="Identifier">&amp;</span><span class="Special">?</span><span class="Identifier">ROUTINE</span><span class="Statement">.</span><span class="Identifier">signature</span> }
+
+<span class="Statement">for</span> <span class="Special">'</span><span class="Constant">named</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">also-named</span><span class="Special">'</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">n</span> {
+    ff(<span class="Statement">|</span>(<span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">=&gt;</span> <span class="Identifier">rand</span>))<span class="Statement">;</span>      <span class="Comment"># «(:$named)␤(:$also-named)␤»</span>
+}
+
+<span class="Comment">## constraint warnings</span>
+
+<span class="Comment"># Be careful about using type constraints on arrays and hashes. The type constraints the elements.</span>
+<span class="Comment"># 在对数组和散列使用类型限制时要小心. 类型限制的是元素!</span>
+
+<span class="Statement">multi</span> <span class="Statement">sub</span> total(<span class="Type">Array</span> <span class="Identifier">@</span><span class="Identifier">distances</span>) { <span class="Comment"># 限制数组 @distances 中的每个元素为数组.</span>
+    <span class="Comment"># WRONG! Takes an Array of Arrays!</span>
+}
+
+<span class="Statement">multi</span> <span class="Statement">sub</span> total(<span class="Type">Int</span> <span class="Identifier">@</span><span class="Identifier">distances</span>) {
+    <span class="Comment"># Correct, takes an array of Ints.</span>
+}
+
+<span class="Comment">## constraints</span>
+
+<span class="Comment"># Sometimes, you need to do some more powerful validation on arguments.</span>
+
+<span class="Statement">sub</span> discount(<span class="Identifier">$</span><span class="Identifier">price</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">percent</span>
+             <span class="PreProc">where</span> (<span class="Constant">1</span> <span class="Statement">&lt;=</span> <span class="Identifier">$</span><span class="Identifier">percent</span> <span class="Statement">&lt;=</span> <span class="Constant">100</span>)) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">You get </span><span class="Identifier">$</span><span class="Identifier">percent</span><span class="Constant">% off! Pay EUR </span><span class="Special">&quot;</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">price</span> <span class="Statement">-</span> (<span class="Identifier">$</span><span class="Identifier">price</span> <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">percent</span> <span class="Statement">/</span> <span class="Constant">100</span>)<span class="Statement">;</span>
+}
+discount(<span class="Constant">100</span><span class="Statement">,</span> <span class="Constant">20</span>)<span class="Statement">;</span>
+discount(<span class="Constant">100</span><span class="Statement">,</span> <span class="Constant">200</span>)<span class="Statement">;</span>
+
+<span class="Comment">## cont down</span>
+
+<span class="Special">constant</span> term<span class="Statement">:</span><span class="Special">&lt;</span><span class="Constant">ANSI-SAME-LINE</span><span class="Special">&gt;</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Special">\e</span><span class="Constant">[1F</span><span class="Special">\e</span><span class="Constant">[0K</span><span class="Special">&quot;</span><span class="Statement">;</span>
+
+<span class="Statement">subset</span> Seconds <span class="PreProc">of</span> Numeric<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Statement">regex</span> number {<span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">[</span> <span class="Special">'</span><span class="Constant">.</span><span class="Special">'</span> <span class="Special">\d</span><span class="Special">+</span> <span class="Special">]</span><span class="Special">?</span><span class="Constant"> </span>}
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">d</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">*</span><span class="Constant">24</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">h</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">m</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">s</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">;</span> <span class="Comment"># 每天, 每小时, 每分钟, 每秒所对应的秒数</span>
+
+<span class="Statement">multi</span> <span class="Statement">sub</span> pretty-print(Seconds <span class="Identifier">$</span><span class="Identifier">seconds</span> <span class="PreProc">is</span> <span class="Special">copy</span> <span class="Statement">--&gt;</span> <span class="Type">Str</span>) {
+    <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">ret</span><span class="Statement">;</span>
+    <span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span><span class="Statement">.</span><span class="Identifier">sort</span>(<span class="Statement">-*.</span><span class="Identifier">value</span>) <span class="Statement">-&gt;</span> (<span class="Statement">:</span><span class="Constant">key</span>(<span class="Identifier">$</span><span class="Identifier">unit</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">value</span>(<span class="Identifier">$</span><span class="Identifier">multiplier</span>)) {
+        <span class="Identifier">@</span><span class="Identifier">ret</span><span class="Statement">.</span><span class="Identifier">push</span><span class="Statement">:</span> <span class="Identifier">$</span><span class="Identifier">seconds</span><span class="Statement">.</span><span class="Type">Int</span> <span class="Statement">div</span> <span class="Identifier">$</span><span class="Identifier">multiplier</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">unit</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">seconds</span><span class="Statement">.</span><span class="Type">Int</span> <span class="Statement">div</span> <span class="Identifier">$</span><span class="Identifier">multiplier</span><span class="Statement">;</span>
+        <span class="Identifier">$</span><span class="Identifier">seconds</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">seconds</span> <span class="Statement">%</span> <span class="Identifier">$</span><span class="Identifier">multiplier</span><span class="Statement">;</span>
+    }
+    <span class="Identifier">@</span><span class="Identifier">ret</span><span class="Statement">.</span><span class="Identifier">join</span><span class="Statement">:</span> <span class="Special">'</span><span class="Constant"> </span><span class="Special">'</span><span class="Statement">;</span>
+}
+
+<span class="Statement">multi</span> <span class="Statement">sub</span> MAIN(Seconds <span class="Identifier">$</span><span class="Identifier">to-wait</span>) {
+    MAIN(<span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">s</span><span class="Special">'</span>)<span class="Statement">;</span>
+}
+
+<span class="Comment"># eg： @timicles =&gt; [0.5m 10s]</span>
+<span class="Statement">multi</span> <span class="Statement">sub</span> MAIN(<span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">timicles</span> <span class="PreProc">where</span> <span class="Statement">.</span><span class="Identifier">all</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">&lt;[</span><span class="Constant">dhms</span><span class="Special">]&gt;</span><span class="Special">/</span>) {
+    <span class="Special">my</span> Seconds <span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">timicles</span>»<span class="Statement">.\</span>
+        <span class="Identifier">split</span>(<span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Special">/</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">v</span>)<span class="Statement">.\</span>
+        <span class="Identifier">map</span>(<span class="Statement">-&gt;</span> [<span class="Identifier">$</span><span class="Statement">,</span>Rat(<span class="Type">Any</span>) <span class="Identifier">$</span><span class="Identifier">count</span><span class="Statement">,</span> Str(<span class="Type">Any</span>) <span class="Identifier">$</span><span class="Identifier">unit</span>] <span class="Statement">--&gt;</span> Seconds { <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span>{<span class="Identifier">$</span><span class="Identifier">unit</span>} <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">count</span> })<span class="Statement">.\</span>
+        <span class="Identifier">sum</span><span class="Statement">;</span>
+
+    react {
+        whenever Promise<span class="Statement">.</span>in(<span class="Identifier">$</span><span class="Identifier">to-wait</span>) {
+            <span class="Special">exit</span> <span class="Constant">0</span><span class="Statement">;</span>
+        }
+
+        whenever signal(SIGINT) {
+            <span class="Special">exit</span> <span class="Constant">1</span><span class="Statement">;</span>
+        }
+
+        whenever Supply<span class="Statement">.</span>interval(<span class="Constant">1</span>) {
+            <span class="Special">state</span> <span class="Identifier">$</span><span class="Identifier">count-down</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">to-wait</span><span class="Statement">;</span>
+            <span class="Identifier">say</span> ANSI-SAME-LINE <span class="Statement">~</span> pretty-print(<span class="Identifier">$</span><span class="Identifier">count-down</span><span class="Statement">--</span>)<span class="Statement">;</span>
+        }
+    }
+}
+
+<span class="Statement">sub</span> USAGE {
+<span class="Identifier">print</span> <span class="Statement">Q</span><span class="Statement">:</span><span class="Constant">c</span><span class="Statement">:</span><span class="Constant">to</span><span class="Special">/</span><span class="Constant">EOH</span><span class="Special">/</span><span class="Statement">;</span>
+    <span class="Statement">Usage:</span> {<span class="Identifier">$</span><span class="Special">*</span><span class="Identifier">PROGRAM-NAME</span>} NUMBER[SUFFIX]…
+    Display a countdown <span class="Statement">for</span> the specified <span class="Identifier">time</span><span class="Statement">.</span> Decimal fractions are supported <span class="Statement">for</span>
+    NUMBER <span class="Statement">and</span> suffixes <span class="Statement">for</span> [d]ays<span class="Statement">,</span> [h]ours<span class="Statement">,</span> [<span class="Statement">m</span>]inutes <span class="Statement">or</span> [<span class="Statement">s</span>]econds are
+    recognized<span class="Statement">.</span> If the countdown <span class="PreProc">is</span> exhausted <span class="Special">exit</span> with <span class="Constant">0</span><span class="Statement">.</span>
+
+    Receiving SIGNIT <span class="Special">will</span> interrupt the countdown <span class="Statement">and</span> result in exitcode <span class="Constant">1</span><span class="Statement">.</span>
+EOH
+}
+
+<span class="Comment">## dispatch by arity</span>
+
+<span class="Comment"># Dispatch By Arity(he number of arguments that a function can take)</span>
+<span class="Comment"># Example (from Test.pm): dispatch by different number of parameters</span>
+
+<span class="Statement">multi</span> <span class="Statement">sub</span> <span class="Identifier">todo</span>(<span class="Identifier">$</span><span class="Identifier">reason</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">count</span>) <span class="Identifier">is</span> <span class="Special">export</span> {
+    <span class="Identifier">$</span><span class="Identifier">todo_upto_test_num</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">num_of_tests_run</span> <span class="Statement">+</span> <span class="Identifier">$</span><span class="Identifier">count</span><span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">todo_reason</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant"># TODO </span><span class="Special">'</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">reason</span><span class="Statement">;</span>
+}
+
+<span class="Statement">multi</span> <span class="Statement">sub</span> <span class="Identifier">todo</span>(<span class="Identifier">$</span><span class="Identifier">reason</span>) <span class="Identifier">is</span> <span class="Special">export</span> {
+    <span class="Identifier">$</span><span class="Identifier">todo_upto_test_num</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">num_of_tests_run</span> <span class="Statement">+</span> <span class="Constant">1</span><span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">todo_reason</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant"># TODO </span><span class="Special">'</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">reason</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## dispatch by constraint</span>
+
+<span class="Comment"># Can use multiple dispatch with constraints to do a lot of &quot;write what you know&quot; style solutions</span>
+
+<span class="Comment"># Factorial:</span>
+<span class="Comment"># fact(0) = 1</span>
+<span class="Comment"># fact(n) = n * fact(n - 1)</span>
+
+<span class="Statement">multi</span> fact(<span class="Constant">0</span>)  { <span class="Constant">1</span> }<span class="Statement">;</span>
+<span class="Statement">multi</span> fact(<span class="Identifier">$</span><span class="Identifier">n</span>) { <span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">*</span> fact(<span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">-</span> <span class="Constant">1</span>) }<span class="Statement">;</span>
+
+<span class="Identifier">say</span> fact(<span class="Constant">10</span>)<span class="Statement">;</span>
+
+
+<span class="Comment"># Fibonacci Sequence:</span>
+<span class="Comment"># fib(0) = 0</span>
+<span class="Comment"># fib(1) = 1</span>
+<span class="Comment"># fib(n) = fib(n - 1) + fib(n - 2)</span>
+
+<span class="Comment"># mutil 声明的子例程语句结尾不需要跟分号;</span>
+<span class="Statement">multi</span> fib(<span class="Constant">0</span>)  { <span class="Constant">0</span> }
+<span class="Statement">multi</span> fib(<span class="Constant">1</span>)  { <span class="Constant">1</span> }
+<span class="Statement">multi</span> fib(<span class="Identifier">$</span><span class="Identifier">n</span>) { fib(<span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">-</span> <span class="Constant">1</span>) <span class="Statement">+</span> fib(<span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">-</span> <span class="Constant">2</span>) }
+
+<span class="Identifier">say</span> fib(<span class="Constant">10</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## dispatch by type</span>
+
+<span class="Comment"># Example: part of a JSON emitter</span>
+
+<span class="Statement">multi</span> to-json(<span class="Type">Array</span> <span class="Identifier">$</span><span class="Identifier">a</span>) {
+    <span class="Special">return</span> <span class="Special">'</span><span class="Constant">[ </span><span class="Special">'</span> <span class="Statement">~</span>
+        <span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">.</span><span class="Identifier">values</span><span class="Statement">.</span><span class="Identifier">map</span>({ to-json(<span class="Identifier">$</span><span class="Identifier">_</span>) })<span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">, </span><span class="Special">'</span>) <span class="Statement">~</span>
+        <span class="Special">'</span><span class="Constant"> ]</span><span class="Special">'</span><span class="Statement">;</span>
+}
+
+<span class="Statement">multi</span> to-json(<span class="Type">Hash</span> <span class="Identifier">$</span><span class="Identifier">h</span>) {
+    <span class="Special">return</span> <span class="Special">'</span><span class="Constant">{ </span><span class="Special">'</span> <span class="Statement">~</span>
+        <span class="Identifier">$</span><span class="Identifier">h</span><span class="Statement">.</span><span class="Identifier">pairs</span><span class="Statement">.</span><span class="Identifier">map</span>({
+            to-json(<span class="Statement">.</span><span class="Identifier">key</span>) <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">: </span><span class="Special">'</span> <span class="Statement">~</span> to-json(<span class="Statement">.</span><span class="Identifier">value</span>)
+        })<span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">, </span><span class="Special">'</span>) <span class="Statement">~</span>
+        <span class="Special">'</span><span class="Constant"> }</span><span class="Special">'</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## destruct</span>
+<span class="Statement">sub</span> fst(<span class="Statement">*</span>@ [<span class="Identifier">$</span><span class="Identifier">fst</span>]){
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">fst</span><span class="Statement">;</span>
+}
+
+fst(<span class="Constant">1</span>)<span class="Statement">;</span>
+fst(<span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Statement">sub</span> is-in(<span class="Identifier">@</span><span class="Identifier">array</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">elem</span>) {
+  <span class="Comment"># this will `return` out of the `is-in` sub</span>
+  <span class="Comment"># once the condition evaluated to True, the loop won't be run anymore</span>
+  <span class="Identifier">map</span>({ <span class="Special">return</span> <span class="Type">True</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">==</span>  <span class="Identifier">$</span><span class="Identifier">elem</span> }<span class="Statement">,</span> <span class="Identifier">@</span><span class="Identifier">array</span>)<span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">array</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,</span><span class="Constant">4</span><span class="Statement">,</span><span class="Constant">5</span><span class="Statement">;</span>
+<span class="Identifier">is</span><span class="Statement">-</span>in(<span class="Identifier">@</span><span class="Identifier">array</span><span class="Statement">,</span><span class="Constant">3</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## junction as hash keys</span>
+
+<span class="Statement">subset</span> Seconds <span class="PreProc">of</span> Numeric<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Statement">regex</span> number {<span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">[</span> <span class="Special">'</span><span class="Constant">.</span><span class="Special">'</span> <span class="Special">\d</span><span class="Special">+</span> <span class="Special">]</span><span class="Special">?</span><span class="Constant"> </span>} <span class="Comment"># float </span>
+<span class="Special">my</span> <span class="Statement">regex</span> suffix {<span class="Constant"> </span><span class="Special">&lt;[</span><span class="Constant">dhms</span><span class="Special">]&gt;</span><span class="Constant"> </span>}
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">d</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">*</span><span class="Constant">24</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">h</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">m</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">s</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">;</span> <span class="Comment"># 每天, 每小时, 每分钟, 每秒所对应的秒数</span>
+
+<span class="Comment"># @timicles =&gt; [0.5m 10s]</span>
+<span class="Statement">sub</span> MAIN(<span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">timicles</span> <span class="PreProc">where</span> <span class="Statement">.</span><span class="Identifier">all</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">&lt;[</span><span class="Constant">dhms</span><span class="Special">]&gt;</span><span class="Special">/</span>) {
+    <span class="Special">my</span> Seconds <span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">timicles</span>»<span class="Statement">\</span>
+        <span class="Statement">.</span>match(<span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">&lt;</span>suffix<span class="Special">&gt;</span><span class="Special">+</span><span class="Special">/</span>)»<span class="Statement">.</span><span class="Statement">hash</span><span class="Statement">\</span> <span class="Comment"># the +-quatifier is a workaround</span>
+        <span class="Statement">.</span><span class="Identifier">map</span>(<span class="Statement">-&gt;</span> <span class="Statement">%</span> ( Rat(<span class="Type">Any</span>) <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">number</span><span class="Statement">,</span> Str(<span class="Type">Any</span>) <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">suffix</span> ) {<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">suffix</span><span class="Statement">;</span> <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span>{<span class="Identifier">$</span><span class="Identifier">suffix</span>} <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">number</span> })<span class="Statement">\</span>
+        <span class="Statement">.</span><span class="Identifier">sum</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Constant">s</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## lexically scoped</span>
+
+<span class="Statement">sub</span> escape (<span class="Identifier">$</span><span class="Identifier">str</span>) {
+    <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">str</span><span class="Statement">;</span>
+    <span class="Comment"># Puts a slash before non-alphanumeric characters</span>
+    <span class="Statement">s:</span><span class="Constant">g</span><span class="Special">[</span><span class="Special">&lt;</span><span class="Special">-</span>alpha<span class="Special">-</span>digit<span class="Special">&gt;</span><span class="Special">]</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Special">\\</span><span class="Identifier">$/</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Identifier">say</span> escape <span class="Special">&quot;</span><span class="Constant">foobar</span><span class="Special">&quot;</span><span class="Statement">;</span>
+
+{
+    <span class="Statement">sub</span> escape (<span class="Identifier">$</span><span class="Identifier">str</span>) {
+        <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">str</span><span class="Statement">;</span>
+        <span class="Comment"># Writes each non-alphanumeric character in its hexadecimal escape</span>
+        <span class="Statement">s:</span><span class="Constant">g</span><span class="Special">[</span><span class="Special">&lt;</span><span class="Special">-</span>alpha<span class="Special">-</span>digit<span class="Special">&gt;</span><span class="Special">]</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Special">\\</span><span class="Constant">x</span><span class="Special">[</span><span class="Special">{ $/.base(16) }</span><span class="Special">]</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    }
+
+    <span class="Identifier">say</span> escape <span class="Special">&quot;</span><span class="Constant">foo#bar?</span><span class="Special">&quot;</span><span class="Statement">;</span> <span class="Comment"># foo\x[23]bar\x[3F]</span>
+}
+
+<span class="Comment"># Back to original escape function</span>
+<span class="Identifier">say</span> escape <span class="Special">&quot;</span><span class="Constant">foo#bar?</span><span class="Special">&quot;</span><span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## optional parameters</span>
+
+<span class="Statement">sub</span> greet(<span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">greeting</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">Ahoj</span><span class="Special">'</span>) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">greeting</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Constant">!</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+greet(<span class="Special">'</span><span class="Constant">Anna</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># Ahoj Anna </span>
+greet(<span class="Special">'</span><span class="Constant">Лена</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Привет </span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># Привет, Лена&quot;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## passing arrays and hashes</span>
+
+<span class="Comment"># In Perl 6, passing an array or hash works like passing a reference</span>
+
+<span class="Statement">sub</span> example(<span class="Identifier">@</span><span class="Identifier">array</span><span class="Statement">,</span> <span class="Identifier">%</span><span class="Identifier">hash</span>) {
+    <span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">array</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">hash</span><span class="Statement">.</span><span class="Identifier">keys</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Constant">, </span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">numbers</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,</span><span class="Constant">4</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">ages</span> <span class="Statement">=</span> <span class="Constant">Jnthn</span> <span class="Statement">=&gt;</span> <span class="Constant">25</span><span class="Statement">,</span> <span class="Constant">Noah</span> <span class="Statement">=&gt;</span> <span class="Constant">120</span><span class="Statement">;</span>
+example(<span class="Identifier">@</span><span class="Identifier">numbers</span><span class="Statement">,</span> <span class="Identifier">%</span><span class="Identifier">ages</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## positional signatures</span>
+
+<span class="PreProc">use</span> <span class="Statement">fatal</span><span class="Statement">;</span>
+
+<span class="Statement">sub</span> foo( <span class="Type">Int</span> <span class="Identifier">@</span><span class="Identifier">nums</span> ) {
+    <span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">nums</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Constant"> </span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+}
+
+<span class="Statement">sub</span> bar( <span class="Type">UInt</span> <span class="Identifier">@</span><span class="Identifier">nums</span> ) {
+    <span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">nums</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Constant"> </span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Type">UInt</span> <span class="Identifier">@</span><span class="Identifier">nums</span> <span class="Statement">=</span> (<span class="Constant">1</span><span class="Statement">,</span> <span class="Constant">2</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">foo: </span><span class="Special">&quot;</span><span class="Statement">;</span>
+foo(<span class="Identifier">@</span><span class="Identifier">nums</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">bar: </span><span class="Special">&quot;</span><span class="Statement">;</span>
+bar(<span class="Identifier">@</span><span class="Identifier">nums</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## quick sort</span>
+
+<span class="Comment"># Empty list sorts to the empty list</span>
+<span class="Statement">multi</span> quicksort([]) { () }
+
+<span class="Comment"># Otherwise, extract first item as pivot...</span>
+<span class="Statement">multi</span> quicksort([<span class="Identifier">$</span><span class="Identifier">pivot</span><span class="Statement">,</span> <span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">rest</span>]) {
+
+    <span class="Comment"># Partition.</span>
+    <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">before</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">rest</span><span class="Statement">.</span><span class="Identifier">grep</span>(<span class="Statement">*</span> <span class="Statement">&lt;</span> <span class="Identifier">$</span><span class="Identifier">pivot</span>)<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">after</span>  <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">rest</span><span class="Statement">.</span><span class="Identifier">grep</span>(<span class="Statement">*</span> <span class="Statement">&gt;=</span> <span class="Identifier">$</span><span class="Identifier">pivot</span>)<span class="Statement">;</span>
+    <span class="Comment"># Sort the partitions.</span>
+    (quicksort(<span class="Identifier">@</span><span class="Identifier">before</span>)<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">pivot</span><span class="Statement">,</span> quicksort(<span class="Identifier">@</span><span class="Identifier">after</span>))
+}
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">unsorted</span> <span class="Statement">=</span> <span class="Special">&lt;</span><span class="Constant">13 1 9 12 4 2015</span><span class="Special">&gt;</span><span class="Statement">;</span>
+<span class="Identifier">say</span> quicksort(<span class="Identifier">@</span><span class="Identifier">unsorted</span>)<span class="Statement">;</span> <span class="Comment"># 1  4  9  12  13  2015</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## read only</span>
+
+<span class="Statement">sub</span> convert_currency(<span class="Identifier">$</span><span class="Identifier">amount</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">rate</span>) {
+    <span class="Identifier">$</span><span class="Identifier">amount</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">amount</span> <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">rate</span><span class="Statement">;</span>
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">amount</span><span class="Statement">;</span>
+}
+
+<span class="Statement">sub</span> convert_currency_copy(<span class="Identifier">$</span><span class="Identifier">amount</span> <span class="PreProc">is</span> <span class="Special">copy</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">rate</span>) {
+    <span class="Identifier">$</span><span class="Identifier">amount</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">amount</span> <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">rate</span><span class="Statement">;</span>
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">amount</span><span class="Statement">;</span>
+}
+
+<span class="Statement">sub</span> convert_currency_rw(<span class="Identifier">$</span><span class="Identifier">amount</span> <span class="PreProc">is</span> <span class="Special">rw</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">rate</span>) {
+    <span class="Identifier">$</span><span class="Identifier">amount</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">amount</span> <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">rate</span><span class="Statement">;</span>
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">amount</span><span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">price</span> <span class="Statement">=</span> <span class="Constant">99</span><span class="Statement">;</span>
+<span class="Identifier">$</span><span class="Identifier">price</span> <span class="Statement">=</span> convert_currency(<span class="Identifier">$</span><span class="Identifier">price</span><span class="Statement">,</span> <span class="Constant">11.1</span>)<span class="Statement">;</span>
+<span class="Identifier">$</span><span class="Identifier">price_copy</span> <span class="Statement">=</span> convert_currency_copy(<span class="Identifier">$</span><span class="Identifier">price</span><span class="Statement">,</span> <span class="Constant">11.1</span>)<span class="Statement">;</span>
+<span class="Identifier">$</span><span class="Identifier">price_rw</span> <span class="Statement">=</span> convert_currency_rw(<span class="Identifier">$</span><span class="Identifier">price</span><span class="Statement">,</span> <span class="Constant">11.1</span>)<span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">price</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">price_copy</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">price_rw</span><span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## signature destructuring</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">hhgttg</span> <span class="Statement">=</span> (<span class="Statement">:</span><span class="Constant">40life</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">41universe</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">42everything</span>)<span class="Statement">;</span>
+<span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">hhgttg</span> <span class="Statement">-&gt;</span> (<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">value</span>) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Constant"> → </span><span class="Identifier">$</span><span class="Identifier">value</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## capture in signature</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sig</span> <span class="Statement">=</span> <span class="Statement">:</span>(<span class="Type">Int</span> <span class="Identifier">$</span><span class="Identifier">i</span><span class="Statement">,</span> <span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">s</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> (<span class="Constant">10</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">answer</span><span class="Special">'</span>) <span class="Statement">~~</span> <span class="Identifier">$</span><span class="Identifier">sig</span><span class="Statement">;</span>
+<span class="Comment"># OUTPUT: «True␤»</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sub</span> <span class="Statement">=</span> <span class="Statement">sub</span> ( <span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">,</span> <span class="Type">Int</span> <span class="Identifier">$</span><span class="Identifier">i</span> ) { <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">s</span> <span class="Statement">xx</span> <span class="Identifier">$</span><span class="Identifier">i</span> }<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">sub</span><span class="Statement">.</span><span class="Identifier">signature</span> <span class="Statement">~~</span> <span class="Statement">:</span>( <span class="Type">Str</span><span class="Statement">,</span> <span class="Type">Int</span> )<span class="Statement">;</span>
+<span class="Comment"># OUTPUT: «True␤»</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">sig</span> {
+    <span class="Special">when</span> <span class="Statement">:</span>(<span class="Type">Str</span><span class="Statement">,</span> <span class="Type">Int</span>) { <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">mismatch</span><span class="Special">'</span> }
+    <span class="Special">when</span> <span class="Statement">:</span>(<span class="Identifier">$</span><span class="Statement">,</span> <span class="Identifier">$</span>)     { <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">match</span><span class="Special">'</span> }
+    <span class="Special">default</span>          { <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">no match</span><span class="Special">'</span> }
+}
+<span class="Comment"># OUTPUT: «match␤»</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## time unit</span>
+
+<span class="Statement">subset</span> Seconds <span class="PreProc">of</span> Numeric<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Statement">regex</span> number {<span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">[</span> <span class="Special">'</span><span class="Constant">.</span><span class="Special">'</span> <span class="Special">\d</span><span class="Special">+</span> <span class="Special">]</span><span class="Special">?</span><span class="Constant"> </span>} <span class="Comment"># float </span>
+<span class="Special">my</span> <span class="Statement">regex</span> suffix {<span class="Constant"> </span><span class="Special">&lt;[</span><span class="Constant">dhms</span><span class="Special">]&gt;</span><span class="Constant"> </span>}
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">d</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">*</span><span class="Constant">24</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">h</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">m</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">s</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">;</span> <span class="Comment"># 每天, 每小时, 每分钟, 每秒所对应的秒数</span>
+
+<span class="Comment"># @timicles =&gt; [0.5m 10s]</span>
+<span class="Statement">sub</span> MAIN(<span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">timicles</span> <span class="PreProc">where</span> <span class="Statement">.</span><span class="Identifier">all</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">&lt;[</span><span class="Constant">dhms</span><span class="Special">]&gt;</span><span class="Special">/</span>) {
+    <span class="Special">my</span> Seconds <span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">timicles</span>»<span class="Statement">\</span>
+        <span class="Statement">.</span>match(<span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">&lt;</span>suffix<span class="Special">&gt;</span><span class="Special">+</span><span class="Special">/</span>)»<span class="Statement">.</span><span class="Statement">hash</span><span class="Statement">\</span> <span class="Comment"># the +-quatifier is a workaround</span>
+        <span class="Statement">.</span><span class="Identifier">map</span>(<span class="Statement">-&gt;</span> <span class="Statement">%</span> ( Rat(<span class="Type">Any</span>) <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">number</span><span class="Statement">,</span> Str(<span class="Type">Any</span>) <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">suffix</span> ) { <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span>{<span class="Identifier">$</span><span class="Identifier">suffix</span>} <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">number</span> })<span class="Statement">\</span>
+        <span class="Statement">.</span><span class="Identifier">sum</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Constant">s</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## total seconds</span>
+
+<span class="Statement">subset</span> Seconds <span class="PreProc">of</span> Numeric<span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">d</span><span class="Special">'</span><span class="Statement">|</span><span class="Special">'</span><span class="Constant">day</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">*</span><span class="Constant">24</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">h</span><span class="Special">'</span><span class="Statement">|</span><span class="Special">'</span><span class="Constant">hour</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">*</span><span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">m</span><span class="Special">'</span><span class="Statement">|</span><span class="Special">'</span><span class="Constant">min</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">60</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">s</span><span class="Special">'</span><span class="Statement">|</span><span class="Special">'</span><span class="Constant">sec</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">units</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span><span class="Statement">.</span><span class="Identifier">keys</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Statement">regex</span> number {<span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">[</span> <span class="Special">'</span><span class="Constant">.</span><span class="Special">'</span> <span class="Special">\d</span><span class="Special">+</span> <span class="Special">]</span><span class="Special">?</span><span class="Constant"> </span>}
+<span class="Special">my</span> <span class="Statement">regex</span> suffix {<span class="Constant"> </span><span class="Identifier">@</span><span class="Identifier">units</span><span class="Constant"> </span>}
+
+<span class="Comment"># @timicles =&gt; [0.5m 10s 0.5min, 10sec 1day 1d]</span>
+<span class="Statement">sub</span> MAIN(<span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">timicles</span> <span class="PreProc">where</span> <span class="Statement">.</span><span class="Identifier">all</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Identifier">@</span><span class="Identifier">units</span><span class="Constant"> </span><span class="Special">$</span><span class="Special">/</span>) {
+    <span class="Special">my</span> Seconds <span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">timicles</span>»<span class="Statement">\</span>
+        <span class="Statement">.</span>match(<span class="Special">/</span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">&lt;</span>suffix<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">$</span><span class="Special">/</span>)»<span class="Statement">.</span><span class="Statement">hash</span>
+        <span class="Statement">.</span><span class="Identifier">map</span>(<span class="Statement">-&gt;</span> <span class="Statement">%</span> ( <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">number</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">suffix</span> ) { <span class="Identifier">%</span><span class="Identifier">unit-multipliers</span>{<span class="Identifier">$</span><span class="Identifier">suffix</span>} <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">number</span> })<span class="Statement">\</span>
+        <span class="Statement">.</span><span class="Identifier">sum</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">to-wait</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Constant">s</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment"># Usage: perl6 program.pl6 0.5m 10s 0.5min 10sec 1day 1d</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## type coercions</span>
+
+<span class="Comment"># Sometimes, you want to accept any type, but then transform it into another type before binding to the parameter</span>
+<span class="Comment"># 强制类型转换</span>
+
+<span class="Statement">sub</span> show_dist(<span class="Identifier">$</span><span class="Identifier">from</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">to</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">kms</span> <span class="PreProc">as</span> <span class="Type">Int</span>) {
+   <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">From </span><span class="Identifier">$</span><span class="Identifier">from</span><span class="Constant"> to </span><span class="Identifier">$</span><span class="Identifier">to</span><span class="Constant"> is </span><span class="Identifier">$</span><span class="Identifier">kms</span><span class="Constant"> km.</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+show_dist(<span class="Special">'</span><span class="Constant">Kiev</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Lviv</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">469</span><span class="Special">'</span>)<span class="Statement">;</span>
+show_dist(<span class="Special">'</span><span class="Constant">Kiev</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Lviv</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">469.35</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## type constrains</span>
+
+<span class="Comment"># Can restrict a parameter to only accept arguments of a certain type.</span>
+
+
+<span class="Statement">sub</span> show_dist(<span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">from</span><span class="Statement">,</span> <span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">to</span><span class="Statement">,</span> <span class="Type">Int</span> <span class="Identifier">$</span><span class="Identifier">kms</span>) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">From </span><span class="Identifier">$</span><span class="Identifier">from</span><span class="Constant"> to </span><span class="Identifier">$</span><span class="Identifier">to</span><span class="Constant"> is </span><span class="Identifier">$</span><span class="Identifier">kms</span><span class="Constant"> km.</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+show_dist(<span class="Special">'</span><span class="Constant">Kiev</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Lviv</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">469</span>)<span class="Statement">;</span>
+show_dist(<span class="Constant">469</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Kiev</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Lviv</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment">#  Error!</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## unpacking arrays</span>
+
+<span class="Comment"># Unpacking Arrays</span>
+<span class="Comment"># Can extract elements from within an array, to do FP-style list processing</span>
+
+<span class="Statement">sub</span> head([<span class="Identifier">$</span><span class="Identifier">head</span><span class="Statement">,</span> <span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">tail</span>]) {
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">head</span><span class="Statement">;</span>
+}
+
+<span class="Statement">sub</span> tail([<span class="Identifier">$</span><span class="Identifier">head</span><span class="Statement">,</span> <span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">tail</span>]) {
+    <span class="Special">return</span> <span class="Identifier">@</span><span class="Identifier">tail</span><span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">example</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,</span><span class="Constant">4</span><span class="Statement">;</span>
+<span class="Identifier">say</span> head(<span class="Identifier">@</span><span class="Identifier">example</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> tail(<span class="Identifier">@</span><span class="Identifier">example</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## unpacking hashes</span>
+
+<span class="Comment"># Unpacking Hashes</span>
+
+<span class="Comment"># Can extract values by key</span>
+
+<span class="Statement">sub</span> show_place((<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">lat</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">long</span><span class="Statement">,</span> <span class="Statement">*</span><span class="Identifier">%</span><span class="Identifier">rest</span>)) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Constant"> lies at </span><span class="Identifier">$</span><span class="Identifier">lat</span><span class="Constant">,</span><span class="Identifier">$</span><span class="Identifier">long</span><span class="Constant">.</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Other facts:</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">rest</span><span class="Statement">.</span><span class="Identifier">kv</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">title</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">data</span> {
+        <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">    </span><span class="Identifier">$</span><span class="Identifier">title</span><span class="Statement">.</span>wordcase()<span class="Constant">: </span><span class="Identifier">$</span><span class="Identifier">data</span><span class="Special">&quot;</span><span class="Statement">;</span>
+        }
+}
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">info</span> <span class="Statement">=</span> <span class="Constant">name</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">Kiev</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">lat</span> <span class="Statement">=&gt;</span> <span class="Constant">50.45</span><span class="Statement">,</span>
+<span class="Constant">long</span> <span class="Statement">=&gt;</span> <span class="Constant">30.52</span><span class="Statement">,</span> <span class="Constant">population</span> <span class="Statement">=&gt;</span> <span class="Constant">2611300</span><span class="Statement">;</span>
+show_place(<span class="Identifier">%</span><span class="Identifier">info</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## unpacking objects</span>
+
+<span class="Comment"># Can extract values by attribute (only those that are declared with accessors)</span>
+
+<span class="Statement">sub</span> nd(<span class="Identifier">$</span><span class="Identifier">r</span> <span class="PreProc">as</span> <span class="Type">Rat</span> (<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">numerator</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">denominator</span>)) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">r</span><span class="Constant"> = </span><span class="Identifier">$</span><span class="Identifier">numerator</span><span class="Constant">/</span><span class="Identifier">$</span><span class="Identifier">denominator</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+nd(<span class="Constant">4.2</span>)<span class="Statement">;</span>
+nd(<span class="Constant">3</span><span class="Statement">/</span><span class="Constant">9</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## unpacking slurp</span>
+
+<span class="Statement">sub</span> slurp-in-array(@ [<span class="Identifier">$</span><span class="Identifier">fst</span><span class="Statement">,</span> <span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">rest</span>]) { <span class="Comment"># You could keep `*@rest` anonymous</span>
+  <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">fst</span> <span class="Statement">+</span> <span class="Identifier">@</span><span class="Identifier">rest</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span>   <span class="Comment"># `.elems` returns a list's length.</span>
+                            <span class="Comment"># Here, `@rest` is `(3,)`, since `$fst` holds the `2`.</span>
+}
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">array</span> <span class="Statement">=</span> <span class="Special">&lt;</span><span class="Constant">2 3 4 5</span><span class="Special">&gt;</span><span class="Statement">;</span>
+slurp-in-array(<span class="Identifier">@</span><span class="Identifier">array</span>)<span class="Statement">;</span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment">## unpacking </span>
+
+<span class="Statement">sub</span>  foo(<span class="Identifier">@</span><span class="Identifier">array</span> [<span class="Identifier">$</span><span class="Identifier">fst</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">snd</span>]) {
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">My first is </span><span class="Identifier">$</span><span class="Identifier">fst</span><span class="Constant">, my second is </span><span class="Identifier">$</span><span class="Identifier">snd</span><span class="Constant"> ! All in all, I'm </span><span class="Identifier">@</span><span class="Identifier">array</span>[]<span class="Constant">.</span><span class="Special">&quot;</span><span class="Statement">;</span>
+  <span class="Comment"># (^ remember the `[]` to interpolate the array)</span>
+}
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">tail</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span><span class="Statement">;</span>
+foo(<span class="Identifier">@</span><span class="Identifier">tail</span>)<span class="Statement">;</span>
+
+ <span class="Comment">#=&gt; My first is 2, my second is 3 ! All in all, I'm 2 3</span>
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>
