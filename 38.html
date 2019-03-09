@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>Rakudo Perl 6 By Example</title>
+    <meta name="keywords" content="perl6,rakudo,p6,example,examples,learning,start,tutorial">
+    <meta name="description" content="Learn Perl 6 By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Rakudo Perl 6 By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://github.com/ohmycloudy/ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello_world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list_comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern_match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+            <li><a href="22.html">22.traits</a></li>
+            <li><a href="23.html">23.gather_take</a></li>
+            <li><a href="24.html">24.subset</a></li>
+            <li><a href="25.html">25.sort</a></li>
+            <li><a href="26.html">26.smartmatch</a></li>
+            <li><a href="27.html">27.roles</a></li>
+            <li><a href="28.html">28.multi_dispatch</a></li>
+            <li><a href="29.html">29.meta_operators</a></li>
+            <li><a href="30.html">30.aomtic</a></li>
+            <li><a href="31.html">31.binding</a></li>
+            <li><a href="32.html">32.classify</a></li>
+            <li><a href="33.html">33.destructure</a></li>
+            <li><a href="34.html">34.dbi</a></li>
+            <li><a href="35.html">35.dynamic_variables</a></li>
+            <li><a href="36.html">36.labels</a></li>
+            <li><a href="37.html">37.main</a></li>
+            <li><a href="38.html">38.operators</a></li>
+            <li><a href="39.html">39.pod</a></li>
+            <li><a href="40.html">40.regex</a></li>
+            <li><a href="41.html">41.q</a></li>
+            <li><a href="42.html">42.topic_variable</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## andthen</span>
+
+<span class="Statement">sub</span> all-dimensions (<span class="Statement">%</span> (<span class="Statement">:</span><span class="Constant">length</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">x</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">width</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">y</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">depth</span>(<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">z</span>))) {
+    sx <span class="Statement">andthen</span> <span class="Identifier">$</span><span class="Identifier">y</span> <span class="Statement">andthen</span> <span class="Identifier">$</span><span class="Identifier">z</span> <span class="Statement">andthen</span> <span class="Type">True</span>
+}
+
+<span class="Comment"># andthen 返回第一个未定义的值, 否则返回最后一个元素。短路操作符。</span>
+<span class="Comment"># andthen 左侧的结果被绑定给 $_ 用于右侧, 或者作为参数传递, 如果右侧是一个 block 或 pointy block 的话。</span>
+
+<span class="Comment">## custom operator</span>
+
+<span class="Statement">sub</span> <span class="Identifier">postfix</span><span class="Statement">:</span><span class="Special">&lt;</span><span class="Constant">!</span><span class="Special">&gt;</span>(<span class="Identifier">$</span><span class="Identifier">n</span> <span class="PreProc">where</span> <span class="Identifier">$</span><span class="Identifier">n</span> <span class="Statement">&gt;</span> <span class="Constant">0</span>) {
+   <span class="Statement">[*]</span> <span class="Constant">2</span><span class="Statement">..</span><span class="Identifier">$</span><span class="Identifier">n</span>
+}
+<span class="Identifier">say</span> <span class="Constant">5</span><span class="Statement">!;</span>
+
+<span class="Special">constant</span> fact <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">,</span> <span class="Statement">[\*]</span> <span class="Constant">1</span><span class="Statement">..*;</span>
+<span class="Identifier">say</span> fact[<span class="Constant">5</span>]<span class="Statement">;</span>
+
+<span class="Comment">## flip</span>
+
+<span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">20</span> {<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">9</span> <span class="Statement">ff</span>   <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">16</span>}
+<span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">20</span> {<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">9</span> <span class="Statement">^ff</span>  <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">16</span>}
+<span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">20</span> {<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">9</span> <span class="Statement">ff^</span>  <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">16</span>}
+<span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">20</span> {<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">9</span> <span class="Statement">^ff^</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">==</span><span class="Constant">16</span>}
+
+<span class="Comment">## with</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">s</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">aabbc</span><span class="Special">&quot;</span><span class="Statement">;</span>
+with   <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">.</span><span class="Identifier">index</span>(<span class="Special">&quot;</span><span class="Constant">a</span><span class="Special">&quot;</span>) {<span class="Special">&quot;</span><span class="Constant">Found a at </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
+orwith <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">.</span><span class="Identifier">index</span>(<span class="Special">&quot;</span><span class="Constant">b</span><span class="Special">&quot;</span>) {<span class="Special">&quot;</span><span class="Constant">Found b at </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
+orwith <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">.</span><span class="Identifier">index</span>(<span class="Special">&quot;</span><span class="Constant">c</span><span class="Special">&quot;</span>) {<span class="Special">&quot;</span><span class="Constant">Found c at </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
+<span class="Statement">else</span>                 {<span class="Special">&quot;</span><span class="Constant">Didn't find a, b or c</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>

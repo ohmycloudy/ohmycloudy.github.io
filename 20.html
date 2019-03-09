@@ -45,8 +45,21 @@
             <li><a href="25.html">25.sort</a></li>
             <li><a href="26.html">26.smartmatch</a></li>
             <li><a href="27.html">27.roles</a></li>
-            <li><a href="28.html">28.multi-dispatch</a></li>
-            <li><a href="29.html">29.meta-operators</a></li>
+            <li><a href="28.html">28.multi_dispatch</a></li>
+            <li><a href="29.html">29.meta_operators</a></li>
+            <li><a href="30.html">30.aomtic</a></li>
+            <li><a href="31.html">31.binding</a></li>
+            <li><a href="32.html">32.classify</a></li>
+            <li><a href="33.html">33.destructure</a></li>
+            <li><a href="34.html">34.dbi</a></li>
+            <li><a href="35.html">35.dynamic_variables</a></li>
+            <li><a href="36.html">36.labels</a></li>
+            <li><a href="37.html">37.main</a></li>
+            <li><a href="38.html">38.operators</a></li>
+            <li><a href="39.html">39.pod</a></li>
+            <li><a href="40.html">40.regex</a></li>
+            <li><a href="41.html">41.q</a></li>
+            <li><a href="42.html">42.topic_variable</a></li>
         </ul>
       </div>
       <div id="content">
@@ -98,6 +111,44 @@
 
 <span class="Comment"># clean up</span>
 <span class="Identifier">unlink</span> (<span class="Special">&quot;</span><span class="Constant">foo2</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+
+<span class="Comment">## slurp</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">something</span><span class="Statement">;</span>
+<span class="Statement">repeat</span> {
+  <span class="Identifier">$</span><span class="Identifier">something</span> <span class="Statement">=</span> prompt <span class="Special">'</span><span class="Constant">enter something: </span><span class="Special">'</span><span class="Statement">;</span>
+  <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">something</span><span class="Statement">;</span>
+} <span class="Statement">while</span> <span class="Identifier">$</span><span class="Identifier">something</span><span class="Statement">;</span>
+
+<span class="Comment">## lines</span>
+
+<span class="Comment"># There are better ways of doing this</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">filename</span> <span class="Statement">=</span> <span class="Identifier">shift</span> <span class="Identifier">@</span><span class="Special">*</span><span class="Identifier">ARGS</span><span class="Statement">;</span>
+
+<span class="Comment"># I think the file is automatically opened and closed</span>
+<span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">filename</span><span class="Statement">.</span><span class="Type">IO</span><span class="Statement">.</span><span class="Identifier">lines</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">line</span> {
+  <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">line</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## lines()</span>
+
+<span class="Comment"># for $*ARGFILES.lines { ... }</span>
+<span class="Statement">for</span> <span class="Identifier">lines</span>() {
+  <span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## open </span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">filename</span> <span class="Statement">=</span> <span class="Identifier">shift</span>(<span class="Identifier">@</span><span class="Special">*</span><span class="Identifier">ARGS</span>)<span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">fh</span> <span class="Statement">=</span> <span class="Identifier">open</span> <span class="Identifier">$</span><span class="Identifier">filename</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">a</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">something</span><span class="Statement">;</span>
+<span class="Statement">repeat</span> {
+  <span class="Identifier">$</span><span class="Identifier">something</span> <span class="Statement">=</span> prompt <span class="Special">'</span><span class="Constant">enter something: </span><span class="Special">'</span><span class="Statement">;</span>
+  <span class="Identifier">$</span><span class="Identifier">fh</span><span class="Statement">.</span><span class="Identifier">say</span>(<span class="Identifier">$</span><span class="Identifier">something</span>)<span class="Statement">;</span>
+} <span class="Statement">while</span> <span class="Identifier">$</span><span class="Identifier">something</span><span class="Statement">;</span>
+
 </pre>
 
       </div>

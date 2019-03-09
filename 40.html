@@ -1,0 +1,263 @@
+<html>
+  <head>
+    <title>Rakudo Perl 6 By Example</title>
+    <meta name="keywords" content="perl6,rakudo,p6,example,examples,learning,start,tutorial">
+    <meta name="description" content="Learn Perl 6 By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Rakudo Perl 6 By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://github.com/ohmycloudy/ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello_world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list_comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern_match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+            <li><a href="22.html">22.traits</a></li>
+            <li><a href="23.html">23.gather_take</a></li>
+            <li><a href="24.html">24.subset</a></li>
+            <li><a href="25.html">25.sort</a></li>
+            <li><a href="26.html">26.smartmatch</a></li>
+            <li><a href="27.html">27.roles</a></li>
+            <li><a href="28.html">28.multi_dispatch</a></li>
+            <li><a href="29.html">29.meta_operators</a></li>
+            <li><a href="30.html">30.aomtic</a></li>
+            <li><a href="31.html">31.binding</a></li>
+            <li><a href="32.html">32.classify</a></li>
+            <li><a href="33.html">33.destructure</a></li>
+            <li><a href="34.html">34.dbi</a></li>
+            <li><a href="35.html">35.dynamic_variables</a></li>
+            <li><a href="36.html">36.labels</a></li>
+            <li><a href="37.html">37.main</a></li>
+            <li><a href="38.html">38.operators</a></li>
+            <li><a href="39.html">39.pod</a></li>
+            <li><a href="40.html">40.regex</a></li>
+            <li><a href="41.html">41.q</a></li>
+            <li><a href="42.html">42.topic_variable</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## % </span>
+
+<span class="Special">'</span><span class="Constant">1,2,3</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">,</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">/</span><span class="Statement">;</span>
+
+ <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">ingredients</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">milk, flour, eggs and sugar</span><span class="Special">'</span><span class="Statement">;</span>
+ <span class="Comment"># prints &quot;milk, flour, eggs&quot;, 如果 say $/[0] 只会打印 || , 因为[] 是非捕获组!</span>
+ <span class="Identifier">$</span><span class="Identifier">ingredients</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant"> </span><span class="Special">[</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">]</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">[</span><span class="Special">\,\s</span><span class="Special">*</span><span class="Special">]</span><span class="Constant"> </span><span class="Special">/</span> <span class="Statement">&amp;&amp;</span> <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">|</span><span class="Identifier">$/</span><span class="Constant">|</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Comment"># |milk, flour, eggs|</span>
+<span class="Comment"># 这里 \w+ 匹配一个单词，并且 [\w+]+ % [\,\s*]  匹配至少一个单词，并且单词之间用逗号和任意数量的空白分隔。</span>
+ <span class="Special">'</span><span class="Constant">1,2,3</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">,</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">/</span> <span class="Statement">&amp;&amp;</span> <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">|</span><span class="Identifier">$/</span><span class="Constant">|</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Comment"># |1,2,3|</span>
+<span class="Comment"># % 必须要跟在量词后面，否则报错。</span>
+<span class="Comment"># 在 [\w+] 里面 [ ] 是非捕获组 </span>
+
+<span class="Comment">## ---</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> (
+     <span class="Special">'</span><span class="Constant">15179736712334102823,15203307381943332421,152033062464592402</span><span class="Special">'</span><span class="Statement">,</span>
+     <span class="Special">'</span><span class="Constant">11230282334151797361</span><span class="Special">'</span><span class="Statement">,</span>
+     <span class="Special">'</span><span class="Constant">12334105179128237367,1152033073819433324</span><span class="Special">'</span><span class="Statement">,</span>
+     <span class="Special">'</span><span class="Constant">12334105179128237367,1152033073819433324###</span><span class="Special">'</span>
+)<span class="Statement">;</span>
+
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">if</span> <span class="Special">/</span><span class="Special">^</span><span class="Constant"> </span><span class="Special">[</span><span class="Special">\d</span><span class="Special">+</span><span class="Special">]</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">,</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">$</span><span class="Constant"> </span><span class="Special">/</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">;</span>
+
+<span class="Comment">## caps</span>
+
+<span class="Comment"># caps 方法返回所有的捕获，命名的和位置的，按照它们匹配的文本在原始字符串中出现的顺序返回。</span>
+<span class="Comment"># 返回的值是一个 Pair 对象列表。键是捕获的名字或数量，键值是对应的 Match 对象。</span>
+
+<span class="Statement">if</span> <span class="Special">'</span><span class="Constant">abc</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Special">(</span><span class="Special">.</span><span class="Special">)</span><span class="Constant"> </span><span class="Special">&lt;</span>alpha<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">(</span><span class="Special">.</span><span class="Special">)</span><span class="Constant"> </span><span class="Special">/</span> {
+            <span class="Identifier">say</span> <span class="Identifier">$/</span><span class="Statement">.</span>caps<span class="Statement">.</span><span class="Identifier">WHAT</span><span class="Statement">;</span> <span class="Comment"># (Parcel) </span>
+            <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> <span class="Identifier">$/</span><span class="Statement">.</span>caps<span class="Statement">;</span>
+            <span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">;</span>           <span class="Comment"># 0 =&gt; ｢a｣ alpha =&gt; ｢b｣ 1 =&gt; ｢c｣ ( 0 =&gt; ｢a｣ 是一个 Pair 对象 </span>
+            <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant"> -&gt; 这次匹配有  </span><span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">.</span><span class="Identifier">elems</span>()<span class="Constant"> 个 Pair</span><span class="Special">&quot;</span><span class="Statement">;</span>
+               <span class="Statement">for</span> <span class="Identifier">$/</span><span class="Statement">.</span>caps {
+                    <span class="Identifier">say</span> <span class="Statement">.</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant"> =&gt; </span><span class="Special">'</span><span class="Statement">,</span> <span class="Statement">.</span><span class="Identifier">value</span><span class="Statement">.</span><span class="Type">Str</span><span class="Statement">;</span> <span class="Comment"># 键值是 对应的Match 对象, 需要调用 Str 方法, 得到字符串.</span>
+
+             }
+ }
+
+ <span class="Comment"># Output:</span>
+ <span class="Comment">#          0 =&gt; a</span>
+ <span class="Comment">#      alpha =&gt; b</span>
+ <span class="Comment">#          1 =&gt; c</span>
+
+
+<span class="Comment">#  复习下 Parcel </span>
+<span class="Comment"># Parcel 由 () &lt;&gt;  逗号分割的列表, 或其它引用结构</span>
+<span class="Comment"># ()</span>
+<span class="Comment"># 1,2,3</span>
+<span class="Comment"># &lt;a b c&gt;</span>
+<span class="Comment"># &lt;&lt;a b c&gt;&gt;</span>
+<span class="Comment"># qw/a b c/</span>
+
+<span class="Comment">## word boundry</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">s</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">the quick brown fox jumped over the the lazy dog</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">s</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant"> </span><span class="Special">&lt;&lt; </span><span class="Constant">(\w+) \W+ $0 </span><span class="Special">&gt;&gt;</span><span class="Constant"> </span><span class="Special">/</span> { <span class="Comment"># if 不再需要圆括号</span>
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Found '</span><span class="Identifier">$0</span><span class="Constant">' twice in a row</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Found '</span><span class="Identifier">$/</span>[<span class="Constant">0</span>]<span class="Constant">' twice in a line</span><span class="Special">&quot;</span> <span class="Comment"># $/[0]  可以简写为 $0</span>
+}
+
+<span class="Comment">## 量词捕获</span>
+
+<span class="Comment"># 如果你在捕获后面加上量词，匹配对象中的对应的项是一列其它对象：</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">ingredients</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">eggs, milk, sugar and flour</span><span class="Special">'</span><span class="Statement">;</span>
+
+<span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">ingredients</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Special">(</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">)</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">[</span><span class="Special">\,\s</span><span class="Special">*</span><span class="Special">]</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">and</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">(</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">)</span><span class="Special">/</span> {
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">list: </span><span class="Special">'</span><span class="Statement">,</span> <span class="Identifier">$/</span>[<span class="Constant">0</span>]<span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Constant"> | </span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">end: </span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Identifier">$/</span>[<span class="Constant">1</span>]<span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Identifier">$/</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span> <span class="Comment"># 数组 $/ 中含有 2 个元素</span>
+    <span class="Identifier">say</span> <span class="Identifier">$/</span>[<span class="Constant">0</span>]<span class="Statement">.</span><span class="Identifier">WHAT</span><span class="Statement">;</span>  <span class="Comment"># ARRAY, 第一个捕获 $/[0] 其实是一个数组</span>
+    <span class="Identifier">say</span> <span class="Identifier">$/</span>[<span class="Constant">0</span>]<span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span> <span class="Comment"># 3, 第一个 (\w+) 匹配了 3 次</span>
+}
+
+<span class="Comment"># 这打印:</span>
+<span class="Comment"># list: eggs | milk | sugar</span>
+<span class="Comment"># end: flour</span>
+
+<span class="Comment">#  第一个捕获(\w+)被量词化了，所以$/[0]包含一列单词。代码调用 .join方法将它转换为字符串。</span>
+<span class="Comment">#  不管第一个捕获匹配了多少次（并且有$/[0]中有多少元素），第二个捕获$/[1]始终可以访问。</span>
+
+<span class="Comment">## 匹配对象</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">str</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">Germany was reunited on 1990-10-03, peacefully</span><span class="Special">'</span><span class="Statement">;</span>
+
+<span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">str</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant"> </span><span class="Special">(</span><span class="Special">\d</span><span class="Special">**</span><span class="Constant">4</span><span class="Special">)</span><span class="Constant"> </span><span class="Special">\-</span><span class="Constant"> </span><span class="Special">(</span><span class="Special">\d\d</span><span class="Special">)</span><span class="Constant"> </span><span class="Special">\-</span><span class="Constant"> </span><span class="Special">(</span><span class="Special">\d\d</span><span class="Special">)</span><span class="Constant"> </span><span class="Special">/</span> {
+    <span class="Identifier">say</span> <span class="Identifier">$/</span><span class="Statement">.</span><span class="Identifier">WHAT</span><span class="Statement">;</span>  <span class="Comment"># Match</span>
+    <span class="Identifier">say</span> <span class="Identifier">$/</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span> <span class="Comment"># 3</span>
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">Year: </span><span class="Special">'</span><span class="Statement">,</span><span class="Special">&quot;</span><span class="Identifier">$/</span>[<span class="Constant">0</span>]<span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">Month: </span><span class="Special">'</span><span class="Statement">,</span><span class="Special">&quot;</span><span class="Identifier">$/</span>[<span class="Constant">1</span>]<span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">Day: </span><span class="Special">'</span><span class="Statement">,</span><span class="Special">&quot;</span><span class="Identifier">$/</span>[<span class="Constant">2</span>]<span class="Special">&quot;</span><span class="Statement">;</span>
+
+    <span class="Comment"># usage as an array:</span>
+    <span class="Identifier">say</span> <span class="Identifier">$/</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># prints 1990-10-03</span>
+}
+
+<span class="Comment"># Year: 1990</span>
+<span class="Comment"># Month: 10</span>
+<span class="Comment"># Day: 03</span>
+<span class="Comment"># 1990-10-03</span>
+
+<span class="Comment">## 命名正则</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">s</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">the quick brown fox jumped over the the lazy dog</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Statement">regex</span> word {<span class="Constant"> </span><span class="Special">\w</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">[</span> <span class="Special">\'</span> <span class="Special">\w</span><span class="Special">+</span> <span class="Special">]</span><span class="Special">?</span><span class="Constant">              </span>}
+<span class="Special">my</span> <span class="Statement">regex</span> dup  {<span class="Constant"> </span><span class="Special">«</span><span class="Constant"> </span><span class="Special">&lt;</span>danci<span class="Special">=</span><span class="Identifier">&amp;</span><span class="Identifier">word</span><span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">\W</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">$</span><span class="Special">&lt;</span>danci<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">»</span><span class="Constant"> </span>} <span class="Comment"># 要使用 &amp;name 调用正则, 就像调用子例程一样 &amp;sub , 调用后的结果起名为 danci, 就像给子例程起名字一样</span>
+<span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">s</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant"> </span><span class="Special">&lt;</span>dupword<span class="Special">=</span><span class="Identifier">&amp;</span><span class="Identifier">dup</span><span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">/</span> {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Found '</span>{<span class="Identifier">$</span><span class="Special">&lt;</span><span class="Identifier">dupword</span><span class="Special">&gt;</span><span class="Special">&lt;</span><span class="Constant">danci</span><span class="Special">&gt;</span>}<span class="Constant">' twice in a row</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Comment"># say $/.keys(); # dupword, 获取散列的键</span>
+    <span class="Identifier">say</span> <span class="Identifier">$/</span><span class="Statement">;</span>
+}
+
+<span class="Comment"># 这段代码引入了一个名为 word 的正则表达式，它至少匹配一个单词字符，后面跟着一个可选的单引号和更多的单词字符。</span>
+<span class="Comment"># 另外一个名为 dup （duplcate的缩写，副本的意思）的正则包含一个单词边界锚点。</span>
+
+<span class="Comment"># 在正则里面，语法 &lt;&amp;word&gt; 在当前词法作用域内查找名为word的正则并匹配这个正则表达式。 </span>
+<span class="Comment"># &lt;name=&amp;regex&gt; 语法创建了一个叫做 name 的捕获，它记录了 &amp;regex 匹配的内容。</span>
+
+<span class="Comment"># 在这个例子中，dup 调用了名为 word 正则，随后匹配至少一个非单词字符，之后再匹配相同的字符串（ 前面word 正则匹配过的）一次，它以另外一个字符边界结束。这种向后引用的语法记为美元符号 $  后面跟着用尖括号包裹着捕获的名字。</span>
+
+<span class="Comment"># 在 if 代码块里， $&lt;dupword&gt; 是  $/{'dupword'} 的快捷写法。因为 $/ 是一个特殊的散列, 所以可以通过键 {'dupword'} 访问到散列的值. 它访问正则 dup 产生的匹配对象。</span>
+<span class="Comment"># dup 也有一个叫 danci 的子规则。从那个调用产生的匹配对象用 $&lt;dupword&gt;&lt;danci&gt;来访问。</span>
+
+<span class="Comment"># 直接打印 $/ 的结果, $/ 这里又变成了一个特殊的散列, fuck, 上次它不是一个特殊的数组吗? 百变星君啊,擦!</span>
+<span class="Comment"># </span>
+
+<span class="Comment"># ｢the the｣</span>
+<span class="Comment">#  dupword =&gt; ｢the the｣</span>
+<span class="Comment">#   danci =&gt; ｢the｣ </span>
+
+<span class="Comment">## ---</span>
+
+<span class="Comment"># 具名正则的声明</span>
+<span class="Special">my</span> <span class="Statement">regex</span> number {<span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">[</span> <span class="Special">\.</span> <span class="Special">\d</span><span class="Special">+</span><span class="Special">]</span><span class="Special">?</span><span class="Constant"> </span>}  <span class="Comment"># 具名正则</span>
+<span class="Special">my</span> <span class="Statement">token</span> ident  {<span class="Constant"> </span><span class="Special">\w</span><span class="Special">+</span><span class="Constant">            </span>}
+<span class="Special">my</span> <span class="Statement">rule</span>  alpha  {<span class="Constant"> </span><span class="Special">&lt;[</span><span class="Constant">A</span><span class="Special">..</span><span class="Constant">Za</span><span class="Special">..</span><span class="Constant">z</span><span class="Special">]&gt;</span><span class="Constant">   </span>}
+
+<span class="Comment"># 1.0 通过 &amp; 来引用</span>
+<span class="Identifier">say</span> so <span class="Special">&quot;</span><span class="Constant">12.34</span><span class="Special">&quot;</span> <span class="Statement">~~</span> <span class="Identifier">&amp;</span><span class="Identifier">number</span><span class="Statement">;</span> <span class="Comment"># true</span>
+
+<span class="Comment"># 2.0 在正则构造 // 里使用</span>
+<span class="Identifier">say</span> so <span class="Special">&quot;</span><span class="Constant">12.88 + 0.12</span><span class="Special">&quot;</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Constant"> </span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">/</span><span class="Statement">;</span> <span class="Comment"># true</span>
+<span class="Comment"># say so &quot;12.88 + 0.12&quot; ~~ / &lt;left=.number&gt; \s* '+' \s* &lt;right=.number&gt; /;</span>
+<span class="Comment"># wrong, method 'number' not found for invocant of class 'Cursor'</span>
+
+<span class="Comment"># 3.0 在 grammar 里面使用</span>
+<span class="Statement">grammar</span> EquationParse {
+    <span class="Comment"># 这里也不能给 number 起别名, 除非 number 是在 grammar 内部声明的</span>
+     <span class="Statement">token</span> TOP {<span class="Constant"> </span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">=</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">&lt;</span>number<span class="Special">&gt;</span><span class="Constant"> </span>}
+}
+
+<span class="Comment"># 等式解析</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">expr</span> <span class="Statement">=</span> EquationParse<span class="Statement">.</span>parse(<span class="Special">&quot;</span><span class="Constant">12.88 + 0.12 = 13.00</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">expr</span><span class="Statement">;</span>
+
+<span class="Comment">## regex match</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">matches</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Special">*</span><span class="Identifier">ARGS</span><span class="Statement">.</span><span class="Identifier">map</span>( {<span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">þ</span> <span class="Statement">~~</span> <span class="Statement">m:</span><span class="Constant">g</span><span class="Special">/</span><span class="Special">\*</span><span class="Constant"> </span><span class="Special">~</span><span class="Constant"> </span><span class="Special">\*</span><span class="Constant"> </span><span class="Special">(</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">)</span><span class="Special">/</span>} )<span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">matches</span><span class="Statement">.</span><span class="Identifier">map</span><span class="Statement">:</span> { <span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">þ</span><span class="Statement">.</span><span class="Identifier">perl</span> <span class="Statement">~</span> <span class="Special">&quot;</span><span class="Special">\n</span><span class="Special">&quot;</span> }<span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">a-regex</span> <span class="Statement">=</span> <span class="Special">/</span><span class="Special">^</span><span class="Constant">þ</span><span class="Special">/</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">þor</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Identifier">$</span><span class="Identifier">a-regex</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">ð</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">ð</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">var-regex</span> <span class="Statement">=</span> <span class="Statement">rx</span><span class="Special">/</span><span class="Identifier">$</span><span class="Identifier">ð</span><span class="Constant"> </span><span class="Special">$</span><span class="Special">/</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">buð</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Identifier">$</span><span class="Identifier">var-regex</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">d</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">ð</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">no-var-regex</span> <span class="Statement">=</span> <span class="Special">/</span><span class="Identifier">$</span><span class="Identifier">d</span><span class="Constant"> u</span><span class="Special">/</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">ðu</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Identifier">$</span><span class="Identifier">no-var-regex</span><span class="Statement">;</span>
+
+<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">ðu</span><span class="Special">'</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Matching contextual variable</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Statement">rx</span><span class="Special">/</span><span class="Special">.</span><span class="Constant">u</span><span class="Special">/</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant">ð</span><span class="Special">.</span><span class="Special">/</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Variable that inmediately matches contextual variable</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">not-a-var</span> <span class="Statement">=</span>  <span class="Statement">m</span><span class="Special">/</span><span class="Constant">ð</span><span class="Special">.</span><span class="Special">/</span><span class="Statement">;</span>
+<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">another context</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">not-a-var</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Matching string</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">ðu</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Statement">rx</span><span class="Special">/</span><span class="Special">.</span><span class="Constant">u</span><span class="Special">/</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">ðu</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant">ð</span><span class="Special">.</span><span class="Special">/</span><span class="Statement">;</span>
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>
