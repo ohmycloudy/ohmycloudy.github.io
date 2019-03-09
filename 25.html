@@ -1,0 +1,216 @@
+<html>
+  <head>
+    <title>Rakudo Perl 6 By Example</title>
+    <meta name="keywords" content="perl6,rakudo,p6,example,examples,learning,start,tutorial">
+    <meta name="description" content="Learn Perl 6 By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Rakudo Perl 6 By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://github.com/ohmycloudy/ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello_world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list_comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern_match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+            <li><a href="22.html">22.traits</a></li>
+            <li><a href="23.html">23.gather_take</a></li>
+            <li><a href="24.html">24.subset</a></li>
+            <li><a href="25.html">25.sort</a></li>
+            <li><a href="26.html">26.smartmatch</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## sort by key</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">hash</span> <span class="Statement">=</span>
+    <span class="Constant">two</span>   <span class="Statement">=&gt;</span> <span class="Constant">2</span><span class="Statement">,</span>
+    <span class="Constant">three</span> <span class="Statement">=&gt;</span> <span class="Constant">3</span><span class="Statement">,</span>
+    <span class="Constant">one</span>   <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">,</span>
+<span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">hash</span><span class="Statement">.</span><span class="Identifier">sort</span>(<span class="Statement">*.</span><span class="Identifier">key</span>)<span class="Statement">&gt;&gt;.</span><span class="Identifier">kv</span> <span class="Statement">-&gt;</span> (<span class="Identifier">$</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">value</span>) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">'</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Constant">' =&gt; '</span><span class="Identifier">$</span><span class="Identifier">value</span><span class="Constant">'</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## sort and destructuring</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">hash</span> <span class="Statement">=</span>
+    <span class="Constant">two</span>   <span class="Statement">=&gt;</span> <span class="Constant">2</span><span class="Statement">,</span>
+    <span class="Constant">three</span> <span class="Statement">=&gt;</span> <span class="Constant">3</span><span class="Statement">,</span>
+    <span class="Constant">one</span>   <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">,</span>
+<span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">hash</span><span class="Statement">.</span><span class="Identifier">sort</span> <span class="Statement">-&gt;</span> (<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">value</span>) {
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">'</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Constant">' =&gt; '</span><span class="Identifier">$</span><span class="Identifier">value</span><span class="Constant">'</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">-</span><span class="Special">&quot;</span> <span class="Statement">x</span> <span class="Constant">15</span><span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">hash</span><span class="Statement">.</span><span class="Identifier">sort</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">pair</span> (<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">value</span>) {
+  <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">pair</span><span class="Statement">;</span>
+  <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">key</span> <span class="Statement">===</span> <span class="Identifier">$</span><span class="Identifier">pair</span><span class="Statement">.</span><span class="Identifier">key</span> <span class="Statement">and</span> <span class="Identifier">$</span><span class="Identifier">value</span> <span class="Statement">===</span> <span class="Identifier">$</span><span class="Identifier">pair</span><span class="Statement">.</span><span class="Identifier">value</span><span class="Statement">;</span> <span class="Comment"># True␤</span>
+}
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">-</span><span class="Special">&quot;</span> <span class="Statement">x</span> <span class="Constant">15</span><span class="Statement">;</span>
+
+<span class="Comment"># :$key is short for :key($key)</span>
+<span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">hash</span><span class="Statement">.</span><span class="Identifier">sort</span> <span class="Statement">-&gt;</span> (<span class="Statement">:</span><span class="Constant">key</span>(<span class="Identifier">$</span><span class="Identifier">k</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">value</span>(<span class="Identifier">$</span><span class="Identifier">v</span>)) {
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">'</span><span class="Identifier">$</span><span class="Identifier">k</span><span class="Constant">' =&gt; '</span><span class="Identifier">$</span><span class="Identifier">v</span><span class="Constant">'</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## sort hash by value descending</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">hash</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">Perl</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Constant">80</span><span class="Statement">,</span>
+         <span class="Special">'</span><span class="Constant">Python</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Constant">100</span><span class="Statement">,</span>
+             <span class="Special">'</span><span class="Constant">Go</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Constant">95</span><span class="Statement">,</span>
+            <span class="Special">'</span><span class="Constant">CMD</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Constant">20</span><span class="Statement">,</span>
+            <span class="Special">&quot;</span><span class="Constant">Php</span><span class="Special">&quot;</span><span class="Statement">=&gt;</span><span class="Constant">80</span><span class="Statement">,</span>
+           <span class="Special">&quot;</span><span class="Constant">Java</span><span class="Special">&quot;</span><span class="Statement">=&gt;</span><span class="Constant">85</span><span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">hash</span><span class="Statement">.</span><span class="Identifier">sort</span>({<span class="Statement">-.</span><span class="Identifier">value</span>})<span class="Statement">.</span><span class="Statement">hash</span><span class="Statement">.</span><span class="Identifier">keys</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">key</span> {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Special">\t</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Identifier">%</span><span class="Identifier">hash</span>{<span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Special">&quot;</span>}
+}
+
+<span class="Comment">## </span>
+
+<span class="Comment">#`(</span>
+<span class="Statement">--</span> example<span class="Statement">.</span>txt
+eline	A<span class="Statement">-</span>
+Zsófia	B<span class="Statement">+</span>
+João	F
+Maryam	B<span class="Statement">+</span>
+秀英	B<span class="Statement">-</span>
+Finn	D<span class="Statement">+</span>
+Aarav	A
+Emma	F
+Omar	B
+)
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">grade</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">example.txt</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Type">IO</span><span class="Statement">.</span><span class="Identifier">lines</span><span class="Statement">.</span><span class="Identifier">map</span><span class="Statement">:</span> {
+    <span class="Statement">m:</span><span class="Constant">s</span><span class="Special">/</span><span class="Special">^</span><span class="Special">(</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">)</span><span class="Constant"> </span><span class="Special">(</span><span class="Special">&lt;[</span><span class="Constant">A</span><span class="Special">..</span><span class="Constant">F</span><span class="Special">]&gt;&lt;[</span><span class="Constant">+-</span><span class="Special">]&gt;</span><span class="Special">?</span><span class="Special">)</span><span class="Special">$</span><span class="Special">/</span>
+<span class="Constant">        or die &quot;Can't parse line '</span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant">'&quot;;</span>
+
+<span class="Constant">    ~</span><span class="Identifier">$0</span><span class="Constant"> =&gt; ~</span><span class="Identifier">$1</span><span class="Constant">;</span>
+<span class="Constant">}</span>
+
+<span class="Constant">say %grade;</span>
+
+<span class="Constant">say &quot;Zsófia's grade: </span><span class="Identifier">%</span><span class="Identifier">grade</span><span class="Special">&lt;</span><span class="Constant">Zsófia</span><span class="Special">&gt;</span><span class="Constant">&quot;;</span>
+<span class="Constant">say &quot;List of students with a failing grade:&quot;;</span>
+
+<span class="Constant">say &quot; &quot; ~</span><span class="Identifier">%</span><span class="Identifier">grade</span><span class="Statement">.</span><span class="Identifier">grep</span>(<span class="Statement">*.</span><span class="Identifier">value</span> <span class="Statement">ge</span> <span class="Special">'</span><span class="Constant">F</span><span class="Special">'</span>)<span class="Constant">».key.join(&quot; &quot;);</span>
+
+<span class="Constant">say &quot;Distribution of grades by letter:&quot;;</span>
+<span class="Constant">say &quot;  </span>{<span class="Statement">.</span><span class="Identifier">key</span>}<span class="Constant">: </span>{<span class="Statement">+.</span><span class="Identifier">value</span>}<span class="Constant"> student</span>{<span class="Special">&quot;</span><span class="Constant">s</span><span class="Special">&quot;</span> <span class="Statement">if</span> <span class="Statement">.</span><span class="Identifier">value</span> <span class="Statement">!=</span> <span class="Constant">1</span>}<span class="Constant">&quot;</span>
+<span class="Constant">    for </span><span class="Identifier">%</span><span class="Identifier">grade</span><span class="Statement">.</span><span class="Identifier">classify</span>(<span class="Statement">*.</span><span class="Identifier">value</span><span class="Statement">.</span><span class="Identifier">comb</span>[<span class="Constant">0</span>])<span class="Statement">.</span><span class="Identifier">sort</span>(<span class="Statement">*.</span><span class="Identifier">key</span>)<span class="Constant">;</span>
+
+<span class="Constant">## sort by object attaribute</span>
+
+<span class="Constant"># Sort an array of composite structures by a key. For example, if you define a composite structure that presents a name-value pair (in pseudocode): </span>
+<span class="Constant"># Define structure pair such that:</span>
+<span class="Constant">   # name as a string</span>
+<span class="Constant">   # value as a string</span>
+
+
+<span class="Constant"># and an array of such pairs:</span>
+<span class="Constant"># x: array of pairs</span>
+
+
+<span class="Constant"># then define a sort routine that sorts the array x by the key name.</span>
+<span class="Constant"># This task can always be accomplished with Sorting Using a Custom Comparator. </span>
+
+<span class="Constant">my class Employee </span>{
+   <span class="Special">has</span> <span class="Type">Str</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">name</span><span class="Statement">;</span>
+   <span class="Special">has</span> <span class="Type">Rat</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">wage</span><span class="Statement">;</span>
+}
+
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">boss</span><span class="Constant">     = Employee.new( name =&gt; &quot;Frank Myers&quot;     , wage =&gt; 6755.85 );</span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">driver</span><span class="Constant">   = Employee.new( name =&gt; &quot;Aaron Fast&quot;      , wage =&gt; 2530.40 );</span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">worker</span><span class="Constant">   = Employee.new( name =&gt; &quot;John Dude&quot;       , wage =&gt; 2200.00 );</span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">salesman</span><span class="Constant"> = Employee.new( name =&gt; &quot;Frank Mileeater&quot; , wage =&gt; 4590.12 );</span>
+
+<span class="Constant">my @team = </span><span class="Identifier">$</span><span class="Identifier">boss</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">driver</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">worker</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">salesman</span><span class="Constant">;</span>
+
+<span class="Constant">my @orderedByName = </span><span class="Identifier">@</span><span class="Identifier">team</span><span class="Statement">.</span><span class="Identifier">sort</span>( <span class="Statement">*.</span><span class="Identifier">name</span> )<span class="Constant">&gt;&gt;.name;</span>
+<span class="Constant">my @orderedByWage = </span><span class="Identifier">@</span><span class="Identifier">team</span><span class="Statement">.</span><span class="Identifier">sort</span>( <span class="Statement">*.</span>wage )<span class="Constant">&gt;&gt;.name;</span>
+
+<span class="Constant">say &quot;Team ordered by name (ascending order):&quot;;</span>
+<span class="Constant">say </span><span class="Identifier">@</span><span class="Identifier">orderedByName</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Constant">  </span><span class="Special">&quot;</span>)<span class="Constant">;</span>
+<span class="Constant">say &quot;Team ordered by wage (ascending order):&quot;;</span>
+<span class="Constant">say </span><span class="Identifier">@</span><span class="Identifier">orderedByWage</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Constant">  </span><span class="Special">&quot;</span>)<span class="Constant">;</span>
+
+<span class="Constant"># this produces the following output:</span>
+<span class="Constant"># Team ordered by name (ascending order):</span>
+<span class="Constant"># Aaron Fast   Frank Mileeater   Frank Myers   John Dude</span>
+<span class="Constant"># Team ordered by wage (ascending order):</span>
+<span class="Constant"># John Dude   Aaron Fast   Frank Mileeater   Frank Myers</span>
+
+
+<span class="Constant"># Note that when the sort receives a unary function, it automatically generates an appropriate comparison function based on the type of the data.</span>
+
+<span class="Constant">say &quot;--&quot; x 23;</span>
+<span class="Constant">say </span><span class="Identifier">@</span><span class="Identifier">team</span><span class="Statement">.</span><span class="Identifier">sort</span>({<span class="Statement">.</span>wage} )<span class="Constant">».name;</span>
+
+<span class="Constant">.name.say for @team.sort: </span>{<span class="Statement">.</span>wage}<span class="Constant"> # ».name;</span>
+
+<span class="Constant">## sort object</span>
+
+<span class="Constant">class Student </span>{
+    <span class="Special">has</span> <span class="Type">Str</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">name</span><span class="Statement">;</span>
+    <span class="Special">has</span> <span class="Type">Int</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">grade</span> <span class="PreProc">is</span> <span class="Special">rw</span><span class="Statement">;</span>
+}
+
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">stu1</span><span class="Constant"> = Student.new(name =&gt; &quot;zhangwuji&quot;, grade =&gt; 124);</span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">stu2</span><span class="Constant"> = Student.new(name =&gt; &quot;yangguo&quot;,   grade =&gt; 128);     </span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">stu3</span><span class="Constant"> = Student.new(name =&gt; &quot;zhaomin&quot;,   grade =&gt; 145);</span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">stu4</span><span class="Constant"> = Student.new(name =&gt; &quot;sunyizhe&quot;,  grade =&gt; 145);</span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">stu5</span><span class="Constant"> = Student.new(name =&gt; &quot;zhouziruo&quot;, grade =&gt; 128);</span>
+<span class="Constant">my </span><span class="Identifier">$</span><span class="Identifier">stu6</span><span class="Constant"> = Student.new(name =&gt; &quot;qiaofeng&quot;,  grade =&gt; 124);</span>
+
+<span class="Constant">my @students = </span><span class="Identifier">$</span><span class="Identifier">stu1</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">stu2</span><span class="Constant">,</span><span class="Identifier">$</span><span class="Identifier">stu3</span><span class="Constant">,</span><span class="Identifier">$</span><span class="Identifier">stu4</span><span class="Constant">,</span><span class="Identifier">$</span><span class="Identifier">stu5</span><span class="Constant">,</span><span class="Identifier">$</span><span class="Identifier">stu6</span><span class="Constant">;</span>
+
+<span class="Constant"># classify </span>
+<span class="Constant"># classify 返回一个散列</span>
+<span class="Constant">for </span><span class="Identifier">@</span><span class="Identifier">students</span><span class="Statement">.</span><span class="Identifier">classify</span>( <span class="Statement">*.</span>grade )<span class="Constant">.sort -&gt; </span><span class="Identifier">$</span><span class="Identifier">group</span><span class="Constant"> </span>{
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">These students got grade </span><span class="Identifier">$</span><span class="Identifier">group</span><span class="Statement">.</span><span class="Identifier">key</span>()<span class="Constant">:</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Statement">.</span><span class="Identifier">name</span> <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">group</span><span class="Statement">.</span><span class="Identifier">value</span><span class="Statement">.</span><span class="Statement">list</span><span class="Statement">;</span>
+}
+
+<span class="Constant"># sort</span>
+<span class="Constant">my @c = @students.sort: -&gt; </span><span class="Identifier">$</span><span class="Identifier">a</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">b</span><span class="Constant"> </span>{<span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">.</span>grade <span class="Statement">&lt;=&gt;</span> <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">.</span>grade}<span class="Constant">;</span>
+<span class="Constant">say @c.perl;</span>
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>

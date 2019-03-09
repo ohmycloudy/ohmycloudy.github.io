@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>Rakudo Perl 6 By Example</title>
+    <meta name="keywords" content="perl6,rakudo,p6,example,examples,learning,start,tutorial">
+    <meta name="description" content="Learn Perl 6 By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Rakudo Perl 6 By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://github.com/ohmycloudy/ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello_world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list_comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern_match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+            <li><a href="22.html">22.traits</a></li>
+            <li><a href="23.html">23.gather_take</a></li>
+            <li><a href="24.html">24.subset</a></li>
+            <li><a href="25.html">25.sort</a></li>
+            <li><a href="26.html">26.smartmatch</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## is trait</span>
+
+<span class="Statement">multi</span> <span class="Statement">sub</span> trait_mod<span class="Statement">:</span><span class="Special">&lt;</span><span class="Constant">is</span><span class="Special">&gt;</span>(<span class="Type">Routine</span> <span class="Identifier">$</span><span class="Identifier">r</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">doubles</span><span class="Statement">!</span>) {
+    <span class="Identifier">$</span><span class="Identifier">r</span><span class="Statement">.</span><span class="Identifier">wrap</span>({
+        <span class="Constant">2</span> <span class="Statement">*</span> <span class="Identifier">callsame</span><span class="Statement">;</span>
+    })<span class="Statement">;</span>
+}
+
+<span class="Statement">sub</span> square(<span class="Identifier">$</span><span class="Identifier">x</span>) <span class="Identifier">is</span> doubles {
+    <span class="Identifier">$</span><span class="Identifier">x</span> <span class="Statement">*</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">;</span>
+}
+
+<span class="Identifier">say</span> square <span class="Constant">3</span><span class="Statement">;</span>
+
+<span class="Comment">## of trait</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">list</span> <span class="PreProc">of</span> <span class="Type">Int</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10000</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">list</span>[<span class="Constant">99</span>]<span class="Statement">.</span><span class="Identifier">WHAT</span><span class="Statement">;</span>
+
+<span class="Comment">## subtype</span>
+
+<span class="Statement">sub</span> divide(<span class="Type">Int</span> <span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">,</span>
+           <span class="Type">Int</span> <span class="Identifier">$</span><span class="Identifier">b</span> <span class="PreProc">where</span> { <span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">n</span> <span class="Statement">!=</span> <span class="Constant">0</span> }) {
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">a</span> <span class="Statement">/</span> <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">;</span>
+}
+<span class="Identifier">say</span> divide(<span class="Constant">120</span><span class="Statement">,</span> <span class="Constant">3</span>)<span class="Statement">;</span> <span class="Comment"># 42</span>
+<span class="Comment"># say divide(100, 0); # Type check failure</span>
+
+<span class="Comment"># Here is an example of using subtypes to distinguish between two candidates</span>
+
+<span class="Statement">multi</span> say_short(<span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">x</span>) {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">;</span>
+}
+<span class="Statement">multi</span> say_short(<span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">x</span>
+                  <span class="PreProc">where</span> { <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Identifier">chars</span> <span class="Statement">&gt;=</span> <span class="Constant">12</span> }) {
+   <span class="Identifier">say</span> <span class="Identifier">substr</span>(<span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">,</span> <span class="Constant">0</span><span class="Statement">,</span> <span class="Constant">10</span>) <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">...</span><span class="Special">'</span><span class="Statement">;</span>
+}
+say_short(<span class="Special">&quot;</span><span class="Constant">Beer!</span><span class="Special">&quot;</span>)<span class="Statement">;</span>         <span class="Comment"># Beer!</span>
+say_short(<span class="Special">&quot;</span><span class="Constant">BeerBeerBeer!</span><span class="Special">&quot;</span>)<span class="Statement">;</span> <span class="Comment"># BeerBeerBe...</span>
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>
