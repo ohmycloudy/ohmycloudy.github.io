@@ -68,7 +68,7 @@
       <div id="content">
         
 <pre id='vimCodeElement'>
-<span class="Comment">## proto </span>
+<span class="Comment">## proto</span>
 
 <span class="Statement">grammar</span> Perl6VariableNames {
 
@@ -80,8 +80,8 @@
     <span class="Comment">#    '$' | '@' | '&amp;' | '%' | '::'</span>
     <span class="Comment">#}</span>
 
-    <span class="Comment"># 使用 proto	</span>
-	<span class="Statement">proto</span> <span class="Statement">token</span> sigil {<span class="Special">*</span>}
+  <span class="Comment"># 使用 proto</span>
+    <span class="Statement">proto</span> <span class="Statement">token</span> sigil {<span class="Special">*</span>}
     <span class="Statement">token</span> sigil<span class="Statement">:</span><span class="Constant">sym</span><span class="Special">&lt;</span><span class="Constant">$</span><span class="Special">&gt;</span>  {<span class="Constant"> </span><span class="Special">&lt;</span>sym<span class="Special">&gt;</span><span class="Constant"> </span>}
     <span class="Statement">token</span> sigil<span class="Statement">:</span><span class="Constant">sym</span><span class="Special">&lt;</span><span class="Constant">@</span><span class="Special">&gt;</span>  {<span class="Constant"> </span><span class="Special">&lt;</span>sym<span class="Special">&gt;</span><span class="Constant"> </span>}
     <span class="Statement">token</span> sigil<span class="Statement">:</span><span class="Constant">sym</span><span class="Special">&lt;</span><span class="Constant">%</span><span class="Special">&gt;</span>  {<span class="Constant"> </span><span class="Special">&lt;</span>sym<span class="Special">&gt;</span><span class="Constant"> </span>}
@@ -90,8 +90,8 @@
 
 	<span class="Comment"># [ ... ] are non-capturing groups</span>
 	<span class="Statement">token</span> name {
-<span class="Constant">        </span><span class="Special">&lt;</span>identifier<span class="Special">&gt;</span><span class="Constant"> </span>
-<span class="Constant">        </span><span class="Special">[</span> <span class="Special">'</span><span class="Constant">::</span><span class="Special">'</span> <span class="Special">&lt;</span>identifier<span class="Special">&gt;</span> <span class="Special">]</span><span class="Constant"> </span><span class="Special">*</span><span class="Constant"> </span>
+<span class="Constant">        </span><span class="Special">&lt;</span>identifier<span class="Special">&gt;</span>
+<span class="Constant">        </span><span class="Special">[</span> <span class="Special">'</span><span class="Constant">::</span><span class="Special">'</span> <span class="Special">&lt;</span>identifier<span class="Special">&gt;</span> <span class="Special">]</span><span class="Constant"> </span><span class="Special">*</span>
 <span class="Constant">    </span>}
 	<span class="Comment"># 标识符以字母开头</span>
     <span class="Statement">token</span> identifier {
