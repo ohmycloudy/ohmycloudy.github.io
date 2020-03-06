@@ -67,7 +67,11 @@
         </ul>
       </div>
       <div id="content">
-        <h1>欢迎!</h1><p>该网站不会涵盖 Raku 的所有复杂性; 如果您希望了解更多或没有任何编程经验，请访问<a href="https://raku.org/resources//">官方页面</a>了解其他资源。如果您还没有安装 Raku，请在<a href="https://rakudo.org/files">此处</a>安装 Rakudo Star，如果您需要任何帮助，请随时加入 <a href="irc://irc.freenode.net/#raku">#raku</a>。如果您想贡献例子，请给 <a href="https://github.com/ijneb/p6byexample">perl6byexample</a> 提 PR。</p>
+        
+<pre id='vimCodeElement'>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">fmt</span> <span class="Statement">=</span> {<span class="Identifier">sprintf</span> <span class="Special">&quot;</span><span class="Constant">%04d%02d%02d</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">.</span>year<span class="Statement">,</span> <span class="Statement">.</span>month<span class="Statement">,</span> <span class="Statement">.</span>day}<span class="Statement">;</span>
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> Date<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">'</span><span class="Constant">2020-03-06</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">formatter</span> <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">fmt</span>) <span class="Statement">..</span> Date<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">'</span><span class="Constant">2020-03-12</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">formatter</span> <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">fmt</span>)<span class="Statement">;</span>
+</pre>
 
       </div>
     </div>
