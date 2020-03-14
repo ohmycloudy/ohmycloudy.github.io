@@ -69,7 +69,13 @@
         </ul>
       </div>
       <div id="content">
-        <h1>欢迎!</h1><p>该网站不会涵盖 Raku 的所有复杂性; 如果您希望了解更多或没有任何编程经验，请访问<a href="https://raku.org/resources//">官方页面</a>了解其他资源。如果您还没有安装 Raku，请在<a href="https://rakudo.org/files">此处</a>安装 Rakudo Star，如果您需要任何帮助，请随时加入 <a href="irc://irc.freenode.net/#raku">#raku</a>。如果您想贡献例子，请给 <a href="https://github.com/ijneb/p6byexample">perl6byexample</a> 提 PR。</p>
+        
+<pre id='vimCodeElement'>
+<span class="Statement">for</span> (<span class="Statement">-</span><span class="Constant">25</span><span class="Statement">..</span><span class="Constant">25</span>) <span class="Statement">X</span> (<span class="Statement">-</span><span class="Constant">25</span><span class="Statement">..</span><span class="Constant">25</span>) <span class="Statement">-&gt;</span> (<span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">x</span>) {
+    <span class="Identifier">print</span> (<span class="Constant">16</span>² <span class="Statement">&lt;</span> <span class="Identifier">$</span><span class="Identifier">x</span>² <span class="Statement">+</span> <span class="Identifier">$</span><span class="Identifier">y</span>² <span class="Statement">&lt;</span> <span class="Constant">20</span>²) <span class="Statement">??</span> <span class="Special">'</span><span class="Constant">o</span><span class="Special">'</span> <span class="Statement">!!</span> <span class="Special">'</span><span class="Constant">.</span><span class="Special">'</span><span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">==</span><span class="Constant">25</span> <span class="Statement">&amp;&amp;</span> <span class="Identifier">say</span> <span class="Special">''</span><span class="Statement">;</span>
+}
+</pre>
 
       </div>
     </div>

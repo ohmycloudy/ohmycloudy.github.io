@@ -64,6 +64,8 @@
             <li><a href="44.html">44.colonpairs</a></li>
             <li><a href="45.html">45.grammar</a></li>
             <li><a href="46.html">46.datetime</a></li>
+            <li><a href="47.html">47.classify</a></li>
+            <li><a href="48.html">48.chained_comparison</a></li>
         </ul>
       </div>
       <div id="content">
@@ -152,6 +154,26 @@
 <span class="Identifier">@</span><span class="Identifier">planets</span><span class="Statement">.</span>append(<span class="Special">&lt;</span><span class="Constant">Mars Jupiter</span><span class="Special">&gt;</span>)<span class="Statement">;</span>
 append <span class="Identifier">@</span><span class="Identifier">planets</span><span class="Statement">,</span> (<span class="Special">'</span><span class="Constant">Saturn</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Uranus</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Neptune</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># similar thing</span>
 
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">d</span> <span class="Statement">=</span>  ( [ <span class="Constant">1</span> <span class="Statement">..</span> <span class="Constant">3</span> ] )<span class="Statement">;</span>
+<span class="Identifier">@</span><span class="Identifier">d</span><span class="Statement">.</span>append( [ <span class="Constant">4</span> <span class="Statement">..</span> <span class="Constant">6</span> ] )<span class="Statement">;</span>
+<span class="Identifier">@</span><span class="Identifier">d</span><span class="Statement">.</span>append( [ <span class="Constant">7</span> <span class="Statement">..</span> <span class="Constant">9</span> ] )<span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">d</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">item</span> {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">item</span>[]<span class="Special">&quot;</span><span class="Statement">;</span>
+}
+<span class="Identifier">@</span><span class="Identifier">d</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
+
+<span class="Comment"># 1</span>
+<span class="Comment"># 2</span>
+<span class="Comment"># 3</span>
+<span class="Comment"># 4</span>
+<span class="Comment"># 5</span>
+<span class="Comment"># 6</span>
+<span class="Comment"># 7</span>
+<span class="Comment"># 8</span>
+<span class="Comment"># 9</span>
+<span class="Comment"># [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+
 <span class="Comment"># 'unshift` - adds a new item to the beginning of the array.</span>
 <span class="Identifier">@</span><span class="Identifier">planets</span><span class="Statement">.</span><span class="Identifier">unshift</span>(<span class="Special">'</span><span class="Constant">Venus</span><span class="Special">'</span>)<span class="Statement">;</span>
 <span class="Identifier">unshift</span> <span class="Identifier">@</span><span class="Identifier">planets</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Venus</span><span class="Special">'</span><span class="Statement">;</span> <span class="Comment"># same thing</span>
@@ -190,6 +212,153 @@ prepend <span class="Identifier">@</span><span class="Identifier">planets</span>
 <span class="Comment"># To get an one-to-correspondence, use the zip operator `Z`:</span>
 <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">oto-letters-nums</span> <span class="Statement">=</span> ([<span class="Identifier">$</span><span class="Identifier">_</span>[<span class="Constant">0</span>]<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span>[<span class="Constant">1</span>]] <span class="Statement">for</span> <span class="Special">&lt;</span><span class="Constant">A B</span><span class="Special">&gt;</span> <span class="Statement">Z</span> <span class="Special">&lt;</span><span class="Constant">1 2</span><span class="Special">&gt;</span>)<span class="Statement">;</span> <span class="Comment"># ([A 1] [B 2])</span>
 
+<span class="Comment">## array methods</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">=</span><span class="Constant">17</span><span class="Statement">,</span><span class="Constant">21</span><span class="Statement">,</span><span class="Constant">34</span><span class="Statement">,</span><span class="Constant">47</span><span class="Statement">,</span><span class="Constant">58</span><span class="Statement">,</span><span class="Constant">69</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">the array has element</span><span class="Special">'</span> <span class="Statement">if</span>  <span class="Statement">?</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">;</span>   <span class="Comment"># boolean context, Bool::True if array has any value in it, even if its a 0</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">the array has </span><span class="Special">'</span><span class="Statement">,+</span> <span class="Identifier">@</span><span class="Identifier">rray</span> <span class="Statement">~</span><span class="Special">'</span><span class="Constant"> element</span><span class="Special">'</span><span class="Statement">;</span>  <span class="Comment"># numeric context, number of elements (like in Perl 5 scalar @a)</span>
+<span class="Identifier">say</span> <span class="Statement">~</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">;</span>              <span class="Comment"># string context, you get content of all cells, stringified and joined, same as &quot;@primes[]&quot;</span>
+
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span>          <span class="Comment"># same as + @rray</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">end</span><span class="Statement">;</span>            <span class="Comment"># number of the last element, equal to @rray.elems-1, # 5</span>
+<span class="Comment"># say @rray.cat;          # same ~ @rray</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span>)<span class="Statement">;</span>      <span class="Comment"># also same result, you can put another string as parameter that gets between all values</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">unshift</span>(<span class="Constant">7</span>)<span class="Statement">;</span>     <span class="Comment"># prepend one value to the array, # 7 1 2 3 4 5 6</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">shift</span><span class="Statement">;</span>          <span class="Comment"># remove the first value and return it # 7</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">push</span>(<span class="Constant">8</span>)<span class="Statement">;</span>        <span class="Comment"># add one value on the end # 1 2 3 4 5 6 8</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">pop</span><span class="Statement">;</span>            <span class="Comment"># remove one value from the end and return it # 8</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">n</span><span class="Statement">=</span><span class="Constant">2</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">pos</span><span class="Statement">=</span><span class="Constant">1</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">ind</span><span class="Statement">=</span><span class="Constant">0</span><span class="Statement">..</span><span class="Constant">3</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">splice</span>(<span class="Identifier">$</span><span class="Identifier">pos</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">n</span>)<span class="Statement">;</span><span class="Comment"># remove on $pos $n values and replace them with values that follow that two parameter</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">:</span><span class="Constant">delete</span>(<span class="Identifier">@</span><span class="Identifier">ind</span>)<span class="Statement">;</span>   <span class="Comment"># delete all cell with indecies of @ind # 1 4 5 6</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">:</span><span class="Constant">exists</span>(<span class="Identifier">@</span><span class="Identifier">ind</span>)<span class="Statement">;</span>   <span class="Comment"># Bool::True if all indecies of @ind have a value (can be 0 or '')</span>
+
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span> <span class="Statement">x</span> <span class="Constant">18</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">pick</span>([<span class="Identifier">$</span><span class="Identifier">n</span>])<span class="Statement">;</span>     <span class="Comment"># return $n (default is 1) randomly selected values, without duplication</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span>roll([<span class="Identifier">$</span><span class="Identifier">n</span>])<span class="Statement">;</span>     <span class="Comment"># return $n (default is 1) randomly selected values, duplication possible (就像掷筛子)</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">reverse</span><span class="Statement">;</span>        <span class="Comment"># all elements in reversed order</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span>rotate(<span class="Statement">-</span><span class="Identifier">$</span><span class="Identifier">n</span>)<span class="Statement">;</span>    <span class="Comment"># returns a list where $n times first item is taken to last position if $n is positive, if negative the other way around</span>
+<span class="Comment"># @rray.sort($coderef); # returns a sorted list by a userdefined criteria, default is alphanumerical sorting</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">min</span><span class="Statement">;</span>            <span class="Comment"># numerical smallest value of that array</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">max</span><span class="Statement">;</span>            <span class="Comment"># numerical largest value of that array</span>
+<span class="Special">my</span> (<span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">b</span>)<span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">minmax</span><span class="Statement">;</span>  <span class="Comment"># both at once, like in .sort . min or .max a sorting algorith can be provided</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">,</span><span class="Special">&quot;</span><span class="Constant">   </span><span class="Identifier">$</span><span class="Identifier">b</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Comment"># @rray.map($coderef);  # high oder map function, runs $coderef with every value as $_ and returns the list or results</span>
+<span class="Comment"># @rray.classify($cr);  # kind of map, but creates a hash, where keys are the results of $cr and values are from @rray</span>
+<span class="Comment"># @rray.categorize($cr);# kind of classify, but closure can have no (Nil) or several results, so a key can have a list of values</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rray</span><span class="Statement">.</span><span class="Identifier">grep</span>({<span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">&gt;</span><span class="Constant">40</span>})<span class="Statement">;</span>   <span class="Comment"># high order grep, returns only these elements that pass a condition ($cr returns something positive)</span>
+<span class="Comment"># @rray.first($coder);  # kind of grep, return just the first matching value</span>
+<span class="Comment"># say @rray.zip;            # join arrays by picking first element left successively from here and then there</span>
+
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">primes</span> <span class="Statement">=</span> (<span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,</span><span class="Constant">5</span><span class="Statement">,</span><span class="Constant">7</span><span class="Statement">,</span><span class="Constant">11</span><span class="Statement">,</span><span class="Constant">13</span><span class="Statement">,</span><span class="Constant">17</span><span class="Statement">,</span><span class="Constant">19</span><span class="Statement">,</span><span class="Constant">23</span>)<span class="Statement">;</span>   <span class="Comment"># an array gets filled like in Perl 5</span>
+<span class="Comment"># my @primes =  2,3,5,7,11,13,17,19,23 ; # same thing, since unlike P5 round braces just do group</span>
+<span class="Comment"># my @primes = &lt;2 3 5 7 11 13 17 19 23&gt;; # dito, &lt;&gt; is the new qw()</span>
+
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">primes</span>[]<span class="Statement">;</span>                           <span class="Comment"># 2 3 5 7 11 13 17 19 23</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">arrayref</span> <span class="Statement">=</span> [<span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,</span><span class="Constant">5</span><span class="Statement">,</span><span class="Constant">7</span><span class="Statement">,</span><span class="Constant">11</span><span class="Statement">,</span><span class="Constant">13</span><span class="Statement">,</span><span class="Constant">17</span><span class="Statement">,</span><span class="Constant">19</span><span class="Statement">,</span><span class="Constant">23</span>]<span class="Statement">;</span> <span class="Comment"># in scalar context you get automatically a reference</span>
+<span class="Identifier">say</span> <span class="Identifier">@$</span><span class="Identifier">arrayref</span><span class="Statement">;</span>                          <span class="Comment"># 2 3 5 7 11 13 17 19 23</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">arrayref</span> <span class="Statement">=</span> <span class="Statement">item</span> <span class="Identifier">@</span><span class="Identifier">primes</span><span class="Statement">;</span>             <span class="Comment"># same thing, more explicit</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">arrayref</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">arrayref</span> <span class="Statement">=</span> [<span class="Constant">13</span><span class="Statement">,</span>]<span class="Statement">;</span>                    <span class="Comment"># comma is the new array generator</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">arrayref</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">primes</span> <span class="Statement">=</span> <span class="Constant">2</span><span class="Statement">;</span>                          <span class="Comment"># array with one element</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">primes</span> <span class="Statement">=</span> [<span class="Constant">2</span><span class="Statement">,</span><span class="Constant">3</span><span class="Statement">,</span><span class="Constant">5</span><span class="Statement">,</span><span class="Constant">7</span><span class="Statement">,</span><span class="Constant">11</span><span class="Statement">,</span><span class="Constant">13</span><span class="Statement">,</span><span class="Constant">17</span><span class="Statement">,</span><span class="Constant">19</span><span class="Statement">,</span><span class="Constant">23</span>]<span class="Statement">;</span>   <span class="Comment"># array with one element (arrayref)</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">primes</span><span class="Statement">;</span>                             <span class="Comment"># 2 3 5 7 11 13 17 19 23</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">dev</span>    <span class="Statement">=</span> {<span class="Special">'</span><span class="Constant">dan</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">parrot</span><span class="Special">'</span>}<span class="Statement">;</span>        <span class="Comment"># array with one element (hashref)</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">dev</span><span class="Statement">;</span>                                <span class="Comment"># (&quot;dan&quot; =&gt; &quot;parrot&quot;).hash</span>
+
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">data</span>   <span class="Statement">=</span> [<span class="Constant">1</span><span class="Statement">..</span><span class="Constant">5</span>]<span class="Statement">,</span>[<span class="Constant">6</span><span class="Statement">..</span><span class="Constant">10</span>]<span class="Statement">,</span>[<span class="Constant">11</span><span class="Statement">..</span><span class="Constant">15</span>]<span class="Statement">;</span>    <span class="Comment"># Array of Arrays (AoA)</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">data</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>                          <span class="Comment"># Array.new([1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15])</span>
+
+<span class="Comment"># my @list   = lol @data;                # no change</span>
+<span class="Comment"># say @list.perl;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">list</span>   <span class="Statement">=</span> flat <span class="Identifier">@</span><span class="Identifier">data</span><span class="Statement">;</span>                 <span class="Comment"># returns 1..15</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">list</span><span class="Statement">;</span>
+
+<span class="Comment">## index array</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">weekdays</span> <span class="Statement">=</span> [<span class="Special">'</span><span class="Constant">Monday</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Tuesday</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Wednesday</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Thursday</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Friday</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Saturday</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">Sunday</span><span class="Special">'</span>]<span class="Statement">;</span>
+<span class="Identifier">@</span><span class="Identifier">weekdays</span><span class="Statement">.</span><span class="Identifier">kv</span><span class="Statement">.</span><span class="Identifier">reverse</span><span class="Statement">.</span><span class="Statement">hash</span><span class="Statement">.</span>{<span class="Special">'</span><span class="Constant">Thursday</span><span class="Special">'</span>} <span class="Comment"># 3</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Special">=</span><span class="Identifier">finish</span><span class="Statement">.</span><span class="Identifier">lines</span><span class="Statement">.</span>words<span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">.</span><span class="Identifier">kv</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">value</span> {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">value</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">value</span> <span class="Statement">&gt;=</span> <span class="Constant">20</span><span class="Statement">;</span>
+}
+
+<span class="Statement">=</span><span class="Type">finish</span>
+<span class="Comment">20 12 34</span>
+<span class="Comment">12 34 56</span>
+<span class="Comment">34 55 78</span>
+
+<span class="Comment">## loop three elements</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">=&lt;</span>aa bb cc dd ee <span class="Statement">ff</span> <span class="Statement">&gt;;</span>
+
+<span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">z</span> {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">,</span><span class="Identifier">$</span><span class="Identifier">z</span><span class="Statement">;</span>
+}
+
+<span class="Comment"># aabbcc</span>
+<span class="Comment"># ddeeff</span>
+
+<span class="Special">my</span>  <span class="Identifier">@</span><span class="Identifier">primes</span><span class="Statement">=&lt;</span><span class="Constant">1</span> <span class="Constant">3</span> <span class="Constant">5</span> <span class="Constant">7</span> <span class="Constant">9</span> <span class="Constant">11</span> <span class="Constant">13</span> <span class="Constant">15</span> <span class="Constant">17</span><span class="Statement">&gt;;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">primes</span><span class="Statement">;</span>                       <span class="Comment"># all values as list</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">primes</span><span class="Statement">.</span><span class="Identifier">values</span><span class="Statement">;</span>                <span class="Comment"># same thing</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">primes</span><span class="Statement">.</span><span class="Identifier">keys</span><span class="Statement">;</span>                  <span class="Comment"># list of all indices</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">@</span><span class="Identifier">primes</span>[]<span class="Special">&quot;</span><span class="Statement">;</span>                   <span class="Comment"># insert all values in a string, uses [] as distinction from mail adresses</span>
+<span class="Special">my</span>  <span class="Identifier">$</span><span class="Identifier">prime</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">primes</span>[<span class="Constant">0</span>]<span class="Statement">;</span>           <span class="Comment"># get the first prime</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">prime</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">last_prime</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">primes</span>[<span class="Statement">*-</span><span class="Constant">1</span>]<span class="Statement">;</span>    <span class="Comment"># get the last one</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">last_prime</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">some</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">primes</span>[<span class="Constant">2</span><span class="Statement">..</span><span class="Constant">5</span>]<span class="Statement">;</span>         <span class="Comment"># get several</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">some</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">data</span>   <span class="Statement">=</span> [<span class="Constant">1</span><span class="Statement">..</span><span class="Constant">5</span>]<span class="Statement">,</span>[<span class="Constant">6</span><span class="Statement">..</span><span class="Constant">10</span>]<span class="Statement">,</span>[<span class="Constant">11</span><span class="Statement">..</span><span class="Constant">15</span>]<span class="Statement">;</span>  <span class="Comment"># Array of Arrays (AoA)</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">cell</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">data</span>[<span class="Constant">1</span>][<span class="Constant">2</span>]<span class="Statement">;</span>                <span class="Comment"># get 8, third value of second value (list)</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">cell</span><span class="Statement">;</span>
+
+<span class="Special">my</span>  <span class="Identifier">$</span><span class="Identifier">same_cell</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">data</span>[<span class="Constant">1</span><span class="Statement">,</span><span class="Constant">2</span>]<span class="Statement">;</span>           <span class="Comment"># same thing, shorten syntax</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">same_cell</span><span class="Statement">;</span>                        <span class="Comment"># 6 7 8 9 10 11 12 13 14 15</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">numbers</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">data</span>[<span class="Constant">1</span>]<span class="Statement">;</span>                <span class="Comment"># get a copy of the second subarray (6..10)</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">numbers</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">copy</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">data</span><span class="Statement">;</span>                      <span class="Comment"># copy the whole AoA, no more reference passing, use binding instead</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">copy</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>
+
+
+<span class="Comment">## squish</span>
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> <span class="Identifier">$</span><span class="Special">=</span><span class="Identifier">finish</span><span class="Statement">.</span><span class="Identifier">lines</span><span class="Statement">.</span>squish<span class="Statement">;</span>
+
+<span class="Statement">=</span><span class="Type">finish</span>
+<span class="Comment">123</span>
+<span class="Comment">123</span>
+<span class="Comment">321</span>
+<span class="Comment">321</span>
+<span class="Comment">111</span>
+<span class="Comment">111</span>
+<span class="Comment">111</span>
+
+<span class="Comment"># comments inline</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span> <span class="Statement">=</span> (
+    <span class="Constant">1</span><span class="Statement">,</span> <span class="Comment">#`(Index 1) 2, #`(Index 2) &quot;Info&quot;,</span>
+    <span class="Constant">2</span><span class="Statement">,</span> <span class="Comment">#`(Index 2) 3, #`(Index 3) &quot;Text&quot;,</span>
+    <span class="Constant">3</span><span class="Statement">,</span> <span class="Comment">#`(Index 3) 4, #`(Index 4) &quot;Advb&quot;,</span>
+    <span class="Constant">4</span><span class="Statement">,</span> <span class="Comment">#`(Index 4) 5, #`(Index 5) &quot;Ling&quot;</span>
+  )<span class="Statement">;</span>
+
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">;</span>
 </pre>
 
       </div>
