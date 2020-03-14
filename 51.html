@@ -74,28 +74,11 @@
       <div id="content">
         
 <pre id='vimCodeElement'>
-<span class="Special">my</span> <span class="Type">int</span> <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">;</span>
-    await (<span class="Statement">^</span><span class="Constant">5</span>)<span class="Statement">.</span><span class="Identifier">map</span><span class="Statement">:</span> {
-        start { <span class="Statement">++</span><span class="Identifier">$</span><span class="Identifier">b</span> <span class="Statement">for</span> <span class="Statement">^</span><span class="Constant">100000</span> }
-    }
-<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">;</span> <span class="Comment"># something like 419318</span>
-
-<span class="Special">my</span> <span class="Type">int</span> <span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">;</span>
-    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">l</span> <span class="Statement">=</span> Lock<span class="Statement">.</span><span class="Identifier">new</span><span class="Statement">;</span>
-    await (<span class="Statement">^</span><span class="Constant">5</span>)<span class="Statement">.</span><span class="Identifier">map</span><span class="Statement">:</span> {
-       start {
-           <span class="Statement">for</span> <span class="Statement">^</span><span class="Constant">100000</span> {
-               <span class="Identifier">$</span><span class="Identifier">l</span><span class="Statement">.</span>protect( { <span class="Statement">++</span><span class="Identifier">$</span><span class="Identifier">a</span> } )
-           }
-       }
-    }
-<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">;</span> <span class="Comment"># 500000</span>
-
-<span class="Special">my</span> atomicint <span class="Identifier">$</span><span class="Identifier">c</span><span class="Statement">;</span>
-    await (<span class="Statement">^</span><span class="Constant">5</span>)<span class="Statement">.</span><span class="Identifier">map</span><span class="Statement">:</span> {
-        start { <span class="Statement">++</span>⚛<span class="Identifier">$</span><span class="Identifier">c</span> <span class="Statement">for</span> <span class="Statement">^</span><span class="Constant">100000</span> }
-    }
-    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">c</span><span class="Statement">;</span> <span class="Comment"># 500000</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">s</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">aabbc</span><span class="Special">&quot;</span><span class="Statement">;</span>
+with   <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">.</span><span class="Identifier">index</span>(<span class="Special">&quot;</span><span class="Constant">a</span><span class="Special">&quot;</span>) {<span class="Special">&quot;</span><span class="Constant">Found a at </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
+orwith <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">.</span><span class="Identifier">index</span>(<span class="Special">&quot;</span><span class="Constant">b</span><span class="Special">&quot;</span>) {<span class="Special">&quot;</span><span class="Constant">Found b at </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
+orwith <span class="Identifier">$</span><span class="Identifier">s</span><span class="Statement">.</span><span class="Identifier">index</span>(<span class="Special">&quot;</span><span class="Constant">c</span><span class="Special">&quot;</span>) {<span class="Special">&quot;</span><span class="Constant">Found c at </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
+<span class="Statement">else</span>                 {<span class="Special">&quot;</span><span class="Constant">Didn't find a, b or c</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">say</span>}
 </pre>
 
       </div>

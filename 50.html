@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <title>Raku By Example</title>
+    <meta name="keywords" content="raku">
+    <meta name="description" content="Learn Raku By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Raku By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello-world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list-comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern-match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+            <li><a href="22.html">22.traits</a></li>
+            <li><a href="23.html">23.gather-take</a></li>
+            <li><a href="24.html">24.subset</a></li>
+            <li><a href="25.html">25.sort</a></li>
+            <li><a href="26.html">26.smartmatch</a></li>
+            <li><a href="27.html">27.roles</a></li>
+            <li><a href="28.html">28.multi-dispatch</a></li>
+            <li><a href="29.html">29.meta-operators</a></li>
+            <li><a href="30.html">30.aomtic</a></li>
+            <li><a href="31.html">31.binding</a></li>
+            <li><a href="32.html">32.classify</a></li>
+            <li><a href="33.html">33.destructure</a></li>
+            <li><a href="34.html">34.dbi</a></li>
+            <li><a href="35.html">35.dynamic-variables</a></li>
+            <li><a href="36.html">36.labels</a></li>
+            <li><a href="37.html">37.main</a></li>
+            <li><a href="38.html">38.operators</a></li>
+            <li><a href="39.html">39.pod</a></li>
+            <li><a href="40.html">40.regex</a></li>
+            <li><a href="41.html">41.q</a></li>
+            <li><a href="42.html">42.topic_variable</a></li>
+            <li><a href="43.html">43.hyper_operator</a></li>
+            <li><a href="44.html">44.colonpairs</a></li>
+            <li><a href="45.html">45.grammar</a></li>
+            <li><a href="46.html">46.datetime</a></li>
+            <li><a href="47.html">47.comb</a></li>
+            <li><a href="48.html">48.chained_comparison</a></li>
+            <li><a href="49.html">49.unicode</a></li>
+            <li><a href="50.html">50.when</a></li>
+            <li><a href="51.html">51.with</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="PreProc">use</span> <span class="Statement">v</span><span class="Constant">6</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">bool1</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">bool2</span> <span class="Statement">=</span> <span class="Constant">0</span><span class="Statement">;</span>
+<span class="Statement">given</span> (<span class="Identifier">$</span><span class="Identifier">bool1</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">bool2</span>) {
+    <span class="Special">when</span> (<span class="Constant">0</span><span class="Statement">,</span> <span class="Constant">0</span>) {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">0, 0</span><span class="Special">&quot;</span>}
+    <span class="Special">when</span> (<span class="Constant">0</span><span class="Statement">,</span> <span class="Constant">1</span>) {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">0, 1</span><span class="Special">&quot;</span>}
+    <span class="Special">when</span> (<span class="Constant">1</span><span class="Statement">,</span> <span class="Constant">0</span>) {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">1, 0</span><span class="Special">&quot;</span>}
+    <span class="Special">when</span> (<span class="Constant">1</span><span class="Statement">,</span> <span class="Constant">1</span>) {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">1, 1</span><span class="Special">&quot;</span>}
+}
+
+<span class="Statement">given</span> (<span class="Special">&quot;</span><span class="Constant">15</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">example</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">3.14</span><span class="Special">&quot;</span>) {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Identifier">WHAT</span><span class="Statement">;</span> <span class="Comment">#  (&quot;15&quot;, &quot;example&quot;, &quot;3.14&quot;) =&gt; List</span>
+    <span class="Special">when</span> (<span class="Identifier">$</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Statement">,</span> <span class="Type">Str</span>) { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">I got a String of </span><span class="Identifier">$</span><span class="Identifier">_</span>[<span class="Constant">2</span>]<span class="Special">&quot;</span> }  <span class="Comment"># $ 代表一个匿名变量, 表示元组的前两个不参与智能匹配?</span>
+}
+
+<span class="Statement">given</span> (<span class="Constant">4</span><span class="Statement">,</span> <span class="Constant">5</span>) {
+    <span class="Special">when</span> ( <span class="Identifier">$</span><span class="Statement">,</span>  <span class="Identifier">$</span>) {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Ok</span><span class="Special">&quot;</span>}
+}
+
+<span class="Statement">given</span> (<span class="Special">&quot;</span><span class="Constant">fly.mp3</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Constant">34</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">It's funny</span><span class="Special">&quot;</span>) {
+    <span class="Special">when</span> (<span class="Special">/</span><span class="Special">.</span><span class="Constant">mp3</span><span class="Special">$</span><span class="Special">/</span><span class="Statement">,</span> <span class="Statement">/</span><span class="Constant">4</span><span class="Identifier">$/</span><span class="Statement">,</span> <span class="Statement">*.</span><span class="Identifier">chars</span> <span class="Statement">&gt;</span> <span class="Constant">4</span>) {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Perfact</span><span class="Special">&quot;</span>}
+}
+
+<span class="Statement">given</span> <span class="Constant">5</span> {
+    <span class="Special">when</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span> {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">1..10 contains 5</span><span class="Special">&quot;</span>}
+}
+
+
+<span class="Comment"># &gt; (1,2, &quot;SS&quot;) ~~ ($, $, Str)</span>
+<span class="Comment"># True</span>
+<span class="Comment"># &gt; (1,2) ~~ (Int, $)</span>
+<span class="Comment"># True</span>
+<span class="Comment"># &gt; (1,2) ~~ ($, $)</span>
+<span class="Comment"># True</span>
+<span class="Comment"># &gt; (1,2) ~~ ($, Str)</span>
+
+
+<span class="Statement">given</span> <span class="Constant">42</span> {
+    <span class="Special">when</span> <span class="Type">Int</span> {
+	<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Int</span><span class="Special">&quot;</span><span class="Statement">;</span>
+	succeed <span class="Special">&quot;</span><span class="Constant">Found</span><span class="Special">&quot;</span><span class="Statement">;</span>
+	<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Never this</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    }
+
+    <span class="Special">when</span> <span class="Constant">42</span> {<span class="Identifier">say</span> <span class="Constant">42</span>}
+    <span class="Special">default</span> {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">duno</span><span class="Special">&quot;</span>}
+ }
+
+
+<span class="Comment"># given 和 when：</span>
+<span class="Comment"># given 接收一个参数和一个 block</span>
+<span class="Comment"># given 把它接收的参数设置为 $_, 然后调用后面的 block</span>
+<span class="Comment"># when 也接收一个参数和一个 block</span>
+<span class="Comment"># when 将 $_ 和 when 接收的参数进行智能匹配</span>
+<span class="Comment"># 如果结果是 True， 则执行代码块</span>
+<span class="Comment"># 然后控制就跳出 when 的包围圈</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">ticks</span> <span class="Statement">=</span> <span class="Constant">0</span><span class="Statement">;</span>
+<span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">ticks</span> {
+    <span class="Special">when</span> <span class="Constant">1</span>   {<span class="Identifier">say</span> <span class="Special">&quot;&quot;</span><span class="Statement">;</span> }
+    <span class="Special">when</span> <span class="Constant">1</span><span class="Statement">/</span><span class="Constant">2</span> {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">/</span><span class="Special">&quot;</span><span class="Statement">;</span> }
+    <span class="Special">when</span> <span class="Type">Int</span> {<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Type">Str</span><span class="Statement">;</span> }
+    <span class="Special">when</span> <span class="Type">Rat</span> {<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span> }
+    <span class="Statement">die</span> <span class="Special">&quot;</span><span class="Constant">Duration must be Int or Rat, but it's </span><span class="Special">{</span><span class="Constant"> </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">.</span><span class="Constant">WHAT </span><span class="Special">}&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment"># given 和 when 可以单独使用</span>
+<span class="Comment"># 设置了 $_,  进行一系列操作时，given 比较方便</span>
+<span class="Comment"># 当 $_ 被设置后 ， when 可以用在任何地方</span>
+<span class="Comment"># when 在 for 循环中很方便</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">boring-lines</span> <span class="Statement">=</span> <span class="Constant">0</span><span class="Statement">;</span>
+<span class="Statement">for</span> <span class="Identifier">$</span><span class="Special">*</span><span class="Identifier">IN</span><span class="Statement">.</span><span class="Identifier">lines</span> {
+    <span class="Special">when</span> <span class="Special">/&quot;</span><span class="Constant">Lunasa</span><span class="Special">&quot;</span><span class="Constant"> </span><span class="Special">|</span><span class="Constant"> </span><span class="Special">&quot;</span><span class="Constant">Altan</span><span class="Special">&quot;/</span> { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Found band!</span><span class="Special">&quot;</span><span class="Statement">;</span> }
+    <span class="Special">when</span> <span class="Special">/&quot;</span><span class="Constant">fiddle</span><span class="Special">&quot;</span><span class="Constant"> </span><span class="Special">|</span><span class="Constant"> </span><span class="Special">&quot;</span><span class="Constant">flute</span><span class="Special">&quot;/</span> { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Found instrument!</span><span class="Special">&quot;</span><span class="Statement">;</span> }
+    <span class="Identifier">$</span><span class="Identifier">boring-lines</span><span class="Statement">++;</span>
+}
+
+
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>
