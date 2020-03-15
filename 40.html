@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -264,6 +272,13 @@
 <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Matching string</span><span class="Special">&quot;</span><span class="Statement">;</span>
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">ðu</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Statement">rx</span><span class="Special">/</span><span class="Special">.</span><span class="Constant">u</span><span class="Special">/</span><span class="Statement">;</span>
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">ðu</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant">ð</span><span class="Special">.</span><span class="Special">/</span><span class="Statement">;</span>
+
+<span class="Comment">## split on change</span>
+
+<span class="Statement">given</span> <span class="Special">'</span><span class="Constant">ABBBCDEEF</span><span class="Special">'</span> {
+    <span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Special">\w</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">&lt;</span>same<span class="Special">&gt;</span><span class="Special">/</span>)<span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
+}
+<span class="Comment"># A BBB C D EE F</span>
 </pre>
 
       </div>

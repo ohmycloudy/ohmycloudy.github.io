@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -92,6 +100,31 @@
 
 <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">line</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">{&quot;pdfnum&quot;:&quot;06342858&quot;,&quot;pdfnum&quot;:&quot;06342854&quot;</span><span class="Special">'</span><span class="Statement">;</span>
 <span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">line</span><span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Constant">pdfnum</span><span class="Special">'</span><span class="Constant">&quot;:&quot;</span><span class="Special">'</span><span class="Special">&lt;</span><span class="Special">(</span> <span class="Special">\w</span><span class="Special">+</span> <span class="Special">)</span><span class="Special">&gt;</span><span class="Special">'</span><span class="Constant">&quot;</span><span class="Special">'/</span>)<span class="Statement">;</span>
+
+
+<span class="Comment">## 提取文本块</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">excerpt</span> <span class="Statement">=</span> <span class="Statement">q</span><span class="Statement">:</span><span class="Constant">to</span><span class="Special">/</span><span class="Constant">END</span><span class="Special">/</span><span class="Statement">;</span>
+Here's some unimportant text<span class="Statement">.</span>
+<span class="Statement">=begin</span> <span class="Type">code</span>
+<span class="PreProc">This code block is what we're after.</span>
+<span class="PreProc">We'll use 'ff' to get it.</span>
+<span class="Statement">=end</span> <span class="Type">code</span>
+More unimportant text<span class="Statement">.</span>
+<span class="Statement">=begin</span> <span class="Type">code</span>
+<span class="PreProc">I want this line.</span>
+<span class="PreProc">and this line as well.</span>
+<span class="PreProc">HaHa</span>
+<span class="Statement">=end</span> <span class="Type">code</span>
+More unimport text<span class="Statement">.</span>
+<span class="Statement">=begin</span> <span class="Type">code</span>
+<span class="PreProc">Let's to go home.</span>
+<span class="Statement">=end</span> <span class="Type">code</span>
+<span class="PreProc">END</span>
+
+<span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">excerpt</span><span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Special">^^</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">=begin code</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">$$</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">&lt;</span><span class="Special">(</span> <span class="Special">.+?</span> <span class="Special">)</span><span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">\s</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">^^</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">=end code</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">$$</span><span class="Special">/</span>) <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">c</span> {
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">c</span><span class="Statement">;</span>
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span> <span class="Statement">x</span> <span class="Constant">15</span><span class="Statement">;</span>
+}
 </pre>
 
       </div>

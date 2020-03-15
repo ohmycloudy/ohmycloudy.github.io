@@ -1,0 +1,219 @@
+<html>
+  <head>
+    <title>Raku By Example</title>
+    <meta name="keywords" content="raku">
+    <meta name="description" content="Learn Raku By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Raku By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello-world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list-comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern-match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+            <li><a href="22.html">22.traits</a></li>
+            <li><a href="23.html">23.gather-take</a></li>
+            <li><a href="24.html">24.subset</a></li>
+            <li><a href="25.html">25.sort</a></li>
+            <li><a href="26.html">26.smartmatch</a></li>
+            <li><a href="27.html">27.roles</a></li>
+            <li><a href="28.html">28.multi-dispatch</a></li>
+            <li><a href="29.html">29.meta-operators</a></li>
+            <li><a href="30.html">30.aomtic</a></li>
+            <li><a href="31.html">31.binding</a></li>
+            <li><a href="32.html">32.classify</a></li>
+            <li><a href="33.html">33.destructure</a></li>
+            <li><a href="34.html">34.dbi</a></li>
+            <li><a href="35.html">35.dynamic-variables</a></li>
+            <li><a href="36.html">36.labels</a></li>
+            <li><a href="37.html">37.main</a></li>
+            <li><a href="38.html">38.operators</a></li>
+            <li><a href="39.html">39.pod</a></li>
+            <li><a href="40.html">40.regex</a></li>
+            <li><a href="41.html">41.q</a></li>
+            <li><a href="42.html">42.topic_variable</a></li>
+            <li><a href="43.html">43.hyper_operator</a></li>
+            <li><a href="44.html">44.colonpairs</a></li>
+            <li><a href="45.html">45.grammar</a></li>
+            <li><a href="46.html">46.datetime</a></li>
+            <li><a href="47.html">47.comb</a></li>
+            <li><a href="48.html">48.chained_comparison</a></li>
+            <li><a href="49.html">49.unicode</a></li>
+            <li><a href="50.html">50.when</a></li>
+            <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## interval</span>
+
+react {
+    whenever Supply<span class="Statement">.</span>interval(<span class="Constant">0.5</span>) {
+        <span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
+    }
+}
+
+<span class="Comment">## done</span>
+
+react {
+    whenever Supply<span class="Statement">.</span>interval(<span class="Constant">0.5</span>) {
+        done <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">&gt;</span> <span class="Constant">3</span><span class="Statement">;</span>
+        <span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
+    }
+}
+
+<span class="Comment">## from-list</span>
+
+react {
+    whenever Supply<span class="Statement">.</span>from-list(<span class="Special">'</span><span class="Constant">a</span><span class="Special">'</span> <span class="Statement">..</span> <span class="Special">'</span><span class="Constant">e</span><span class="Special">'</span>) {
+        <span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
+    }
+}
+
+<span class="Comment">## promise</span>
+
+<span class="Comment"># The react/whenever construct for processing asynchronous data</span>
+react {
+    whenever Supply<span class="Statement">.</span>interval(<span class="Constant">0.5</span>) {
+        <span class="Identifier">say</span> now<span class="Statement">;</span>
+    }
+    whenever Promise<span class="Statement">.</span>in(<span class="Constant">3</span>) {
+        done<span class="Statement">;</span>
+    }
+}
+
+<span class="Comment">## socket</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">socket</span> <span class="Statement">=</span> await IO::Socket::Async<span class="Statement">.</span><span class="Identifier">connect</span><span class="Statement">:</span>
+    <span class="Special">'</span><span class="Constant">moarvm.org</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">80</span><span class="Statement">;</span>
+
+await <span class="Identifier">$</span><span class="Identifier">socket</span><span class="Statement">.</span><span class="Identifier">print</span><span class="Statement">:</span>
+    <span class="Special">&quot;</span><span class="Constant">GET / HTTP/1.0</span><span class="Special">\r\n</span><span class="Constant">Host: moarvm.org</span><span class="Special">\r\n\r\n</span><span class="Special">&quot;</span><span class="Statement">;</span>
+
+react {
+    whenever <span class="Identifier">$</span><span class="Identifier">socket</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">chars</span> {
+        <span class="Identifier">print</span> <span class="Identifier">$</span><span class="Identifier">chars</span><span class="Statement">;</span>
+    }
+}
+
+<span class="Comment">## 异步进程</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">file</span> <span class="Statement">=</span> ‘foo’<span class="Statement">.</span><span class="Type">IO</span><span class="Statement">;</span>
+spurt <span class="Identifier">$</span><span class="Identifier">file</span><span class="Statement">,</span> “<span class="Statement">and\</span>nCamelia<span class="Statement">\</span>n♡<span class="Statement">\</span>nme<span class="Statement">\</span>n”<span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">proc</span> <span class="Statement">=</span> Proc::Async<span class="Statement">.</span><span class="Identifier">new</span><span class="Statement">:</span> <span class="Statement">:</span><span class="Constant">w</span><span class="Statement">,</span> ‘tac’<span class="Statement">,</span> ‘<span class="Statement">--</span>’<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">file</span><span class="Statement">,</span> ‘<span class="Statement">-</span>’<span class="Statement">;</span>
+<span class="Comment"># my $proc = Proc::Async.new: :w, ‘sleep’, 15; # uncomment to try timeouts </span>
+
+react {
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>stdout<span class="Statement">.</span><span class="Identifier">lines</span> { <span class="Comment"># split input on \r\n, \n, and \r </span>
+        <span class="Identifier">say</span> ‘line<span class="Statement">:</span> ’<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span>
+    }
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>stderr { <span class="Comment"># chunks </span>
+        <span class="Identifier">say</span> ‘stderr<span class="Statement">:</span> ’<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span>
+    }
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>ready {
+        <span class="Identifier">say</span> ‘PID<span class="Statement">:</span> ’<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Comment"># Only in Rakudo 2018.04 and newer, otherwise Nil </span>
+    }
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>start {
+        <span class="Identifier">say</span> ‘Proc finished<span class="Statement">:</span> exitcode<span class="Statement">=</span>’<span class="Statement">,</span> <span class="Statement">.</span>exitcode<span class="Statement">,</span> ‘ signal<span class="Statement">=</span>’<span class="Statement">,</span> <span class="Statement">.</span>signal<span class="Statement">;</span>
+        done <span class="Comment"># gracefully jump from the react block </span>
+    }
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span><span class="Identifier">print</span><span class="Statement">:</span> “I<span class="Statement">\</span>n♥<span class="Statement">\</span>nCamelia<span class="Statement">\</span>n” {
+        <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>close-stdin
+    }
+    whenever signal(SIGTERM)<span class="Statement">.</span>merge<span class="Statement">:</span> signal(SIGINT) {
+        <span class="Identifier">once</span> {
+            <span class="Identifier">say</span> ‘Signal received<span class="Statement">,</span> asking the process <span class="Identifier">to</span> stop’<span class="Statement">;</span>
+            <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span><span class="Identifier">kill</span><span class="Statement">;</span> <span class="Comment"># sends SIGHUP, change appropriately </span>
+            whenever signal(<span class="Identifier">$</span><span class="Identifier">_</span>)<span class="Statement">.</span><span class="Identifier">zip</span><span class="Statement">:</span> Promise<span class="Statement">.</span>in(<span class="Constant">2</span>)<span class="Statement">.</span>Supply {
+                <span class="Identifier">say</span> ‘Kill it<span class="Statement">!</span>’<span class="Statement">;</span>
+                <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span><span class="Identifier">kill</span><span class="Statement">:</span> SIGKILL
+            }
+        }
+    }
+    whenever Promise<span class="Statement">.</span>in(<span class="Constant">5</span>) {
+        <span class="Identifier">say</span> ‘Timeout<span class="Statement">.</span> Asking the process <span class="Identifier">to</span> stop’<span class="Statement">;</span>
+        <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span><span class="Identifier">kill</span><span class="Statement">;</span> <span class="Comment"># sends SIGHUP, change appropriately </span>
+        whenever Promise<span class="Statement">.</span>in(<span class="Constant">2</span>) {
+            <span class="Identifier">say</span> ‘Timeout<span class="Statement">.</span> Forcing the process <span class="Identifier">to</span> stop’<span class="Statement">;</span>
+            <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span><span class="Identifier">kill</span><span class="Statement">:</span> SIGKILL
+        }
+    }
+}
+
+<span class="Identifier">say</span> ‘Program finished’<span class="Statement">;</span>
+
+<span class="Comment">## tail</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">proc</span> <span class="Statement">=</span> Proc::Async<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">&quot;</span><span class="Constant">tail</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">-f</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">/var/log/system.log</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">out</span>)<span class="Statement">;</span>
+
+react {
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>stdout<span class="Statement">.</span><span class="Identifier">lines</span> { <span class="Comment"># split input on \r\n, \n, and \r </span>
+        <span class="Identifier">say</span> ‘line<span class="Statement">:</span> ’<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span>
+    }
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>stderr { <span class="Comment"># chunks </span>
+        <span class="Identifier">say</span> ‘stderr<span class="Statement">:</span> ’<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span>
+    }
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>ready {
+        <span class="Identifier">say</span> ‘PID<span class="Statement">:</span> ’<span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Comment"># Only in Rakudo 2018.04 and newer, otherwise Nil </span>
+    }
+    whenever <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span>start {
+        <span class="Identifier">say</span> ‘Proc finished<span class="Statement">:</span> exitcode<span class="Statement">=</span>’<span class="Statement">,</span> <span class="Statement">.</span>exitcode<span class="Statement">,</span> ‘ signal<span class="Statement">=</span>’<span class="Statement">,</span> <span class="Statement">.</span>signal<span class="Statement">;</span>
+        done <span class="Comment"># gracefully jump from the react block </span>
+    }
+    whenever signal(SIGTERM)<span class="Statement">.</span>merge<span class="Statement">:</span> signal(SIGINT) {
+        <span class="Identifier">once</span> {
+            <span class="Identifier">say</span> ‘Signal received<span class="Statement">,</span> asking the process <span class="Identifier">to</span> stop’<span class="Statement">;</span>
+            <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span><span class="Identifier">kill</span><span class="Statement">;</span> <span class="Comment"># sends SIGHUP, change appropriately </span>
+            whenever signal(<span class="Identifier">$</span><span class="Identifier">_</span>)<span class="Statement">.</span><span class="Identifier">zip</span><span class="Statement">:</span> Promise<span class="Statement">.</span>in(<span class="Constant">2</span>)<span class="Statement">.</span>Supply {
+                <span class="Identifier">say</span> ‘Kill it<span class="Statement">!</span>’<span class="Statement">;</span>
+                <span class="Identifier">$</span><span class="Identifier">proc</span><span class="Statement">.</span><span class="Identifier">kill</span><span class="Statement">:</span> SIGKILL
+            }
+        }
+    }
+}
+
+<span class="Identifier">say</span> ‘Program finished’<span class="Statement">;</span>
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>

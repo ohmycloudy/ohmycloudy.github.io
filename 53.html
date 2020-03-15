@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <title>Raku By Example</title>
+    <meta name="keywords" content="raku">
+    <meta name="description" content="Learn Raku By Example">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Open+Sans" rel="stylesheet"> 
+  </head>
+  <body>
+    <div id="everything">
+      <div id="title">
+        <a href="index.html"><img src="rakudo.png"> Raku By Example</a>
+      </div>
+      <div id="github">
+        <a href="https://ohmycloudy.github.io">View me on<img alt="GitHub" src="github.svg"></a>
+      </div>
+      <div id="nav">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="1.html">1.hello-world</a></li>
+            <li><a href="2.html">2.variables</a></li>
+            <li><a href="3.html">3.types</a></li>
+            <li><a href="4.html">4.conditions</a></li>
+            <li><a href="5.html">5.looping</a></li>
+            <li><a href="6.html">6.subroutines</a></li>
+            <li><a href="7.html">7.arrays</a></li>
+            <li><a href="8.html">8.hashes</a></li>
+            <li><a href="9.html">9.operators</a></li>
+            <li><a href="10.html">10.classes</a></li>
+            <li><a href="11.html">11.list-comprehension</a></li>
+            <li><a href="12.html">12.junctions</a></li>
+            <li><a href="13.html">13.pattern-match</a></li>
+            <li><a href="14.html">14.whatever</a></li>
+            <li><a href="15.html">15.twigil</a></li>
+            <li><a href="16.html">16.set</a></li>
+            <li><a href="17.html">17.feed</a></li>
+            <li><a href="18.html">18.flip</a></li>
+            <li><a href="19.html">19.signatures</a></li>
+            <li><a href="20.html">20.io</a></li>
+            <li><a href="21.html">21.enum</a></li>
+            <li><a href="22.html">22.traits</a></li>
+            <li><a href="23.html">23.gather-take</a></li>
+            <li><a href="24.html">24.subset</a></li>
+            <li><a href="25.html">25.sort</a></li>
+            <li><a href="26.html">26.smartmatch</a></li>
+            <li><a href="27.html">27.roles</a></li>
+            <li><a href="28.html">28.multi-dispatch</a></li>
+            <li><a href="29.html">29.meta-operators</a></li>
+            <li><a href="30.html">30.aomtic</a></li>
+            <li><a href="31.html">31.binding</a></li>
+            <li><a href="32.html">32.classify</a></li>
+            <li><a href="33.html">33.destructure</a></li>
+            <li><a href="34.html">34.dbi</a></li>
+            <li><a href="35.html">35.dynamic-variables</a></li>
+            <li><a href="36.html">36.labels</a></li>
+            <li><a href="37.html">37.main</a></li>
+            <li><a href="38.html">38.operators</a></li>
+            <li><a href="39.html">39.pod</a></li>
+            <li><a href="40.html">40.regex</a></li>
+            <li><a href="41.html">41.q</a></li>
+            <li><a href="42.html">42.topic_variable</a></li>
+            <li><a href="43.html">43.hyper_operator</a></li>
+            <li><a href="44.html">44.colonpairs</a></li>
+            <li><a href="45.html">45.grammar</a></li>
+            <li><a href="46.html">46.datetime</a></li>
+            <li><a href="47.html">47.comb</a></li>
+            <li><a href="48.html">48.chained_comparison</a></li>
+            <li><a href="49.html">49.unicode</a></li>
+            <li><a href="50.html">50.when</a></li>
+            <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        
+<pre id='vimCodeElement'>
+<span class="Comment">## ACGT</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">=&lt;</span>A G C T<span class="Statement">&gt;;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">=</span><span class="Identifier">@</span><span class="Identifier">a</span><span class="Statement">;</span>
+<span class="Statement">for</span> <span class="Constant">1</span> <span class="Statement">...</span> <span class="Statement">*</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">a</span> {  (( [<span class="Statement">X~</span>] <span class="Identifier">$</span><span class="Identifier">x</span> <span class="Statement">xx</span> <span class="Identifier">$</span><span class="Identifier">a</span> ))<span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">,</span><span class="Special">'</span>)<span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span><span class="Special">last</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">a</span><span class="Statement">==</span><span class="Constant">4</span><span class="Statement">;</span>   }<span class="Statement">;</span>
+
+<span class="Comment">## digit sum</span>
+
+<span class="Statement">sub</span> digits( <span class="Identifier">$</span><span class="Identifier">_1</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_2</span> ) {
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">_1</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_2</span><span class="Statement">,</span> { (<span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">a</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">b</span>) <span class="Statement">%</span> <span class="Constant">9</span> }  <span class="Statement">...</span>  <span class="Statement">*;</span>
+}
+
+<span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">5</span> <span class="Statement">X</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">5</span> <span class="Statement">-&gt;</span> <span class="Identifier">@</span><span class="Identifier">_</span> {
+    <span class="Identifier">say</span> digits( <span class="Statement">|</span> <span class="Identifier">@</span><span class="Identifier">_</span> )[<span class="Statement">^</span><span class="Constant">10</span>]<span class="Statement">;</span>
+}
+
+<span class="Comment">## 向下计数</span>
+
+<span class="Statement">for</span> <span class="Constant">10</span> <span class="Statement">...</span> <span class="Constant">0</span> {
+    <span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## 斐波那契数列</span>
+
+<span class="Statement">sub</span> fib {
+    <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">fib</span> <span class="Statement">=</span> <span class="Constant">1</span><span class="Statement">,</span> <span class="Constant">1</span><span class="Statement">,</span> <span class="Statement">*+*,</span> <span class="Statement">...</span> <span class="Statement">*;</span>
+    <span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">fib</span>[<span class="Statement">^</span><span class="Constant">20</span>]<span class="Statement">;</span>
+}
+
+<span class="Statement">sub</span> MAIN(<span class="Identifier">$</span><span class="Identifier">name</span>) {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">hello</span><span class="Special">&quot;</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">;</span>
+    fib()<span class="Statement">;</span>
+}
+
+<span class="Comment">## 无限序列</span>
+
+<span class="Statement">loop</span> {
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">SPAM</span><span class="Special">'</span><span class="Statement">;</span>
+}
+
+<span class="Comment"># In addition, there are various ways of writing lazy, infinite lists in Perl 6: </span>
+<span class="Identifier">print</span> <span class="Special">&quot;</span><span class="Constant">SPAM</span><span class="Special">\n</span><span class="Special">&quot;</span> <span class="Statement">xx</span> <span class="Statement">*;</span>      <span class="Comment"># repetition operator</span>
+<span class="Identifier">print</span> <span class="Special">&quot;</span><span class="Constant">SPAM</span><span class="Special">\n</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">~*</span> <span class="Statement">...</span> <span class="Statement">*;</span> <span class="Comment"># sequence operator</span>
+<span class="Identifier">map</span> {<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">SPAM</span><span class="Special">&quot;</span>}<span class="Statement">,</span> <span class="Statement">^</span><span class="Constant">Inf</span><span class="Statement">;</span>   <span class="Comment"># upto operator</span>
+
+<span class="Comment">## generate range</span>
+
+<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> (<span class="Statement">-</span><span class="Constant">270</span><span class="Statement">,</span> <span class="Statement">-</span><span class="Constant">255</span> <span class="Statement">...</span> <span class="Constant">0</span><span class="Statement">,</span> <span class="Constant">2</span> <span class="Statement">,</span> <span class="Constant">4</span> <span class="Statement">...</span> <span class="Constant">10</span>)<span class="Statement">.</span>rotor( <span class="Constant">2</span> <span class="Statement">=&gt;</span> <span class="Statement">-</span><span class="Constant">1</span>)<span class="Statement">;</span>
+
+<span class="Comment">## 100 扇门</span>
+<span class="Comment"># 问题： 你有 100 扇关着的门排成一排， 然后你穿过这些门 100 次。第一次穿过的时候，穿越每一扇门， 如果门是开着的就关闭它， 如果门是关着的就打开它。第二次穿越的时候，每两扇门穿越一下，（第 2、4、6扇门）；第三次穿越的时候， 每 3 扇门（第 3、6、9），等等， 直到你穿过第 100 扇门为止。</span>
+<span class="Comment"># 问： 最后一次穿过门之后， 每扇门的状态是开是关？</span>
+<span class="Comment"># 提示： 剩下开着的门就是那些能开方的整数the only doors that remain open are whose numbers are perfect squares of integers</span>
+<span class="Comment">#`(</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">doors</span> <span class="Statement">=</span> <span class="Type">False</span> <span class="Statement">xx</span> <span class="Constant">101</span><span class="Statement">;</span>
+(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">=</span> <span class="Statement">!</span><span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">doors</span>[<span class="Constant">0</span><span class="Statement">,</span> <span class="Statement">*</span> <span class="Statement">+</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">...^</span> <span class="Statement">*</span> <span class="Statement">&gt;</span> <span class="Constant">100</span>]) <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">100</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Door </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant"> is </span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&lt;</span><span class="Constant">closed open</span><span class="Special">&gt;</span>[ <span class="Identifier">@</span><span class="Identifier">doors</span>[<span class="Identifier">$</span><span class="Identifier">_</span>] ] <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">100</span><span class="Statement">;</span>
+)
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Door </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant"> is open</span><span class="Special">&quot;</span> <span class="Statement">for</span> <span class="Identifier">map</span> {<span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">n</span> <span class="Statement">**</span> <span class="Constant">2</span>}<span class="Statement">,</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Door </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant"> is open</span><span class="Special">&quot;</span> <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span> <span class="Statement">X**</span> <span class="Constant">2</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Door </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant"> is </span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&lt;</span><span class="Constant">closed open</span><span class="Special">&gt;</span>[<span class="Statement">.</span><span class="Identifier">sqrt</span> <span class="Statement">==</span> <span class="Statement">.</span><span class="Identifier">sqrt</span><span class="Statement">.</span><span class="Identifier">floor</span>] <span class="Statement">for</span> <span class="Constant">1</span><span class="Statement">..</span><span class="Constant">100</span><span class="Statement">;</span>
+
+</pre>
+
+      </div>
+    </div>
+  </body>
+</html>

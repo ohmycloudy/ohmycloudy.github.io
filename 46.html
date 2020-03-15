@@ -69,11 +69,20 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
         
 <pre id='vimCodeElement'>
+<span class="Comment"># 格式化日期, { }  花括号 自动获取了 $_  变量。</span>
 <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">fmt</span> <span class="Statement">=</span> {<span class="Identifier">sprintf</span> <span class="Special">&quot;</span><span class="Constant">%04d%02d%02d</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">.</span>year<span class="Statement">,</span> <span class="Statement">.</span>month<span class="Statement">,</span> <span class="Statement">.</span>day}<span class="Statement">;</span>
 <span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> Date<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">'</span><span class="Constant">2020-03-06</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">formatter</span> <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">fmt</span>) <span class="Statement">..</span> Date<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">'</span><span class="Constant">2020-03-12</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">formatter</span> <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">fmt</span>)<span class="Statement">;</span>
 </pre>

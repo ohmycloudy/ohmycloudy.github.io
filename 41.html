@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -102,6 +110,58 @@
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">Welcome in Larry</span><span class="Special">\'</span><span class="Constant">s madhouse</span><span class="Special">'</span><span class="Statement">;</span>
 <span class="Identifier">say</span>  <span class="Special">'</span><span class="Special">\'</span><span class="Special">\\</span><span class="Special">'</span><span class="Statement">;</span> <span class="Comment"># string contains: '\</span>
 <span class="Identifier">say</span> <span class="Statement">q</span> <span class="Special">|</span><span class="Special">\|</span><span class="Special">|</span><span class="Statement">;</span> <span class="Comment"># string contains: |</span>
+
+<span class="Comment">## Q 分割符</span>
+
+<span class="Identifier">say</span> <span class="Statement">Q</span><span class="Special">/</span><span class="Constant">hello</span><span class="Special">/</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Statement">Q</span><span class="Special">{</span><span class="Constant">world</span><span class="Special">}</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Statement">Q</span><span class="Special">|</span><span class="Constant">1234</span><span class="Special">|</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Statement">Q</span><span class="Special">,</span><span class="Constant">comma</span><span class="Special">,</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Statement">Q</span><span class="Special">[</span><span class="Constant">maohao</span><span class="Special">]</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Statement">Q</span>*askiles<span class="Statement">*;</span>
+<span class="Identifier">say</span> <span class="Statement">Q</span><span class="Statement">:</span><span class="Constant">a</span><span class="Special">/</span><span class="Constant">@a[0]</span><span class="Special">/</span><span class="Statement">;</span>  <span class="Comment"># 1</span>
+
+
+<span class="Comment">## 中文引号</span>
+
+<span class="Identifier">say</span> “啊啊啊”<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">“</span><span class="Special">'</span><span class="Statement">.</span>uniname<span class="Statement">;</span> <span class="Comment"># LEFT DOUBLE QUOTATION MARK</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">“</span><span class="Special">'</span><span class="Statement">.</span><span class="Identifier">ord</span><span class="Statement">;</span>     <span class="Comment"># 8220</span>
+<span class="Identifier">say</span> <span class="Constant">8220</span><span class="Statement">.</span><span class="Identifier">chr</span><span class="Statement">;</span>    <span class="Comment"># “</span>
+
+<span class="Identifier">say</span> so <span class="Special">'</span><span class="Constant">“</span><span class="Special">'</span> <span class="Statement">~~</span> <span class="Special">/</span><span class="Special">&lt;</span><span class="Statement">:</span><span class="Constant">Han</span><span class="Special">&gt;</span><span class="Special">/</span><span class="Statement">;</span> <span class="Comment"># False</span>
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">‘</span><span class="Special">&quot;</span><span class="Statement">.</span>uniname<span class="Statement">;</span> <span class="Comment"># LEFT SINGLE QUOTATION MARK</span>
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">‘</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">ord</span><span class="Statement">;</span>     <span class="Comment"># 8216</span>
+<span class="Identifier">say</span> <span class="Constant">8216</span><span class="Statement">.</span><span class="Identifier">chr</span><span class="Statement">;</span>    <span class="Comment"># ‘</span>
+
+<span class="Comment">## 插入标题</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">filenames</span> <span class="Statement">=</span> dir <span class="Special">'</span><span class="Constant">.</span><span class="Special">'</span><span class="Statement">,</span>  <span class="Constant">test</span> <span class="Statement">=&gt;</span> <span class="Identifier">all</span>(<span class="Special">/</span><span class="Special">\.</span><span class="Constant">md</span><span class="Special">$</span><span class="Special">/</span>)<span class="Statement">;</span>
+
+<span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">filenames</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">filePath</span> {
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">path</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">filePath</span><span class="Statement">.</span>path()<span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">path</span> <span class="Statement">~~</span> <span class="Statement">s</span><span class="Special">/</span><span class="Special">.</span><span class="Constant">md</span><span class="Special">//</span><span class="Statement">;</span>
+
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">date</span> <span class="Statement">=</span> DateTime<span class="Statement">.</span><span class="Identifier">new</span>(now)<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">head</span> <span class="Statement">=</span>
+<span class="Statement">qq</span><span class="Statement">:</span><span class="Constant">heredoc</span> <span class="Special">'</span><span class="Constant">EOT</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Statement">title:</span>  <span class="Identifier">$</span><span class="Identifier">path</span><span class="Statement">.</span><span class="Type">IO</span><span class="Statement">.</span>basename()
+<span class="Statement">date:</span> <span class="Identifier">$</span><span class="Identifier">date</span>
+<span class="Statement">tags:</span> Perl6
+<span class="Statement">categories:</span> Perl <span class="Constant">6</span>
+
+<span class="Statement">---</span>
+
+<span class="Special">&lt;</span><span class="Constant">blockquote class=&quot;blockquote-center&quot;</span><span class="Special">&gt;</span>Rakudo Star<span class="Special">&lt;</span><span class="Constant">/blockquote</span><span class="Special">&gt;</span>
+
+[TOC]
+
+EOT
+
+   <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">content</span>   <span class="Statement">=</span> <span class="Identifier">slurp</span> <span class="Identifier">$</span><span class="Identifier">filePath</span><span class="Statement">;</span>
+   spurt(<span class="Identifier">$</span><span class="Identifier">filePath</span><span class="Statement">.</span>path<span class="Statement">,</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">head</span><span class="Special">\n</span><span class="Identifier">@</span><span class="Identifier">content</span>[]<span class="Special">&quot;</span>)<span class="Statement">;</span>
+}
 </pre>
 
       </div>

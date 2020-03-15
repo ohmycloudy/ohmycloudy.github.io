@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -173,6 +181,133 @@
 <span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">letters-nums1</span><span class="Statement">;</span>    <span class="Comment"># {A =&gt; 1, B =&gt; 2, C =&gt; 3, D =&gt; 4, E =&gt; 5}</span>
 
 
+<span class="Comment">## bag union</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">a</span> <span class="Statement">=</span> bag <span class="Special">&lt;</span><span class="Constant">a a a b b c</span><span class="Special">&gt;</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">b</span> <span class="Statement">=</span> bag <span class="Special">&lt;</span><span class="Constant">a b b b</span><span class="Special">&gt;</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">a</span> (<span class="Statement">|</span>) <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">a</span> (<span class="Statement">&amp;</span>) <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">a</span> (<span class="Statement">+</span>) <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">a</span> (<span class="Statement">.</span>) <span class="Identifier">$</span><span class="Identifier">b</span><span class="Statement">;</span>
+
+
+<span class="Comment">## bags</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">words</span> <span class="Statement">:=</span> <span class="Type">Bag</span><span class="Statement">.</span><span class="Identifier">new</span>(<span class="Identifier">slurp</span><span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">/</span>)<span class="Statement">.</span><span class="Identifier">map</span>(<span class="Statement">*.</span><span class="Identifier">lc</span>))<span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">%</span><span class="Identifier">words</span>{}<span class="Special">&quot;</span><span class="Statement">;</span>
+
+<span class="Comment">## count words</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">words</span><span class="Statement">;</span>
+<span class="Statement">for</span> <span class="Identifier">slurp</span><span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">/</span>)<span class="Statement">.</span><span class="Identifier">map</span>(<span class="Statement">*.</span><span class="Identifier">lc</span>) <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">word</span> {
+    <span class="Identifier">%</span><span class="Identifier">words</span>{<span class="Identifier">$</span><span class="Identifier">word</span>}<span class="Statement">++;</span>
+}
+
+<span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">words</span><span class="Statement">.</span><span class="Identifier">pairs</span><span class="Statement">.</span><span class="Identifier">sort</span>(<span class="Statement">-*.</span><span class="Identifier">value</span>)<span class="Statement">.</span><span class="Identifier">map</span>({ <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">_</span><span class="Statement">.</span><span class="Identifier">value</span> }) <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">word</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">count</span> {
+    <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">word</span><span class="Constant">: </span><span class="Identifier">$</span><span class="Identifier">count</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment">## 散列</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">dev</span> <span class="Statement">=</span>  <span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Special">'</span><span class="Constant">audreyt</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">pct</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Special">'</span><span class="Constant">pm</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">STD</span><span class="Special">&quot;</span><span class="Statement">=&gt;</span><span class="Special">'</span><span class="Constant">larry</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">same_dev</span> <span class="Statement">=</span> <span class="Statement">:</span><span class="Constant">rakudo</span>(<span class="Special">'</span><span class="Constant">jnthn</span><span class="Special">'</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">testsuite</span>(<span class="Special">'</span><span class="Constant">moritz</span><span class="Special">'</span>)<span class="Statement">;</span>            <span class="Comment"># adverb (pair) syntax works as well</span>
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">too_dev</span> <span class="Statement">=</span> (<span class="Special">'</span><span class="Constant">audreyt</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">pm</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">pct</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">larry</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">STD</span><span class="Special">&quot;</span>)<span class="Statement">;</span>  <span class="Comment"># lists get autoconverted in hash context</span>
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">compiler</span> <span class="Statement">=</span> <span class="Constant">Parrot</span> <span class="Statement">=&gt;</span> {<span class="Constant">Rakudo</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">jnthn</span><span class="Special">'</span>}<span class="Statement">,</span> <span class="Constant">SMOP</span> <span class="Statement">=&gt;</span> {<span class="Constant">Mildew</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">ruoso</span><span class="Special">'</span>}<span class="Statement">;</span>       <span class="Comment"># hash of hashes (HoH)</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">same_dev</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">too_dev</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">compiler</span><span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span>
+
+<span class="Comment"># Hash Slices</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">name</span><span class="Statement">=</span><span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">value</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span>{<span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span>}<span class="Statement">;</span>      <span class="Comment"># just give me the value related to that key, like in P5</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">value1</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Special">&lt;</span><span class="Constant">STD</span><span class="Special">&gt;</span><span class="Statement">;</span>         <span class="Comment"># &lt;&gt; autoquotes like qw() in P5</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">value2</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Special">&lt;&lt;</span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Special">&gt;&gt;</span><span class="Statement">;</span>     <span class="Comment"># same thing, just with eval</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">value</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">value2</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">values</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span>{<span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">STD</span><span class="Special">'</span>}<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">values2</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Special">&lt;</span><span class="Constant">pugs STD</span><span class="Special">&gt;</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">values3</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Special">&lt;&lt;</span><span class="Constant">pugs STD </span><span class="Identifier">$</span><span class="Identifier">name</span><span class="Special">&gt;&gt;</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">values</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">values2</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">values3</span><span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">compiler</span><span class="Special">&lt;</span><span class="Constant">Parrot</span><span class="Special">&gt;&lt;</span><span class="Constant">Rakudo</span><span class="Special">&gt;</span><span class="Statement">;</span> <span class="Comment"># value in a HoH, returns 'jnthn'</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">compiler</span><span class="Special">&lt;</span><span class="Constant">SMOP</span><span class="Special">&gt;</span><span class="Statement">;</span>           <span class="Comment"># returns the Pair: Mildew =&gt; 'ruoso'</span>
+
+<span class="Comment"># %dev   {'audrey'};         # error, spaces between varname and braces (postcircumfix operator) are no longer allowed</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">\</span>  {<span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span>}<span class="Statement">;</span>        <span class="Comment"># works, quote the space</span>
+<span class="Comment"># %dev   .&lt;dukeleto&gt;;        # error</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">\</span> <span class="Statement">.</span>{<span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span>}<span class="Statement">;</span>        <span class="Comment"># works too, &quot;long dot style&quot;, because its its an object in truth </span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span>{<span class="Special">'</span><span class="Constant">pugs</span><span class="Special">'</span>}<span class="Statement">;</span>
+
+
+<span class="Comment"># Hash Methods</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">this hash has some pairs</span><span class="Special">'</span> <span class="Statement">if</span> <span class="Statement">?</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">;</span>                    <span class="Comment"># bool context, true if hash has any pairs</span>
+<span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">this hash has </span><span class="Special">'</span><span class="Statement">~</span> <span class="Statement">+</span> <span class="Identifier">%</span><span class="Identifier">dev</span> <span class="Statement">~</span><span class="Special">'</span><span class="Constant"> pairs</span><span class="Special">'</span><span class="Statement">;</span>                      <span class="Comment"># numeric context, returns number of pairs(keys)</span>
+<span class="Identifier">say</span> <span class="Statement">~</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">;</span>                    <span class="Comment"># string context, nicely formatted 2 column table using \t and \n</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">table</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">;</span>             <span class="Comment"># same as ~ %dev</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">table</span><span class="Statement">;</span>                   <span class="Comment"># (&quot;pugs&quot; =&gt; &quot;audreyt&quot;, &quot;pct&quot; =&gt; &quot;pm&quot;, &quot;STD&quot; =&gt; &quot;larry&quot;).hash</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>                 <span class="Comment"># stringified, but only $key and $value are separated by \t  #(&quot;pugs&quot; =&gt; &quot;audreyt&quot;, &quot;pct&quot; =&gt; &quot;pm&quot;, &quot;STD&quot; =&gt; &quot;larry&quot;).hash</span>
+<span class="Special">my</span>  <span class="Identifier">@</span><span class="Identifier">pairs</span> <span class="Statement">=</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">;</span>             <span class="Comment"># list of all containing pairs</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">pairs</span><span class="Statement">;</span>                    <span class="Comment"># &quot;pugs&quot; =&gt; &quot;audreyt&quot; &quot;pct&quot; =&gt; &quot;pm&quot; &quot;STD&quot; =&gt; &quot;larry&quot;</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">pairs</span><span class="Statement">;</span>                 <span class="Comment"># same thing in all context  # &quot;pugs&quot; =&gt; &quot;audreyt&quot; &quot;pct&quot; =&gt; &quot;pm&quot; &quot;STD&quot; =&gt; &quot;larry&quot;</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span>                 <span class="Comment"># same as + %dev or + %dev.pairs  # 3</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">keys</span><span class="Statement">;</span>                  <span class="Comment"># returns the list with all keys</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">values</span><span class="Statement">;</span>                <span class="Comment"># list of all values</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">kv</span><span class="Statement">;</span>                    <span class="Comment"># flat list with key1, value1, key 2 ...</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">invert</span><span class="Statement">;</span>                <span class="Comment"># reverse all key =&gt; value relations</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">dev</span><span class="Statement">.</span><span class="Identifier">push</span>(<span class="Identifier">@</span><span class="Identifier">pairs</span>)<span class="Statement">;</span>         <span class="Comment"># inserts a list of pairs, if a key is already present in %dev, both values gets added to an array</span>
+<span class="Comment"># (&quot;pugs&quot; =&gt; [&quot;audreyt&quot;, &quot;audreyt&quot;], &quot;pct&quot; =&gt; [&quot;pm&quot;, &quot;pm&quot;], &quot;STD&quot; =&gt; [&quot;larry&quot;, &quot;larry&quot;]).hash</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">another_pairs</span><span class="Statement">=</span><span class="Special">'</span><span class="Constant">Rakudo</span><span class="Special">'</span><span class="Statement">=&gt;</span><span class="Special">'</span><span class="Constant">Perl6</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">same_dev</span><span class="Statement">.</span><span class="Identifier">push</span>(<span class="Identifier">@</span><span class="Identifier">another_pairs</span>)<span class="Statement">;</span>
+
+<span class="Comment">## key-of</span>
+
+<span class="Comment"># You can also destructure hashes (and classes, which you'll learn about later !)</span>
+<span class="Comment"># The syntax is basically `%hash-name (:key($variable-to-store-value-in))`.</span>
+<span class="Comment"># The hash can stay anonymous if you only need the values you extracted.</span>
+<span class="Statement">sub</span> key-of(<span class="Statement">%</span> (<span class="Statement">:</span><span class="Constant">value</span>(<span class="Identifier">$</span><span class="Identifier">val</span>)<span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">qua</span>(<span class="Identifier">$</span><span class="Identifier">qua</span>))) {
+  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">Got val </span><span class="Identifier">$</span><span class="Identifier">val</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Identifier">qua</span><span class="Constant"> times.</span><span class="Special">&quot;</span><span class="Statement">;</span>
+}
+
+<span class="Comment"># Then call it with a hash: (you need to keep the brackets for it to be a hash)</span>
+key-of({<span class="Constant">value</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">foo</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">qua</span> <span class="Statement">=&gt;</span> <span class="Constant">1</span>})<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">hash</span> <span class="Statement">=</span> <span class="Constant">value</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">Perl6</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">qua</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">2016</span><span class="Special">'</span><span class="Statement">;</span>
+key-of(<span class="Identifier">%</span><span class="Identifier">hash</span>)<span class="Statement">;</span> <span class="Comment"># the same (for an equivalent `%hash`);</span>
+
+
+<span class="Comment">## pick 和 roll</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">bag</span> <span class="Statement">=</span> bag <span class="Special">&quot;</span><span class="Constant">red</span><span class="Special">&quot;</span> <span class="Statement">=&gt;</span> <span class="Constant">2</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">blue</span><span class="Special">&quot;</span> <span class="Statement">=&gt;</span> <span class="Constant">10</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">bag</span><span class="Statement">.</span>roll(<span class="Constant">10</span>)<span class="Statement">;</span> <span class="Comment"># 随机生成 10 组</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">bag</span><span class="Statement">.</span><span class="Identifier">pick</span>(<span class="Statement">*</span>)<span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Special">\n</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+
+<span class="Identifier">$</span><span class="Identifier">bag</span> <span class="Statement">=</span> bag <span class="Special">&quot;</span><span class="Constant">red</span><span class="Special">&quot;</span> <span class="Statement">=&gt;</span> <span class="Constant">20000000000000000001</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">blue</span><span class="Special">&quot;</span> <span class="Statement">=&gt;</span> <span class="Constant">100000000000000000000</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">bag</span><span class="Statement">.</span>roll(<span class="Constant">10</span>)<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">bag</span><span class="Statement">.</span><span class="Identifier">pick</span>(<span class="Constant">10</span>)<span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">&quot;</span><span class="Constant"> </span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+
+<span class="Comment">## 切片</span>
+
+<span class="Comment"># Semilists are semicolon lists</span>
+
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">hash</span> <span class="Statement">=</span> <span class="Constant">a</span> <span class="Statement">=&gt;</span> {<span class="Constant">b</span> <span class="Statement">=&gt;</span> <span class="Constant">2</span><span class="Statement">,</span> <span class="Constant">c</span> <span class="Statement">=&gt;</span> <span class="Constant">4</span>}<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">hash</span>{<span class="Special">&quot;</span><span class="Constant">a</span><span class="Special">&quot;</span>}{<span class="Special">&quot;</span><span class="Constant">b</span><span class="Special">&quot;</span>}<span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span> <span class="Comment"># 2</span>
+<span class="Identifier">say</span> <span class="Identifier">%</span><span class="Identifier">hash</span>{<span class="Special">&quot;</span><span class="Constant">a</span><span class="Special">&quot;</span><span class="Statement">;</span><span class="Special">&quot;</span><span class="Constant">b</span><span class="Special">&quot;</span>}<span class="Statement">.</span><span class="Identifier">perl</span><span class="Statement">;</span> <span class="Comment"># (2,) </span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">sliceable</span> <span class="Statement">=</span> [[ <span class="Statement">^</span><span class="Constant">10</span> ]<span class="Statement">,</span> [<span class="Special">'</span><span class="Constant">a</span><span class="Special">'</span><span class="Statement">..</span><span class="Special">'</span><span class="Constant">h</span><span class="Special">'</span>]<span class="Statement">,</span> [<span class="Special">'</span><span class="Constant">Ⅰ</span><span class="Special">'</span><span class="Statement">..</span><span class="Special">'</span><span class="Constant">Ⅺ</span><span class="Special">'</span>]]<span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">sliceable</span>[ <span class="Statement">^</span><span class="Constant">3</span><span class="Statement">;</span> <span class="Constant">4</span><span class="Statement">..</span><span class="Constant">6</span> ]<span class="Statement">;</span>
+
+<span class="Comment">## SetHash</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">haԭ</span> <span class="Statement">=</span> SetHash<span class="Statement">.</span><span class="Identifier">new</span>()<span class="Statement">;</span>
+<span class="Identifier">$</span><span class="Identifier">haԭ</span>{<span class="Special">'</span><span class="Constant">a</span><span class="Special">'</span>} <span class="Statement">=</span> <span class="Type">True</span><span class="Statement">;</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">haԭ</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant"> in a </span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">haԭ</span><span class="Statement">.^</span><span class="Identifier">name</span><span class="Statement">;</span>
 </pre>
 
       </div>

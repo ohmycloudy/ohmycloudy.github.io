@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -119,6 +127,33 @@
 <span class="Identifier">say</span> <span class="Identifier">@</span><span class="Identifier">rows</span><span class="Statement">.</span><span class="Identifier">elems</span><span class="Statement">;</span> <span class="Comment"># 3</span>
 <span class="Identifier">$</span><span class="Identifier">sth</span><span class="Statement">.</span>finish<span class="Statement">;</span>
 <span class="Identifier">$</span><span class="Identifier">dbh</span><span class="Statement">.</span>dispose<span class="Statement">;</span>
+
+<span class="Comment">## 拼接 sql</span>
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">days</span> <span class="Statement">=</span>  Date<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">'</span><span class="Constant">2017-10-01</span><span class="Special">'</span>) <span class="Statement">..</span> Date<span class="Statement">.</span><span class="Identifier">new</span>(<span class="Special">'</span><span class="Constant">2017-11-15</span><span class="Special">'</span>)<span class="Statement">;</span>
+
+<span class="Statement">sub</span> prepare_sql(<span class="Identifier">$</span><span class="Identifier">table</span><span class="Statement">,</span> <span class="Identifier">@</span><span class="Identifier">insert_fields</span><span class="Statement">,</span> <span class="Identifier">@</span><span class="Identifier">update_fields</span>) {
+    <span class="Comment"># 准备 sql 语句模版</span>
+    <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">on_duplicate_key</span><span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">placeholder</span>     <span class="Statement">;</span>
+
+    (<span class="Identifier">@</span><span class="Identifier">on_duplicate_key</span><span class="Statement">.</span>append(<span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">=</span><span class="Special">'</span> <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">VALUES(</span><span class="Special">'</span> <span class="Statement">~</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">)</span><span class="Special">'</span>) <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">update_fields</span>)<span class="Statement">;</span>
+    (<span class="Identifier">@</span><span class="Identifier">placeholder</span><span class="Statement">.</span>append(<span class="Special">'</span><span class="Constant">%s</span><span class="Special">'</span>) <span class="Statement">for</span> <span class="Identifier">@</span><span class="Identifier">insert_fields</span>)<span class="Statement">;</span>
+
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">insert_columns</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">(</span><span class="Special">'</span> <span class="Statement">~</span> <span class="Identifier">@</span><span class="Identifier">insert_fields</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">,</span><span class="Special">'</span>) <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">)</span><span class="Special">'</span><span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">values</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">values(</span><span class="Special">'</span> <span class="Statement">~</span> <span class="Identifier">@</span><span class="Identifier">placeholder</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">,</span><span class="Special">'</span>) <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">)</span><span class="Special">'</span><span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">on_duplicate_key_update</span> <span class="Statement">=</span> <span class="Identifier">@</span><span class="Identifier">on_duplicate_key</span><span class="Statement">.</span><span class="Identifier">join</span>(<span class="Special">'</span><span class="Constant">,</span><span class="Special">'</span>)<span class="Statement">;</span>
+
+    <span class="Special">return</span>  <span class="Special">&quot;</span><span class="Constant">insert into %s %s %s ON DUPLICATE KEY UPDATE %s</span><span class="Special">&quot;</span><span class="Statement">.</span><span class="Identifier">printf</span>(<span class="Identifier">$</span><span class="Identifier">table</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">insert_columns</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">values</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">on_duplicate_key_update</span>)<span class="Statement">;</span>
+}
+
+
+
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">insert_fields</span> <span class="Statement">=</span> (<span class="Special">'</span><span class="Constant">app_key</span><span class="Special">'</span><span class="Statement">,</span><span class="Special">'</span><span class="Constant">day</span><span class="Special">'</span><span class="Statement">,</span><span class="Special">'</span><span class="Constant">open_count</span><span class="Special">'</span><span class="Statement">,</span><span class="Special">'</span><span class="Constant">update_at</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 插入的字段</span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">update_fields</span> <span class="Statement">=</span> (<span class="Special">'</span><span class="Constant">open_count</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">update_at</span><span class="Special">'</span>)<span class="Statement">;</span>                <span class="Comment"># 需要更新的字段</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sql</span>           <span class="Statement">=</span> prepare_sql(<span class="Special">'</span><span class="Constant">aldstat_trend_analysis</span><span class="Special">'</span><span class="Statement">,</span> <span class="Identifier">@</span><span class="Identifier">insert_fields</span><span class="Statement">,</span> <span class="Identifier">@</span><span class="Identifier">update_fields</span>)<span class="Statement">;</span>
+
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">sql</span><span class="Statement">;</span>
 </pre>
 
       </div>

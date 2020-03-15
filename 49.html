@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -496,6 +504,21 @@
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">⁵⁄₄₉</span><span class="Special">'</span><span class="Statement">.</span>ords<span class="Statement">;</span> <span class="Comment"># (8309 8260 8324 8329)</span>
 <span class="Identifier">say</span> (⁵⁄₄₉)<span class="Statement">.</span><span class="Identifier">WHAT</span><span class="Statement">;</span>
 
+<span class="Comment"># generate heart</span>
+<span class="Statement">sub</span> i-love-you {
+    <span class="Statement">for</span> <span class="Constant">15</span> <span class="Statement">...^</span> <span class="Statement">-</span><span class="Constant">15</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">y</span> {
+        <span class="Statement">for</span> <span class="Statement">-</span><span class="Constant">150</span><span class="Statement">,</span> <span class="Statement">-</span><span class="Constant">145</span> <span class="Statement">...^</span> <span class="Constant">150</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+            <span class="Statement">if</span> ( (<span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">/</span><span class="Constant">100</span>)²  <span class="Statement">+</span> (<span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">/</span><span class="Constant">10</span>)² <span class="Statement">-</span> <span class="Constant">1</span>)³ <span class="Statement">-</span> ((<span class="Identifier">$</span><span class="Identifier">x</span><span class="Statement">/</span><span class="Constant">100</span>)²) <span class="Statement">*</span> ((<span class="Identifier">$</span><span class="Identifier">y</span><span class="Statement">/</span><span class="Constant">10</span>)³ ) <span class="Statement">&lt;=</span> <span class="Constant">0</span> {
+                <span class="Identifier">print</span>(<span class="Special">'</span><span class="Constant">*</span><span class="Special">'</span>)<span class="Statement">;</span>
+            } <span class="Statement">else</span> {
+                <span class="Identifier">print</span>(<span class="Special">&quot;</span><span class="Constant"> </span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+            }
+        }
+        <span class="Identifier">say</span>()<span class="Statement">;</span>
+    }
+}
+
+i-love-you()<span class="Statement">;</span>
 </pre>
 
       </div>

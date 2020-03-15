@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -464,6 +472,106 @@ person's-age-and-legs Person<span class="Statement">.</span><span class="Identif
         <span class="Special">when</span> $  { <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Constant">even: </span><span class="Identifier">$</span><span class="Identifier">i</span><span class="Special">&quot;</span> <span class="Statement">if</span> <span class="Identifier">$</span><span class="Identifier">i</span> <span class="Statement">%</span> <span class="Constant">2</span> <span class="Statement">==</span><span class="Constant">0</span>}
     }
 }
+
+
+<span class="Statement">for</span> <span class="Special">&lt;</span><span class="Constant">5 42 43 101 666 1024 2048</span><span class="Special">&gt;</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">value</span> {
+    <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">value</span> {
+        <span class="Special">when</span> <span class="Constant">0</span><span class="Statement">..</span><span class="Constant">9</span>      {  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant">: One digit</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> <span class="Constant">10</span><span class="Statement">..</span><span class="Constant">99</span>    {  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant">: Two digits</span><span class="Special">&quot;</span> <span class="Statement">;</span> proceed<span class="Statement">;</span> }
+        <span class="Special">when</span> <span class="Constant">42</span>        {  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant">: Response to the question</span><span class="Special">&quot;</span> }
+        <span class="Special">when</span> <span class="Special">/</span><span class="Special">^</span><span class="Special">\d</span><span class="Special">**</span><span class="Constant">3</span><span class="Special">$</span><span class="Special">/</span> {  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant">: Three digits</span><span class="Special">&quot;</span> }
+        <span class="Special">default</span>        {  <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Constant">: More than three digits</span><span class="Special">&quot;</span> }
+    }
+    <span class="Identifier">say</span> <span class="Special">''</span><span class="Statement">;</span>
+}
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">ch</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sign</span> <span class="Statement">=</span> <span class="Special">do</span> <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">ch</span> {
+  <span class="Special">when</span> <span class="Special">'</span><span class="Constant">+</span><span class="Special">'</span> {<span class="Constant">1</span>}
+  <span class="Special">when</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span> {<span class="Statement">-</span><span class="Constant">1</span>}
+  <span class="Special">default</span> {<span class="Constant">0</span>}
+}
+
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">sign</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">prefix</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">0x</span><span class="Special">'</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">re</span> <span class="Statement">=</span> <span class="Special">do</span> <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">prefix</span> {
+    <span class="Special">when</span> <span class="Special">'</span><span class="Constant">0</span><span class="Special">'</span> <span class="Statement">|</span> <span class="Special">'</span><span class="Constant">0x</span><span class="Special">'</span> <span class="Statement">|</span> <span class="Special">'</span><span class="Constant">0X</span><span class="Special">'</span> { <span class="Special">'</span><span class="Constant">OK</span><span class="Special">'</span> }
+    <span class="Special">when</span> <span class="Special">'</span><span class="Constant">0b</span><span class="Special">'</span> <span class="Statement">|</span> <span class="Special">'</span><span class="Constant">xb</span><span class="Special">'</span> <span class="Statement">|</span> <span class="Special">'</span><span class="Constant">xxb</span><span class="Special">'</span> { <span class="Special">'</span><span class="Constant">Fine</span><span class="Special">'</span> }
+    <span class="Special">default</span> {<span class="Special">'</span><span class="Constant">opps</span><span class="Special">'</span>}
+}
+
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">re</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">num</span> <span class="Statement">=</span> <span class="Constant">42.8</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">r</span> <span class="Statement">=</span> <span class="Special">do</span> <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">num</span> {
+    <span class="Special">when</span> <span class="Type">Int</span> {<span class="Special">&quot;</span><span class="Constant">Int</span><span class="Special">&quot;</span>}
+    <span class="Special">when</span> <span class="Type">Num</span> {<span class="Special">&quot;</span><span class="Constant">Num</span><span class="Special">&quot;</span>}
+    <span class="Special">when</span> <span class="Type">Rat</span> {<span class="Special">&quot;</span><span class="Constant">Rat</span><span class="Special">&quot;</span>}
+    <span class="Special">default</span> {<span class="Special">&quot;</span><span class="Constant">opps</span><span class="Special">&quot;</span>}
+}
+
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">r</span><span class="Statement">;</span>
+
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">str</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">hello-camelia-rakudo-star</span><span class="Special">&quot;</span><span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">res</span> <span class="Statement">=</span> <span class="Special">do</span> <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">str</span> {
+    <span class="Special">when</span> <span class="Statement">.</span><span class="Identifier">chars</span> <span class="Statement">&gt;</span> <span class="Constant">10</span> { <span class="Special">&quot;</span><span class="Constant">a long string</span><span class="Special">&quot;</span> }
+    <span class="Special">when</span> <span class="Statement">.</span><span class="Identifier">split</span>(<span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span>)<span class="Statement">.</span><span class="Identifier">elems</span> <span class="Statement">&gt;</span> <span class="Constant">3</span> {<span class="Special">&quot;</span><span class="Constant">more than three elements</span><span class="Special">&quot;</span>}
+    <span class="Special">when</span> <span class="Statement">.</span>contanis(<span class="Special">'</span><span class="Constant">star</span><span class="Special">'</span>) {<span class="Special">&quot;</span><span class="Constant">blink</span><span class="Special">&quot;</span>}
+    <span class="Special">default</span> {<span class="Special">&quot;</span><span class="Constant">opps</span><span class="Special">&quot;</span>}
+}
+
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">res</span><span class="Statement">;</span>
+
+
+<span class="Comment"># if guard</span>
+<span class="Statement">for</span> (<span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span>)<span class="Statement">.</span><span class="Identifier">grep</span><span class="Statement">:</span> <span class="Statement">*</span> <span class="Statement">%</span> <span class="Constant">2</span> <span class="Statement">==</span> <span class="Constant">0</span> <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">i</span> {<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">i</span>}
+<span class="Statement">for</span> (<span class="Constant">1</span><span class="Statement">..</span><span class="Constant">10</span>)<span class="Statement">.</span><span class="Identifier">grep</span><span class="Statement">:</span> {<span class="Constant">3</span> <span class="Statement">&lt;</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">&lt;</span> <span class="Constant">6</span> <span class="Statement">&amp;&amp;</span> <span class="Identifier">$</span><span class="Identifier">_</span> <span class="Statement">%</span> <span class="Constant">2</span> <span class="Statement">==</span> <span class="Constant">0</span>}  <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">i</span> { <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">i</span>}
+
+<span class="Comment"># for Comprehension</span>
+<span class="Special">my</span> <span class="Statement">\</span>names <span class="Statement">=</span> [<span class="Special">&quot;</span><span class="Constant">chris</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">ed</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Special">&quot;</span><span class="Constant">maurice</span><span class="Special">&quot;</span>]<span class="Statement">;</span>
+<span class="Comment"># my @capNames = gather for names -&gt; $e { take $e.uc} </span>
+<span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">capNames</span> <span class="Statement">=</span> <span class="Statement">gather</span> <span class="Statement">.</span><span class="Identifier">uc</span><span class="Statement">.</span><span class="Special">take</span> <span class="Statement">for</span> names<span class="Statement">;</span>
+
+<span class="Statement">class</span> Person {
+    <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">first</span><span class="Statement">;</span>
+    <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">last</span><span class="Statement">;</span>
+}
+
+<span class="Statement">class</span> Dog {
+    <span class="Special">has</span> <span class="Identifier">$</span><span class="Special">.</span><span class="Identifier">name</span><span class="Statement">;</span>
+}
+
+<span class="Statement">sub</span> eat(<span class="Identifier">$</span><span class="Identifier">x</span> <span class="Statement">--&gt;</span> <span class="Type">Str</span>) {
+    <span class="Statement">given</span> <span class="Identifier">$</span><span class="Identifier">x</span> {
+        <span class="Comment"># constant patterns</span>
+        <span class="Special">when</span> <span class="Constant">0</span> {<span class="Special">'</span><span class="Constant">zero</span><span class="Special">'</span>}
+        <span class="Comment">#when True {'true'}</span>
+        <span class="Special">when</span> <span class="Special">'</span><span class="Constant">hello</span><span class="Special">'</span> {<span class="Special">'</span><span class="Constant">you said &quot;hello&quot;</span><span class="Special">'</span>}
+
+        <span class="Comment"># sequence patterns</span>
+        <span class="Special">when</span> List(<span class="Constant">0</span><span class="Statement">,</span> <span class="Statement">*,</span> <span class="Statement">*</span>) {<span class="Special">&quot;</span><span class="Constant">a three-element list with 0 as the first element</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> List(<span class="Constant">1</span><span class="Statement">,</span> @) {<span class="Special">&quot;</span><span class="Constant">a list beginning with 1, having any number of elements</span><span class="Special">&quot;</span>}
+
+        <span class="Comment"># tuples</span>
+        <span class="Special">when</span> (<span class="Statement">*,*</span>) {<span class="Special">&quot;</span><span class="Constant">got </span><span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">a</span><span class="Constant"> and </span><span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">b</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> (<span class="Statement">*,</span> <span class="Statement">*,</span> <span class="Statement">*</span>) {<span class="Special">&quot;</span><span class="Constant">got </span><span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">a</span><span class="Constant">, </span><span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">b</span><span class="Constant">, and </span><span class="Identifier">$</span><span class="Special">^</span><span class="Identifier">c</span><span class="Special">&quot;</span>}
+
+        <span class="Comment"># constructor patterns</span>
+        <span class="Special">when</span> Person(<span class="Constant">first</span><span class="Statement">=&gt;</span><span class="Special">'</span><span class="Constant">Alexander</span><span class="Special">'</span><span class="Statement">,</span> <span class="Constant">last</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">Larry</span><span class="Special">'</span>) {<span class="Special">&quot;</span><span class="Constant">found an Alexander</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> Dog(<span class="Constant">name</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">Suka</span><span class="Special">'</span>) {<span class="Special">&quot;</span><span class="Constant">found a dog named Suka</span><span class="Special">&quot;</span>}
+
+        <span class="Comment"># typed patterns</span>
+        <span class="Special">when</span> <span class="Type">Str</span> {<span class="Special">&quot;</span><span class="Constant">you gave me this string: </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> <span class="Type">Int</span> {<span class="Special">&quot;</span><span class="Constant">thanks for the int: </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> <span class="Type">Num</span> {<span class="Special">&quot;</span><span class="Constant">thanks for the Num: </span><span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> <span class="Type">Array</span> {<span class="Special">&quot;</span><span class="Constant">an array of int</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> Dog {<span class="Special">&quot;</span><span class="Constant">a dog</span><span class="Special">&quot;</span>}
+        <span class="Special">when</span> <span class="Type">List</span> {<span class="Special">&quot;</span><span class="Constant">a list</span><span class="Special">&quot;</span>}
+        <span class="Special">default</span> {<span class="Special">&quot;</span><span class="Constant">Unknown</span><span class="Special">&quot;</span>}
+    }
+}
+
 </pre>
 
       </div>

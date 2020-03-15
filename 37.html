@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -164,6 +172,34 @@
 <span class="Comment"># 20 21 22 23 24 25 26</span>
 <span class="Comment"># 27 28 29 30</span>
 )
+
+<span class="Comment">## most common unique</span>
+
+<span class="Statement">sub</span> MAIN(<span class="Identifier">$</span><span class="Identifier">file1</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">file2</span>) {
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">words1</span> <span class="Statement">=</span> bag <span class="Identifier">slurp</span>(<span class="Identifier">$</span><span class="Identifier">file1</span>)<span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">/</span>)<span class="Statement">.</span><span class="Identifier">map</span>(<span class="Statement">*.</span><span class="Identifier">lc</span>)<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">words2</span> <span class="Statement">=</span> set <span class="Identifier">slurp</span>(<span class="Identifier">$</span><span class="Identifier">file2</span>)<span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Special">\w</span><span class="Special">+</span><span class="Special">/</span>)<span class="Statement">.</span><span class="Identifier">map</span>(<span class="Statement">*.</span><span class="Identifier">lc</span>)<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">unique</span> <span class="Statement">=</span> (<span class="Identifier">$</span><span class="Identifier">words1</span> (<span class="Statement">-</span>) <span class="Identifier">$</span><span class="Identifier">words2</span>)<span class="Statement">;</span>
+    <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">unique</span><span class="Statement">.</span><span class="Statement">list</span><span class="Statement">.</span><span class="Identifier">sort</span>({ <span class="Statement">-</span><span class="Identifier">$</span><span class="Identifier">words1</span>{<span class="Identifier">$</span><span class="Identifier">_</span>} })[<span class="Statement">^</span><span class="Constant">10</span>] <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">word</span> {
+        <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">word</span><span class="Constant">: </span>{ <span class="Identifier">$</span><span class="Identifier">words1</span>{<span class="Identifier">$</span><span class="Identifier">word</span>} }<span class="Special">&quot;</span><span class="Statement">;</span>
+    }
+}
+
+<span class="Comment">## ps command</span>
+
+<span class="Statement">sub</span> MAIN( <span class="Identifier">$</span><span class="Identifier">string</span> ){                   <span class="Comment"># 1</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">p</span> <span class="Statement">=</span> <span class="Identifier">run</span> <span class="Special">'</span><span class="Constant">ps</span><span class="Special">'</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">auxww</span><span class="Special">'</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">out</span><span class="Statement">;</span>   <span class="Comment"># 2</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">header</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">p</span><span class="Statement">.</span>out<span class="Statement">.</span>get<span class="Statement">;</span>           <span class="Comment"># 3</span>
+    <span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">header</span><span class="Statement">,</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span> <span class="Statement">x</span> <span class="Constant">80</span><span class="Statement">;</span>             <span class="Comment"># 4</span>
+
+    <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">p</span><span class="Statement">.</span>out<span class="Statement">.</span><span class="Identifier">lines</span> {                 <span class="Comment"># 5</span>
+        <span class="Special">next</span> <span class="Statement">unless</span> <span class="Statement">m</span><span class="Special">/</span><span class="Constant"> </span><span class="Identifier">$</span><span class="Identifier">string</span><span class="Constant"> </span><span class="Special">/</span><span class="Statement">;</span>      <span class="Comment"># 6</span>
+        <span class="Statement">.</span><span class="Identifier">trim</span><span class="Statement">;</span>                         <span class="Comment"># 7</span>
+        <span class="Special">my</span> <span class="Identifier">@</span><span class="Identifier">v</span> <span class="Statement">=</span> <span class="Statement">.</span>words<span class="Statement">;</span>                <span class="Comment"># 8</span>
+        <span class="Special">next</span> <span class="Statement">if</span> <span class="Identifier">@</span><span class="Identifier">v</span>[<span class="Constant">1</span>] <span class="Statement">==</span> <span class="Identifier">$</span><span class="Special">*</span><span class="Identifier">PID</span><span class="Statement">;</span>        <span class="Comment"># 9</span>
+        <span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>                          <span class="Comment"># 10</span>
+    }
+    <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">-</span><span class="Special">'</span> <span class="Statement">x</span> <span class="Constant">80</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">header</span><span class="Statement">;</span>             <span class="Comment"># 11</span>
+}
 </pre>
 
       </div>

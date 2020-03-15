@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -125,6 +133,14 @@
    <span class="Statement">for</span> <span class="Identifier">%</span><span class="Identifier">hhgttu</span> <span class="Statement">-&gt;</span> (<span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">value</span>) {
      <span class="Identifier">say</span> <span class="Special">&quot;</span><span class="Identifier">$</span><span class="Identifier">key</span><span class="Constant"> → </span><span class="Identifier">$</span><span class="Identifier">value</span><span class="Special">&quot;</span><span class="Statement">;</span>
 }
+
+<span class="Comment"># pairs</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">pair</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">jakub</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">helena</span><span class="Special">'</span><span class="Statement">;</span>  <span class="Comment"># &quot;=&gt;&quot; is the pair constructor</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">pair2</span> <span class="Statement">=</span> <span class="Statement">:</span><span class="Constant">run</span>(<span class="Special">'</span><span class="Constant">quckily</span><span class="Special">'</span>)<span class="Statement">;</span>     <span class="Comment"># same in adverbial notation</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">pair3</span> <span class="Statement">=</span> <span class="Statement">:</span><span class="Constant">eat</span><span class="Special">&lt;</span><span class="Constant">food</span><span class="Special">&gt;</span><span class="Statement">;</span>          <span class="Comment"># same using &lt;&gt;, the new qw()</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">pair</span><span class="Statement">.</span><span class="Identifier">key</span><span class="Statement">;</span>                    <span class="Comment"># returns 'jakub'</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">pair2</span><span class="Statement">.</span><span class="Identifier">value</span> <span class="Statement">;</span>                <span class="Comment"># returns 'quckily'</span>
+<span class="Identifier">say</span> <span class="Identifier">$</span><span class="Identifier">pair3</span><span class="Statement">.</span><span class="Identifier">isa</span>(<span class="Type">Pair</span>)<span class="Statement">;</span>             <span class="Comment"># Bool::True</span>
 </pre>
 
       </div>

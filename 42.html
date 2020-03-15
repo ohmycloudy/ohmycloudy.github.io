@@ -69,6 +69,14 @@
             <li><a href="49.html">49.unicode</a></li>
             <li><a href="50.html">50.when</a></li>
             <li><a href="51.html">51.with</a></li>
+            <li><a href="52.html">52.rotor</a></li>
+            <li><a href="53.html">53.series_operator</a></li>
+            <li><a href="54.html">54.range</a></li>
+            <li><a href="55.html">55.slip</a></li>
+            <li><a href="56.html">56.react_whenever</a></li>
+            <li><a href="57.html">57.introspection</a></li>
+            <li><a href="58.html">58.promise</a></li>
+            <li><a href="59.html">59.threads</a></li>
         </ul>
       </div>
       <div id="content">
@@ -124,6 +132,33 @@
 <span class="Comment">## with</span>
 
 <span class="Statement">.</span><span class="Identifier">say</span> with <span class="Constant">42</span>
+
+<span class="Comment">## {} </span>
+
+<span class="Statement">given</span> <span class="Special">'</span><span class="Constant">20190823</span><span class="Special">'</span> {
+    <span class="Statement">for</span> ((<span class="Constant">1</span> <span class="Statement">..</span> <span class="Statement">.</span><span class="Identifier">chars</span>) ∖ <span class="Statement">.</span><span class="Identifier">chars</span> <span class="Statement">«-»</span> <span class="Statement">.</span>indices(<span class="Constant">0</span>))<span class="Statement">.</span><span class="Identifier">keys</span><span class="Statement">.</span><span class="Identifier">sort</span>(<span class="Statement">-*</span>) <span class="Statement">-&gt;</span> <span class="Identifier">$</span><span class="Identifier">n</span> {
+        <span class="Identifier">say</span> <span class="Special">&quot;</span>{<span class="Statement">.</span><span class="Identifier">substr</span>(<span class="Statement">*</span> <span class="Statement">-</span> <span class="Identifier">$</span><span class="Identifier">n</span>)}<span class="Constant"> is prime</span><span class="Special">&quot;</span> <span class="Statement">if</span> <span class="Statement">.</span><span class="Identifier">substr</span>(<span class="Statement">*</span> <span class="Statement">-</span> <span class="Identifier">$</span><span class="Identifier">n</span>)<span class="Statement">.</span><span class="Identifier">is</span><span class="Statement">-</span>prime<span class="Statement">;</span>
+    }
+}
+
+<span class="Comment"># 20190823 is prime</span>
+<span class="Comment"># 190823 is prime</span>
+<span class="Comment"># 90823 is prime</span>
+<span class="Comment"># 823 is prime</span>
+<span class="Comment"># 23 is prime</span>
+<span class="Comment"># 3 is prime</span>
+
+<span class="Comment">## given 块自动设置 topic 变量</span>
+
+<span class="Statement">given</span> <span class="Identifier">open</span>(<span class="Special">&quot;</span><span class="Constant">output-perl6</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">w</span>) {
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">catFace</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Special">\x</span><span class="Special">1F639</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Statement">.</span><span class="Identifier">say</span>(<span class="Identifier">$</span><span class="Identifier">catFace</span>)<span class="Statement">;</span>
+    <span class="Statement">.</span><span class="Identifier">say</span>(<span class="Identifier">$</span><span class="Identifier">catFace</span><span class="Statement">.</span><span class="Identifier">chars</span>)<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">dWithDots</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">D</span><span class="Special">\x</span><span class="Special">0323</span><span class="Special">\x</span><span class="Special">0307</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    <span class="Statement">.</span><span class="Identifier">say</span>(<span class="Identifier">$</span><span class="Identifier">dWithDots</span>)<span class="Statement">;</span>
+    <span class="Statement">.</span><span class="Identifier">say</span>(<span class="Identifier">$</span><span class="Identifier">dWithDots</span><span class="Statement">.</span><span class="Identifier">chars</span>)<span class="Statement">;</span>
+    <span class="Statement">.</span><span class="Identifier">close</span><span class="Statement">;</span>
+}
 </pre>
 
       </div>
