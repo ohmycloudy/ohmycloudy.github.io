@@ -101,6 +101,52 @@
 <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">line</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">{&quot;pdfnum&quot;:&quot;06342858&quot;,&quot;pdfnum&quot;:&quot;06342854&quot;</span><span class="Special">'</span><span class="Statement">;</span>
 <span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">for</span> <span class="Identifier">$</span><span class="Identifier">line</span><span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Constant">pdfnum</span><span class="Special">'</span><span class="Constant">&quot;:&quot;</span><span class="Special">'</span><span class="Special">&lt;</span><span class="Special">(</span> <span class="Special">\w</span><span class="Special">+</span> <span class="Special">)</span><span class="Special">&gt;</span><span class="Special">'</span><span class="Constant">&quot;</span><span class="Special">'/</span>)<span class="Statement">;</span>
 
+<span class="Comment">## \w+ 也能匹配中文</span>
+<span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Constant">TITLE </span><span class="Special">\s</span><span class="Special">*</span><span class="Constant"> </span><span class="Special">\&quot;</span><span class="Constant"> </span><span class="Special">&lt;</span><span class="Special">(</span> <span class="Special">\w</span><span class="Special">+</span> <span class="Special">)</span><span class="Special">&gt;</span><span class="Special">\&quot;</span><span class="Special">/</span>)[<span class="Constant">0</span>]<span class="Statement">.</span><span class="Identifier">say</span> <span class="Statement">if</span> <span class="Special">/</span><span class="Constant">TITLE</span><span class="Special">/</span> <span class="Statement">for</span> <span class="Identifier">$</span><span class="Special">=</span><span class="Identifier">finish</span><span class="Statement">.</span><span class="Identifier">lines</span>
+
+<span class="Statement">=</span><span class="Type">finish</span>
+<span class="Comment">PERFORMER &quot;Various&quot;</span>
+<span class="Comment">TITLE &quot;宝丽金非常老牌精选&quot;</span>
+<span class="Comment">FILE &quot;CDImage.ape&quot; WAVE</span>
+<span class="Comment">  TRACK 01 AUDIO</span>
+<span class="Comment">    TITLE &quot;太阳一样&quot;</span>
+<span class="Comment">    PERFORMER &quot;刘文正&quot;</span>
+<span class="Comment">    INDEX 01 00:00:00</span>
+<span class="Comment">  TRACK 02 AUDIO</span>
+<span class="Comment">    TITLE &quot;堆积情感&quot;</span>
+<span class="Comment">    PERFORMER &quot;邝美云&quot;</span>
+<span class="Comment">    INDEX 00 03:28:07</span>
+<span class="Comment">    INDEX 01 03:30:10</span>
+<span class="Comment">  TRACK 03 AUDIO</span>
+<span class="Comment">    TITLE &quot;时空寄情&quot;</span>
+<span class="Comment">    PERFORMER &quot;黄莺莺&quot;</span>
+<span class="Comment">    INDEX 00 08:24:00</span>
+<span class="Comment">    INDEX 01 08:27:12</span>
+<span class="Comment">  TRACK 04 AUDIO</span>
+<span class="Comment">    TITLE &quot;再见我的爱人&quot;</span>
+<span class="Comment">    PERFORMER &quot;邓丽君&quot;</span>
+<span class="Comment">    INDEX 00 12:33:10</span>
+<span class="Comment">    INDEX 01 12:36:32</span>
+<span class="Comment">  TRACK 05 AUDIO</span>
+<span class="Comment">    TITLE &quot;海角天涯&quot;</span>
+<span class="Comment">    PERFORMER &quot;王芷蕾&quot;</span>
+<span class="Comment">    INDEX 00 16:03:02</span>
+<span class="Comment">    INDEX 01 16:06:07</span>
+<span class="Comment">  TRACK 06 AUDIO</span>
+<span class="Comment">    TITLE &quot;廻&quot;</span>
+<span class="Comment">    PERFORMER &quot;李恕权&quot;</span>
+<span class="Comment">    INDEX 00 19:30:30</span>
+<span class="Comment">    INDEX 01 19:33:22</span>
+<span class="Comment">  TRACK 07 AUDIO</span>
+<span class="Comment">    TITLE &quot;故事的真相&quot;</span>
+<span class="Comment">    PERFORMER &quot;黄仲昆、杨林&quot;</span>
+<span class="Comment">    INDEX 00 24:04:05</span>
+<span class="Comment">    INDEX 01 24:06:12</span>
+<span class="Comment">  TRACK 08 AUDIO</span>
+<span class="Comment">    TITLE &quot;扬帆&quot;</span>
+<span class="Comment">    PERFORMER &quot;阳帆&quot;</span>
+<span class="Comment">    INDEX 00 28:34:42</span>
+<span class="Comment">    INDEX 01 28:37:22</span>
 
 <span class="Comment">## 提取文本块</span>
 <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">excerpt</span> <span class="Statement">=</span> <span class="Statement">q</span><span class="Statement">:</span><span class="Constant">to</span><span class="Special">/</span><span class="Constant">END</span><span class="Special">/</span><span class="Statement">;</span>

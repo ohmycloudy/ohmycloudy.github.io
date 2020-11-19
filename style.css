@@ -1,12 +1,12 @@
 pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
 body { font-family: monospace; color: #000000; background-color: #ffffff; }
 * { font-size: 1em; }
+.Type { color: #008000;  }
 .Constant { color: #0000c0;  }
 .Comment { color: #c00000;  }
 .Special { color: #c000c0;  }
 .Identifier { color: #804000;  }
-.Statement { color: #008080;  }
-.Type { color: #008000;  }html, body {
+.Statement { color: #008080;  }html, body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;

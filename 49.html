@@ -86,9 +86,12 @@
 
 <span class="Identifier">say</span> so <span class="Special">'</span><span class="Constant">你好</span><span class="Special">'</span><span class="Statement">~~</span> <span class="Special">/</span><span class="Constant">你好</span><span class="Special">/</span><span class="Statement">;</span>               <span class="Comment"># doesn't need to be quoted</span>
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">你好</span><span class="Special">'</span><span class="Statement">.</span>uniprop(<span class="Special">'</span><span class="Constant">Script</span><span class="Special">'</span>)<span class="Statement">;</span>        <span class="Comment"># Han</span>
+<span class="Identifier">say</span> unimatch(<span class="Special">'</span><span class="Constant">你</span><span class="Special">'</span><span class="Statement">,</span><span class="Special">'</span><span class="Constant">Han</span><span class="Special">'</span>)<span class="Statement">;</span>            <span class="Comment"># True</span>
+<span class="Identifier">say</span> unimatch(<span class="Special">'</span><span class="Constant">你</span><span class="Special">'</span><span class="Statement">,</span><span class="Special">'</span><span class="Constant">Hani</span><span class="Special">'</span>)<span class="Statement">;</span>           <span class="Comment"># True</span>
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">你好, hello</span><span class="Special">'</span><span class="Statement">.</span>uniprop(<span class="Special">'</span><span class="Constant">Script</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># Han</span>
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">안녕하세요</span><span class="Special">'</span><span class="Statement">.</span>uniprop(<span class="Special">'</span><span class="Constant">Script</span><span class="Special">'</span>)<span class="Statement">;</span>    <span class="Comment"># Hangul</span>
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">こんにちは</span><span class="Special">'</span><span class="Statement">.</span>uniprop(<span class="Special">'</span><span class="Constant">Script</span><span class="Special">'</span>)<span class="Statement">;</span>   <span class="Comment"># Hiragana</span>
+<span class="Identifier">say</span> uniname(<span class="Special">'</span><span class="Constant">一</span><span class="Special">'</span>)<span class="Statement">;</span>                   <span class="Comment"># CJK UNIFIED IDEOGRAPH-4E00(象形文字)</span>
 
 <span class="Comment"># <a href="http://www.unicode.org/reports/tr24/">http://www.unicode.org/reports/tr24/</a></span>
 <span class="Comment"># &lt;:Hani&gt; 是 &lt;:Han&gt; 的长形式</span>
@@ -273,7 +276,6 @@
 <span class="Comment">## Unicode 数字</span>
 
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">⅟</span><span class="Special">'</span><span class="Statement">.</span>uniname<span class="Statement">;</span>  <span class="Comment"># FRACTION NUMERATOR ONE</span>
-
 
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">↉</span><span class="Special">'</span><span class="Statement">.</span>uniname<span class="Statement">;</span> <span class="Comment"># VULGAR FRACTION ZERO THIRDS</span>
 <span class="Identifier">say</span> <span class="Special">'</span><span class="Constant">⅔</span><span class="Special">'</span><span class="Statement">.</span>uniname<span class="Statement">;</span>  <span class="Comment"># VULGAR FRACTION TWO THIRDS</span>
@@ -519,6 +521,42 @@
 }
 
 i-love-you()<span class="Statement">;</span>
+
+<span class="Comment">## unival</span>
+
+put unival(<span class="Special">'</span><span class="Constant">一</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 1</span>
+put unival(<span class="Special">'</span><span class="Constant">二</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 2</span>
+put unival(<span class="Special">'</span><span class="Constant">三</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 3</span>
+put unival(<span class="Special">'</span><span class="Constant">四</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 4</span>
+put unival(<span class="Special">'</span><span class="Constant">五</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 5</span>
+put unival(<span class="Special">'</span><span class="Constant">六</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 6</span>
+put unival(<span class="Special">'</span><span class="Constant">七</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 7</span>
+put unival(<span class="Special">'</span><span class="Constant">八</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 8</span>
+put unival(<span class="Special">'</span><span class="Constant">九</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 9</span>
+put unival(<span class="Special">'</span><span class="Constant">十</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 10</span>
+put unival(<span class="Special">'</span><span class="Constant">百</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 100</span>
+put unival(<span class="Special">'</span><span class="Constant">千</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 1000</span>
+put unival(<span class="Special">'</span><span class="Constant">万</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 10000</span>
+put unival(<span class="Special">'</span><span class="Constant">亿</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 100000000</span>
+
+put unival(<span class="Special">'</span><span class="Constant">壹</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 1</span>
+put unival(<span class="Special">'</span><span class="Constant">贰</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 2</span>
+put unival(<span class="Special">'</span><span class="Constant">叁</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 3</span>
+put unival(<span class="Special">'</span><span class="Constant">肆</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 4</span>
+put unival(<span class="Special">'</span><span class="Constant">伍</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 5</span>
+put unival(<span class="Special">'</span><span class="Constant">陆</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 6</span>
+put unival(<span class="Special">'</span><span class="Constant">柒</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 7</span>
+put unival(<span class="Special">'</span><span class="Constant">捌</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 8</span>
+put unival(<span class="Special">'</span><span class="Constant">玖</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 9</span>
+put unival(<span class="Special">'</span><span class="Constant">拾</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 10</span>
+put unival(<span class="Special">'</span><span class="Constant">佰</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 100</span>
+put unival(<span class="Special">'</span><span class="Constant">仟</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 1000</span>
+put unival(<span class="Special">'</span><span class="Constant">萬</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 10000</span>
+put unival(<span class="Special">'</span><span class="Constant">億</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># 100000000</span>
+
+put univals(<span class="Special">'</span><span class="Constant">三千六百</span><span class="Special">'</span>)<span class="Statement">;</span> <span class="Comment"># (3 1000 6 100)</span>
+put univals(<span class="Special">'</span><span class="Constant">四万万</span><span class="Special">'</span>)<span class="Statement">;</span>   <span class="Comment"># (4 10000 10000)</span>
+put univals(<span class="Special">'</span><span class="Constant">十三亿</span><span class="Special">'</span>)<span class="Statement">;</span>   <span class="Comment"># (10 3 100000000)</span>
 </pre>
 
       </div>

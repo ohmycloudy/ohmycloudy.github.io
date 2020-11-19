@@ -279,6 +279,26 @@
     <span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Special">\w</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">&lt;</span>same<span class="Special">&gt;</span><span class="Special">/</span>)<span class="Statement">.</span><span class="Identifier">say</span><span class="Statement">;</span>
 }
 <span class="Comment"># A BBB C D EE F</span>
+
+<span class="Comment">## lookaround</span>
+
+<span class="Comment"># 向后查看断言 - 感兴趣的东西在 &lt;模式&gt; 的后面</span>
+<span class="Comment"># &lt;?after d\:&gt; \w+ 读作：字符串 d: 后面是一个标识符 \w+</span>
+<span class="Comment"># 或者用英文描述: after the string `d:` is a `\w+`</span>
+<span class="Statement">given</span> <span class="Special">'</span><span class="Constant">2_2020_000987 column=d:bcp_soc, timestamp=1605155065124, value=42.0</span><span class="Special">'</span> {
+    <span class="Statement">.</span><span class="Identifier">comb</span>( <span class="Special">/</span><span class="Constant"> </span><span class="Special">^</span><span class="Constant"> </span><span class="Special">[</span><span class="Special">\d</span><span class="Special">+</span><span class="Special">]</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">%</span><span class="Constant"> </span><span class="Special">'</span><span class="Constant">_</span><span class="Special">'</span><span class="Constant"> </span><span class="Special">|</span><span class="Constant"> </span><span class="Special">&lt;</span><span class="Special">?</span>after d<span class="Special">\:</span><span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">\w</span><span class="Special">+</span><span class="Constant">  </span><span class="Special">|</span><span class="Constant"> </span><span class="Special">&lt;</span><span class="Special">?</span>after value<span class="Special">\=</span><span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">.*</span><span class="Special">/</span> )<span class="Statement">.</span><span class="Identifier">say</span>
+}
+
+<span class="Comment"># Output: (28_2820201112122420516_000000 bcp_startSoc 64.0)</span>
+
+<span class="Comment"># 向前查看断言 - 感兴趣的东西在 &lt;模式&gt; 的前面</span>
+<span class="Comment"># \d+ &lt;?before '|' | '='&gt; 读作: | 或 = 符号的前面是一个数字 \d+</span>
+<span class="Comment"># 或者用英文描述: before character | or = is a number \d+ </span>
+<span class="Statement">given</span> <span class="Special">'</span><span class="Constant">a33|b44=c55|</span><span class="Special">'</span> {
+    <span class="Statement">.</span><span class="Identifier">comb</span>(<span class="Special">/</span><span class="Constant"> </span><span class="Special">\d</span><span class="Special">+</span><span class="Constant"> </span><span class="Special">&lt;</span><span class="Special">?</span>before <span class="Special">'</span><span class="Constant">|</span><span class="Special">'</span> <span class="Special">|</span> <span class="Special">'</span><span class="Constant">=</span><span class="Special">'</span><span class="Special">&gt;</span><span class="Constant"> </span><span class="Special">/</span>)<span class="Statement">.</span><span class="Identifier">say</span>
+}
+
+<span class="Comment"># Output: (33 44 55)</span>
 </pre>
 
       </div>
